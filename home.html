@@ -1,0 +1,43 @@
+<!-- home.html: Fixed duplication by removing the second about section. Assumed order: about first (at top), then hero (video section that fades in on scroll), then location. -->
+<aside id="about" class="container mt-5">
+  <h3>About Us</h3>
+  <div class="content-block">
+    <p>The <span class="big-text">BIGGEST</span> room...</p>
+    <img src="images/room3.jpeg" alt="Image 1" />
+  </div>
+  <div class="content-block">
+    <p>The BEST view...</p>
+    <img src="images/room1.jpeg" alt="Image 2" />
+  </div>
+  <div class="content-block">
+    <p>The BONDED Brothership!</p>
+    <img src="images/room2.png" alt="Image 3" />
+  </div>
+</aside>
+<section id="hero">
+  <div class="shadow"></div>
+  <h1>Daily life in WenLin</h1>
+  <video autoplay muted loop id="background-video">
+    <source src="images/video1.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</section>
+<section id="location" class="container mt-5">
+  <h2>Location</h2>
+  <p>
+    Wen Lin Tang is located at Chung Chi College, The Chinese University of Hong
+    Kong. Since 1972, it has been dedicated by the Hong Kong Sheng Kung Hui
+    (Anglican Church). Originally a co-ed dormitory, it has now become a
+    male-only residence. The hostel is situated along Tai Po Road and is the
+    only CUHK dormitory located outside the main campus, right opposite to the
+    Chung Chi Gate. Wen Lin Tang is a three-story building that provides 32
+    rooms with a total of 54 bed spaces.
+  </p>
+  <!-- Google Maps Embed (replace with actual if needed) -->
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.714469668315!2d114.2064973!3d22.410867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340407c5c3f2e4d3%3A0x3b0a0d0f0f0f0f0f!2sWen%20Lin%20Tang%2C%20Chung%20Chi%20College%2C%20The%20Chinese%20University%20of%20Hong%20Kong!5e0!3m2!1sen!2shk!4v1726160000000!5m2!1sen!2shk"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</section>

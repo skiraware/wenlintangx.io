@@ -1,121 +1,131 @@
-/*--------------------------------------------START-------------------------------------------------------*/
+/* styles.css: Updated for lime theme (accents in #32CD32/lime). Removed styles for removed elements like toast, timer, align, etc. */
 
-/* All Element */
-body, html{
+/* Global */
+.shadow {
+  position: absolute;
+  bottom: 100%;
+  height: 300px;
+  width: 100%;
+  left: 0;
+  z-index: 20;
+  background: linear-gradient(to top, #000000, transparent);
+}
+
+/* Hero/Video Section (for home) */
+#hero {
+  position: relative;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#background-video {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 80%;
+  height: 60%;
+  z-index: 2;
+  filter: brightness(50%);
+  object-fit: cover;
+  opacity: 0; /* For GSAP fade-in */
+}
+
+#hero h1 {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: auto;
+  transform: translateX(0%);
+  color: white;
+  font-size: 2rem;
+  opacity: 0; /* For GSAP fade-in */
+}
+body,
+html {
   scroll-behavior: smooth;
   height: 100%;
   margin: 0;
   color: white;
   background-color: black;
   max-width: 100vw;
+  font-family: "Agdasima", sans-serif;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Monument Extended", Arial, Helvetica, sans-serif;
   max-width: 100%;
 }
-span { 
-  color: #fff ; 
-  text-align: center; 
-  font-size: 20px; 
-}
-/* ALL */
-section h2 {
-  margin-bottom: 1rem;
-  
-}
-/* root */
-:root {
-  --header-height: 5rem;
-  --white-color: #fff;
-  --font-semi-bold: 600;
-}
-/* the URL */
+
 a {
   text-decoration: none;
 }
-/* In order to let everything not close */
 
-/* header */
+/* Root variables */
+:root {
+  --header-height: 5rem;
+  --white-color: #fff;
+  --lime-color: #32cd32;
+  --font-semi-bold: 600;
+}
+
+/* Header */
 .header {
   position: relative;
   width: 100%;
-  background-color: var(--black-color);
+  background-color: black;
   box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
-  height: 100vh; 
-  /* headerimage */
-  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/wlt.jpeg');
-  background-position: center;
-  background-size: cover;
-  /* test */
   transition: box-shadow 0.3s ease-in-out;
 }
+
 .scrolled {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
-.header-tagline {
-  position: absolute;
-  top: 50%;  /* Adjust these values as necessary */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white; /* Choose a color that makes the text visible over your image */
-  text-align: center;
-  font-size: 2em; /* Adjust size accordingly */
-}
-/* NAV BAR */
+
+/* Nav */
 .nav {
   height: var(--header-height);
-  padding: 0 15px ; /* Add padding to ensure some space around the edges */
+  padding: 0 15px;
   font-size: small;
 }
-.nav ul li a{
-  border-radius: 10px;
-  /*margin: 0 5px;*/
 
-}
-/* nav bar items */
 .nav__data {
-  flex: 1; /* Allows the nav__data to grow and fill the space, but not necessarily cover the full width */
+  flex: 1;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-/* The org icon */
+
 .nav__logo {
   display: inline-flex;
   align-items: center;
-  column-gap: .25rem;
+  column-gap: 0.25rem;
   font-weight: var(--font-semi-bold);
   font-size: 30px;
   padding: 0px 20px;
 }
+
 .nav__logo img {
-  width: 100px;      /* Width of the image */
-  height: 45px;         /* Height of the image */
-  object-fit: contain;      /* Maintains the aspect ratio and fits the image within the dimensions */
-  object-position: center;  /* Centers the image within its frame */
+  width: 100px;
+  height: 45px;
+  object-fit: contain;
+  object-position: center;
 }
-/* The Hamburger icon pos*/
+
 .nav__toggle {
   position: relative;
   width: 32px;
   height: 32px;
-  margin-left: auto; /* Ensures it pushes itself as far right as possible within nav__data */
+  margin-left: auto;
 }
-/* Hide the Hamburger icon */
-.nav__close {
-  opacity: 0;
-}
-.nav__logo, 
-.nav__burger, 
-.nav__close {
-  color: var(--white-color);
-}
-.nav__burger, 
+
+.nav__burger,
 .nav__close {
   position: absolute;
   width: max-content;
@@ -124,19 +134,53 @@ a {
   margin: auto;
   font-size: 1.25rem;
   cursor: pointer;
-}
-/* dropdown menu */
-.dropdown__menu {
-  display: none; /* Initially hide the menu */
-  list-style: none;
-  margin: 0;        /* Removes margin around the list */
-  padding: 0;       /* Removes padding inside the list */
-  border-radius: 10px;
-}
-.dropdown__menu--visible {
-  display: block; /* Show the menu */
+  color: var(--white-color);
 }
 
+.nav__menu {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav__list {
+  list-style: none;
+}
+
+.nav__link {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  margin-top: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--lime-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav__link:hover {
+  background-color: rgba(88, 88, 88, 0.465);
+  color: var(--lime-color);
+}
+
+.nav__link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Mobile menu */
 @media screen and (max-width: 978px) {
   .nav__menu {
     position: absolute;
@@ -148,113 +192,34 @@ a {
     pointer-events: none;
     opacity: 0;
   }
-  .nav__menu::-webkit-scrollbar {
-    width: 0;
-  }
   .nav__list {
-    position: relative; /* Add position relative or absolute as needed */
-    z-index: 3; /* Higher than .content to ensure it overlays */
-    background-color: rgba(27, 27, 27, 0.75); /* Increase opacity for better coverage */
-    list-style: none;
+    position: relative;
+    z-index: 3;
+    background-color: rgba(27, 27, 27, 0.75);
     padding: 5px 5px 20px;
-    width: 100%; /* Ensure it covers the full width if necessary */
-    text-align: center; /* Optional: Center align the list items */
-    color: white; /* Ensures text is white for better contrast */
-    border-radius: 10px; /* Optional: Rounds the corners of the button */
-    margin-top: 20px; /* Adds space above the nav links */
+    width: 100%;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    margin-top: 20px;
   }
   .nav__link {
-    padding: 0.5rem 1rem; /* Slightly increase padding for better touch */
-    height: auto; /* Adjust based on your needs */
-    font-size: 0.8rem; /* Smaller font size */
-    justify-content: center; /* Center the content if preferred */
-    z-index: 3; /* Ensures content is above the video */
+    padding: 0.5rem 1rem;
+    height: auto;
+    font-size: 0.8rem;
+    justify-content: center;
+  }
+  .show-menu {
+    opacity: 1;
+    top: 3.5rem;
+    pointer-events: initial;
   }
 }
 
-.nav__link {
-  color: var(--white-color); /* Default color */
-  background-color: transparent;
-  font-weight: var(--font-semi-bold);
-  margin-top: 23px; /* Adds space above the nav links */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative; /* Needed for absolute positioning of pseudo-elements */
-  overflow: hidden; /* Ensures the pseudo-element does not extend outside */
-  border-radius: 10px; /* Optional: Rounds the corners of the button */
-}
-
-.nav__link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: lightgreen;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease-in-out; /* Faster animation */
-}
-
-.nav__link:hover {
-  background-color: rgba(88, 88, 88, 0.465); /* Semi-transparent black */
-  color: lightgreen; /* Change text color to light green */
-}
-.nav__link:hover::after {
-  transform: scaleX(1); /* Scale to full width when hovered */
-}
-/* Adjustments for the toggle list */
-.nav__toggle {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  margin-left: auto;
-  margin-right: 15px; /* Ensuring the same padding as on the left */
-}
-
-.nav__menu {
-  padding-left: 20px; /* Match left and right padding */
-  padding-right: 20px;
-}
-
-
-.show-menu {
-  opacity: 1;
-  top: 3.5rem;
-  pointer-events: initial;
-}
-
-.show-icon .nav__burger {
-  opacity: 0;
-  transform: rotate(90deg);
-}
-.show-icon .nav__close {
-  opacity: 1;
-  transform: rotate(90deg);
-}
-
-.dropdown__item {
-  cursor: pointer;
-  position: relative;
-}
-
-.dropdown__arrow {
-  font-weight: bold;
-  transition: transform .4s;
-  margin-left: 5px; /* Adds spacing between the text and the arrow */
-}
-
-.dropdown__arrow--rotated {
-  transform: rotate(180deg);
-}
+/* Desktop nav */
 @media screen and (min-width: 978px) {
-  .container {
-    margin-inline: auto;
-  }
   .nav {
-    height: calc(var(--header-height) );
+    height: calc(var(--header-height));
     display: flex;
     justify-content: space-between;
   }
@@ -265,254 +230,57 @@ a {
     height: 100%;
     display: flex;
     column-gap: 3rem;
-    list-style: none;
   }
   .nav__link {
-    padding: 0.5rem 1rem; /* Slightly increase padding for better touch */
-    height: auto; /* Adjust based on your needs */
-    font-size: 0.8rem; /* Smaller font size */
-    justify-content: center; /* Center the content if preferred */
+    padding: 0.5rem 1rem;
+    height: auto;
+    font-size: 0.8rem;
+    justify-content: center;
   }
-  .dropdown__menu {
-    max-height: initial;
-    overflow: initial;
-    position: absolute;
-    left: 0;
-    border-radius: 10px;
-  }
-  .dropdown__item:hover .dropdown__menu {
-    opacity: 1;
-    pointer-events: initial;
-    border-radius: 10px;
-  }
-}.toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1100;
-  color: black;
-  overflow: hidden;
-  min-width: 300px;
-  animation: slideInOut 5s ease-in-out forwards;
-  transform-origin: right;
 }
 
-.vertical-line {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background-color: #90EE90; /* light green */
-  height: 100%;
-}
-
-.toast-content {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  padding: 8px 0;
-}
-
-.clock-column {
-  flex: 0 0 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 10px;
-}
-
-.message-column {
-  flex: 1;
-  padding-left: 15px;
-}
-
-.toast-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem 0.5rem 0.5rem;
-}
-
-.clock-icon {
-  width: 40px;
-  height: 40px;
-  animation: rotateClockwise 2s linear infinite;
-}
-
-.progress-line {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #28a745;
-  animation: shrinkLine 5s linear forwards;
-}
-
-/* Move close button inside a bit */
-.btn-close {
-  margin-left: 10px;
-  margin-right: 8px;
+/* Hero/Video Section (for home) */
+#hero {
   position: relative;
-  right: 8px;
-}
-
-@keyframes slideInOut {
-  0% {
-      transform: translateX(100%);
-      opacity: 0;
-  }
-  5% {
-      transform: translateX(0);
-      opacity: 1;
-  }
-  90% {
-      transform: translateX(0);
-      opacity: 1;
-  }
-  100% {
-      transform: translateX(100%);
-      opacity: 0;
-  }
-}
-
-@keyframes shrinkLine {
-  from {
-      width: 100%;
-      right: 0;
-  }
-  to {
-      width: 0%;
-      right: 100%;
-  }
-}
-
-@keyframes rotateClockwise {
-  from {
-      transform: rotate(0deg);
-  }
-  to {
-      transform: rotate(360deg);
-  }
-}
-
-/* Adjust text styles */
-.me-auto {
-  margin-bottom: 5px;
-  display: block;
-  font-size: 1.1em;
-}
-
-.toast-body {
-  padding: 0;
-  font-size: 0.9em;
-}
-
-/* Add some depth to the toast */
-.toast {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Ensure content starts after vertical line */
-.toast-header {
-  margin-left: 4px;
-}
-/* caption in the header */
-.content {
-  position: absolute;
-  z-index: 2; /* Ensures content is above the video */
-  text-align: left; /* Centers the text */
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  padding: 40px; /* Added padding to keep space from the edge */
-}
-/* Typing Caption in the header */
-.content span {
-  font-size: 16px; /* Default font size */
-  
-}
-
-/* Smaller screens */
-@media screen and (max-width: 768px) {
-  .content span {
-      font-size: 14px; /* Smaller font size on tablets */
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .content span {
-      font-size: 12px; /* Even smaller font size on mobile phones */
-  }
-}
-/* header shadow to have immersive experience */
-.shadow{
-  position: absolute;
-  bottom: 100%;
-  height: 300px;
-  width: 100%;
-  left: 0;
-  z-index: 20;
-  background: linear-gradient(to top, #000000, transparent);
-}
-/* video */
-#hero{
-  position: relative;
-  height: 100vh; /* Full height of the viewport */
+  height: 100vh;
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  /*
-  position: relative;
-  overflow: hidden;
-  padding-top: 56.25%;
-  height: 0;
-  color: white; 
-  align-items: center;
-  display: flex;
-  */
 }
-#hero .content {
-  padding: 20px; /* Added padding to keep space from the edge */
-}
+
 #background-video {
   position: absolute;
   top: 20%;
   left: 10%;
-  width:  80%;
+  width: 80%;
   height: 60%;
-  z-index: 2;  /* Ensures it's above the background but under the content */
-  filter: brightness(50%); /* Darkens the video */
-  object-fit: cover; /* Ensures the video covers its area */
-  opacity: 0; /* Start invisible */
+  z-index: 2;
+  filter: brightness(50%);
+  object-fit: cover;
+  opacity: 0; /* For GSAP fade-in */
 }
+
 #hero h1 {
   position: absolute;
-  top: 10%; /* Adjust positioning as needed */
+  top: 10%;
   left: 10%;
   right: auto;
   transform: translateX(0%);
   color: white;
-  font-size: 2rem; /* Adjust size as needed */
-  opacity: 0; /* Start invisible */
+  font-size: 2rem;
+  opacity: 1; /* Visible by default, but can be animated */
 }
-@media screen and (max-width: 480px) {
-  #hero h1{
-      font-size: 1.5rem; /* Even smaller font size on mobile phones */
-  }
-}
-/* about */
-#about h3{
+
+/* About and Location Sections */
+#about h3,
+#location h2 {
   padding-top: 5%;
   padding-bottom: 5%;
+  color: var(--lime-color);
 }
+
 .content-block {
   display: flex;
   align-items: center;
@@ -522,351 +290,55 @@ a {
 
 .content-block p {
   flex: 1;
-  margin-right: 20px; /* Space between text and image */
+  margin-right: 20px;
 }
 
 .content-block img {
-  width: 50%; /* Adjust based on preference */
+  width: 50%;
   height: auto;
 }
-.big-text{
-  font-size: 30px;
-}
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .content-block {
-      flex-direction: column;
-  }
-  .content-block img {
-      width: 100%;
-      margin-top: 10px;
-  }
-  #about h3{
-    font-size: 21px;
-  }
-}
-@media (max-width: 480px) {
-  #about h3{
-    font-size: 14px;
-  }
-}
-#event p {
-  font-size: 14px;
-  font-family: 'Courier New', monospace;
-  font-weight: lighter;
-}
-/*layout of hostel*/
-#hostel-layout {
+
+/* Google Map */
+iframe {
   width: 100%;
-  margin: 0 auto;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: black;
-}
-.row {
-  display: flex;
-  width: 100%;
-  margin-bottom: 2px;
+  height: 450px;
+  border: 0;
 }
 
-.layer {
-  margin-bottom: 20px;
-}
-
-.box {
-  padding: 10px;
-  border: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-/* Rooftop */
-.rooftop {
-  background-color: #FFE4B5;
-}
-
-/* Rooms */
-.room-3p-big {
-  background-color: #FFB6C1;
-  flex: 1.5;  /* 1.5 units */
-}
-
-.room-3p {
-  background-color: #FFA07A;
-  flex: 1;    /* 1 unit */
-}
-
-.room-2p {
-  background-color: #98FB98;
-  flex: 1;    /* 1 unit */
-}
-
-.room-1p {
-  background-color: #87CEEB;
-  flex: 1;    /* 1 unit */
-}
-
-.room-3p-special {
-  background-color: #F0E68C;
-  flex: 2;    /* 2 units */
-}
-
-/* Facilities */
-.wc {
-  background-color: #DDA0DD;
-  flex: 2.5;  /* 2.5 units */
-}
-
-.special {
-  background-color: #F0E68C;
-  flex: 2;    /* 2 units */
-}
-
-.ground {
-  background-color: #B8860B;
-  flex: 1.5;  /* 1.5 units */
-}
-
-.stairs {
-  background-color: #808080;
-  flex: 1;    /* 1 unit */
-}
-
-.stairs2 {
-  background-color: #808080;
-  flex: 0.5;  /* 0.5 units */
-}
-
-.pantry {
-  background-color: #CD853F;
-  flex: 0.5;  /* 0.5 units */
-}
-
-/* Additional areas maintain similar ratios */
-.lobby {
-  background-color: #9370DB;
-  flex: 7;
-}
-
-.study {
-  background-color: #20B2AA;
-  flex: 2;
-}
-
-.kitchen {
-  background-color: #FA8072;
-  flex: 4;
-}
-
-.reception {
-  background-color: #48D1CC;
-  flex: 3;
-}
-
-.washing {
-  background-color: #4682B4;
-  flex: 4;
-}
-
-.empty {
-  background-color: #DCDCDC;
-  flex: 14;
-}
-/* table */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.table th, .table td {
-  padding: 12px 15px;
-  text-align: left;
-}
-
-.table th {
-  background-color: lightgreen;
-  color: black;
-}
-
-.table td {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-top: 1px solid lightgreen;
-  color: white;
-}
-@media (max-width: 978px) {
-  .table, .table th, .table td {
-      display: block;
-  }
-
-  .table th {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-      background-color: lightgreen;
-      color: black;
-  }
-
-  .table td {
-      border: none;
-      position: relative;
-      padding-left: 50%;
-      padding-top: 10px;
-      padding-bottom: 10px;
-  }
-
-  .table td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 15px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-      font-weight: bold;
-      text-align: left;
-      color: lightgreen;
-  }
-}
-/* COMMENT */
-#comments-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  font-family: "Agdasima", serif;
-}
-#comment-form {
-  flex-basis: 45%;
-  margin-right: 2rem;
-  font-family: "Agdasima", serif;
-}
-#comment-list {
-  flex-basis: 45%;
-  font-family: "Agdasima", serif;
-}
-
-@media (max-width: 978px) {
-  #comment-form, #comment-list {
-    flex-basis: 100%; /* Make each take full width on smaller screens */
-    margin-right: 0; /* Remove the large right margin */
-  }
-}
-#commentsList .card {
-  margin-bottom: 1rem;
-}
-.comment-red {
-  background-color: #ffeded !important;
-  color: #000;
-}
-
-.comment-green {
-  background-color: #efffed !important;
-  color: #000;
-}
-
-.comment-yellow {
-  background-color: #fffbed !important;
-  color: #000;
-}
-.comment-blue {
-  background-color: #edf6ff !important;
-  color: #000;
-}
-.vote-buttons {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.vote-count {
-  font-weight: bold;
-  min-width: 30px;
-  text-align: center;
-  color: #000;
-}
-/* timer */
-.timer-section {
-  padding: 20px;
-  margin: 20px 0;
-  background-color: #000;
-  border-radius: 8px;
-  text-align: center;
-}
-.timer-display {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 10px;
-}
-.timer-message {
-  font-size: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-.message-short {
-  color: #dc3545;
-}
-
-.message-medium {
-  color: #198754;
-}
-
-.message-long {
-  color: #fd7e14;
-}
-/* footer */
-footer {
+/* Footer */
+#footer {
   background-color: black;
-  opacity: 50%;
+  opacity: 0.8;
   padding: 50px;
   margin-top: auto;
   text-align: center;
-  color: white; /* Footer text color */
-}
-/* SPOTLIGHT BARRRRR */
-#spotlight-bar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: gray;
   color: white;
-  text-align: center;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0.6;
-}
-#spotlight-message {
-  transition: opacity 0.3s ease-in-out;
-  font-size: 15px; /* Adjusts size based on viewport, you might need to refine this */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#prevSpotlight, #nextSpotlight {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-#prevSpotlight i, #nextSpotlight i {
-  font-size: 24px; /* Adjust size as needed */
 }
 
-.invalid-feedback {
-  display: none;
-  color: #dc3545;
-  font-size: 0.875em;
-  margin-top: 0.25rem;
+.social-links {
+  margin-top: 10px;
 }
 
-.is-invalid {
-  border-color: #dc3545;
+.social-links a {
+  color: var(--lime-color);
+  margin: 0 10px;
+  text-decoration: none;
 }
 
-.is-valid {
-  border-color: #198754;
+.social-links a:hover {
+  color: white;
 }
-/* //--------------------------------------------END-------------------------------------------------------// */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-block {
+    flex-direction: column;
+  }
+  .content-block img {
+    width: 100%;
+    margin-top: 10px;
+  }
+  #hero h1 {
+    font-size: 1.5rem;
+  }
+}
