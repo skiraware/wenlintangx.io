@@ -1,13 +1,41 @@
-<!-- hogarden.html: Content for the Ho Garden "page" (loaded into #content). Placeholder for booking system. -->
-<section id="hogarden" class="container mt-5">
-  <h2>Ho Garden Booking</h2>
-  <p>
-    Book your stay at Ho Garden. Insert your booking system code below (e.g.,
-    iframe, form, or script).
-  </p>
-  <!-- Placeholder for booking system code -->
-  <div id="booking-system">
-    <!-- Insert booking code here, e.g., <iframe src="your-booking-url"></iframe> or custom JS/form -->
-    <p>Booking system placeholder. Replace this with actual code.</p>
+<section id="hogarden-hero" class="full-screen-section">
+  <h1>Welcome to Ho Garden</h1>
+</section>
+
+<!-- Booking System Section -->
+<section id="hogarden-booking" class="full-screen-section container">
+  <h2 class="section-title">Book it</h2>
+  <p class="section-subtitle">Try it</p>
+  <p style="color: #fff; font-size: 1.2rem; text-align: center">Select it...</p>
+  <div
+    id="booking-system"
+    class="facility-card"
+    style="
+      padding: 1.5rem;
+      background: rgba(256, 256, 256);
+      border: 1px solid var(--lime-color);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    "
+  >
+    <iframe
+      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3WdFQMC6FD-QyzbkUIRQp5d9UOvDlhzvjcxVDFkaHnr6CJ4gXniWy98M_jEBPTu0xYG14eU3Z0?gv=true"
+      style="
+        border: 0;
+        width: 100%;
+        height: 600px;
+        max-height: 80vh;
+        border-radius: 8px;
+        filter: contrast(1.2) brightness(1.1) saturate(1.2);
+      "
+      frameborder="0"
+    ></iframe>
   </div>
+  <p
+    style="color: #ccc; font-size: 0.9rem; text-align: center; margin-top: 1rem"
+  >
+    You should not be here... Please go back.
+  </p>
 </section>
