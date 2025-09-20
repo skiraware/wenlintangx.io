@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iAM Smart 應用程式之使用情況及意見</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Highlight for invalid inputs */
+      .invalid-input {
+        border-color: #ff4d4d !important;
+        box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
+      }
+
+      /* Alert message styling */
+      .alert-message {
+        color: #ff4d4d;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        display: none;
+      }
+
+      /* Reserve space for alert message */
+      .question {
+        padding-bottom: 2rem; /* Reserve space for alert message */
+      }
+
+      /* Ensure alert is visible when active */
+      .alert-message.active {
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .alert-message {
+          font-size: 0.9rem;
+        }
+        .question {
+          padding-bottom: 1.5rem;
+        }
+      }
+      @font-face {
+        font-family: "Zen Maru Gothic";
+        src: url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap");
+        font-display: swap;
+      }
+      body {
+        visibility: hidden;
+        font-family: "Zen Maru Gothic", sans-serif;
+      }
+      body.font-loaded {
+        visibility: visible;
+      }
+      body {
+        margin: 0;
+        font-family: "Zen Maru Gothic", sans-serif;
+        background-color: #fffdf6;
+        color: #000000;
+        overflow-x: hidden;
+      }
+      .survey-section {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        box-sizing: border-box;
+        position: relative;
+      }
+      .survey-container {
+        max-width: 800px;
+        width: 100%;
+        padding: 0 1rem;
+      }
+      .survey-title {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        color: #000000;
+        position: fixed;
+        top: 1rem;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: #fffdf6;
+        padding: 1rem 0;
+      }
+      .survey-form,
+      .tnc-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background: #faf6e9;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-top: 5rem;
+      }
+      .tnc-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .tnc-container p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin: 0.5rem 0;
+      }
+      .tnc-container button {
+        background: #a0c878;
+        color: #000000;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        align-self: flex-end;
+        transition: background-color 0.3s ease;
+      }
+      .tnc-container button:hover {
+        background: #ddeb9d;
+      }
+      .question {
+        display: none;
+        opacity: 0;
+      }
+      .question.active {
+        display: block;
+        opacity: 1;
+      }
+      .survey-form label {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+      .option-group,
+      .rating-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .option-btn,
+      .rating-btn {
+        background: #fffdf6;
+        border: 1px solid #ddeb9d;
+        color: #000000;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        flex: 1;
+        text-align: center;
+      }
+      .option-btn:hover,
+      .rating-btn:hover {
+        background: #ddeb9d;
+        transform: scale(1.05);
+      }
+      .option-btn.selected,
+      .rating-btn.selected {
+        background: #a0c878;
+        color: #ffffff;
+        border-color: #a0c878;
+      }
+      .survey-form input[type="text"],
+      .survey-form textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ddeb9d;
+        background: #fffdf6;
+        color: #000000;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-family: "Zen Maru Gothic", sans-serif;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
+      .survey-form input[type="text"]:focus,
+      .survey-form textarea:focus {
+        outline: none;
+        border-color: #a0c878;
+      }
+      .survey-form input[type="checkbox"] {
+        margin-right: 0.5rem;
+        accent-color: #a0c878;
+        transform: scale(1.3);
+      }
+      .survey-form textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+      .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .checkbox-group label {
+        display: flex;
+        align-items: center;
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+      .nav-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .prev-btn,
+      .next-btn {
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .prev-btn {
+        background: transparent;
+        border: 1px solid #a0c878;
+        color: #a0c878;
+      }
+      .prev-btn:hover {
+        background: #ddeb9d;
+        color: #000000;
+      }
+      .next-btn {
+        background: #a0c878;
+        color: #000000;
+        border: none;
+      }
+      .next-btn:hover {
+        background: #ddeb9d;
+      }
+      .progress-bar {
+        position: absolute;
+        bottom: -40px;
+        left: 20px;
+        right: 20px;
+        height: 6px;
+        background: #ddeb9d;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: #a0c878;
+        width: 0%;
+        transition: width 0.5s ease;
+      }
+      #submitBtn {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .survey-section {
+          padding: 1.5rem;
+        }
+        .survey-form,
+        .tnc-container {
+          padding: 1.5rem;
+          margin-top: 4rem;
+        }
+        .survey-title {
+          font-size: 1.2rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 0.5rem 1rem;
+        }
+        .survey-form label {
+          font-size: 1.1rem;
+        }
+        .option-group,
+        .rating-group {
+          flex-direction: column;
+        }
+        .option-btn,
+        .rating-btn {
+          width: 100%;
+          max-width: 100%;
+          padding: 0.75rem;
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+        }
+        .survey-form input[type="text"],
+        .survey-form textarea {
+          font-size: 1rem;
+          padding: 0.75rem;
+        }
+        .checkbox-group label {
+          font-size: 1rem;
+        }
+        .nav-buttons {
+          margin-top: 1.5rem;
+        }
+        .prev-btn,
+        .next-btn {
+          padding: 0.75rem 1.5rem;
+          font-size: 1rem;
+        }
+        .progress-bar {
+          bottom: -30px;
+        }
+      }
+      @media (min-width: 1200px) {
+        .survey-container {
+          max-width: 900px;
+        }
+        .survey-title {
+          font-size: 2.5rem;
+        }
+        .survey-form,
+        .tnc-container {
+          padding: 2.5rem;
+        }
+        .survey-form label {
+          font-size: 1.4rem;
+        }
+        .option-btn,
+        .rating-btn {
+          padding: 1.2rem 2.5rem;
+          font-size: 1.2rem;
+        }
+        .survey-form input[type="text"],
+        .survey-form textarea {
+          font-size: 1.2rem;
+          padding: 1.2rem;
+        }
+        .checkbox-group label {
+          font-size: 1.2rem;
+        }
+        .prev-btn,
+        .next-btn {
+          padding: 1.2rem 2.5rem;
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
+    <div
+      id="access-denied"
+      style="display: none; text-align: center; padding: 2rem"
+    >
+      <h1>無權訪問</h1>
+      <p>請使用正確的連結訪問此頁面。</p>
+    </div>
+    <section class="survey-section">
+      <h1 class="survey-title">iAM Smart 應用程式之使用情況及意見</h1>
+      <div class="survey-container">
+        <div class="tnc-container" id="tnc">
+          <h2>iAM Smart 應用程式之使用情況及意見</h2>
+          <p>
+            本問卷旨在了解香港市民對現有 iAM Smart
+            應用程式之使用情況及意見，用以改善應用程式之設計及功能。所有答案完全匿名，不會收集個人識別資料。填寫需時約
+            3 分鐘。
+          </p>
+          <p>
+            本研究為 CUHK SEEM 系FYP Project 之一，主要探討 iAM Smart
+            應用程式之使用者經驗及改善方案。問卷採不記名及無法辨識個人之方式作答，電子資料保存至
+            2026 年 12
+            月即刪除。研究團隊將盡力維護您的隱私及善盡保密責任，盡量減少可能的風險。
+          </p>
+          <p>
+            請您自由決定是否填寫，亦可中途不填寫，無需感到壓力，惟一旦送交，本問卷無記名且無編碼，研究團隊將無法辨識送出的問卷，恕無法刪除您填寫的內容。
+          </p>
+          <p>
+            此研究未來發表採整體分析，您不會被辨識出，將發表於學位報告，亦無衍生的商業利益。
+          </p>
+          <p><strong>※ 如同意填寫，請點選「同意」按鈕於下一頁作答。</strong></p>
+          <button type="button" id="agreeBtn">同意</button>
+        </div>
+        <form
+          id="iamForm"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSerEzft_mhAht9iD8ql0ByI8xGBeqHcklQ8XlBlmze-ZH0PgA/formResponse"
+          method="POST"
+          class="survey-form"
+          style="display: none"
+          onsubmit="handleSubmit(event)"
+        >
+          <div class="question" data-question="1">
+            <label>您的年齡是？</label>
+            <input type="hidden" name="entry.1616353833" value="" required />
+            <div class="option-group">
+              <button class="option-btn" data-value="18-30 歲">18-30 歲</button>
+              <button class="option-btn" data-value="31-50 歲">31-50 歲</button>
+              <button class="option-btn" data-value="51-65 歲">51-65 歲</button>
+              <button class="option-btn" data-value="66 歲或以上">
+                66 歲或以上
+              </button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="2">
+            <label>您的性別是？</label>
+            <input type="hidden" name="entry.1080016326" value="" required />
+            <div class="option-group">
+              <button class="option-btn" data-value="男">男</button>
+              <button class="option-btn" data-value="女">女</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="3">
+            <label>您的教育水平是？</label>
+            <input type="hidden" name="entry.262463565" value="" required />
+            <div class="option-group">
+              <button class="option-btn" data-value="中學或以下">
+                中學或以下
+              </button>
+              <button class="option-btn" data-value="大專 / 副學士">
+                大專 / 副學士
+              </button>
+              <button class="option-btn" data-value="大學學士或以上">
+                大學學士或以上
+              </button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="4">
+            <label>您使用智能手機的經驗是？</label>
+            <input type="hidden" name="entry.471278835" value="" required />
+            <div class="option-group">
+              <button
+                class="option-btn"
+                data-value="非常熟練（每日使用超過 5 小時，熟悉應用程式操作）"
+              >
+                非常熟練
+              </button>
+              <button
+                class="option-btn"
+                data-value="一般（每日使用 1-5 小時，基本操作無問題）"
+              >
+                一般
+              </button>
+              <button
+                class="option-btn"
+                data-value="不太熟練（每日使用少於 1 小時，或有時覺得難用）"
+              >
+                不太熟練
+              </button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="5">
+            <label>使用情況（Usage Patterns）</label>
+            <input type="hidden" name="entry.2062216059" value="" required />
+            <div class="option-group">
+              <button
+                class="option-btn"
+                data-value="有，使用過（請繼續回答第 6-8 題）"
+              >
+                有，使用過
+              </button>
+              <button
+                class="option-btn"
+                data-value="有下載，但沒有使用過（請跳至第 7 題）"
+              >
+                有下載但未使用
+              </button>
+              <button
+                class="option-btn"
+                data-value="沒有下載/沒有使用過（請跳至第 7 題）"
+              >
+                未下載/未使用
+              </button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="6">
+            <label>您使用 iAM Smart 應用程式的頻率是？</label>
+            <input type="hidden" name="entry.457110651" value="" required />
+            <div class="option-group">
+              <button class="option-btn" data-value="每日">每日</button>
+              <button class="option-btn" data-value="每週數次">每週數次</button>
+              <button class="option-btn" data-value="每月數次">每月數次</button>
+              <button class="option-btn" data-value="很少（少於每月一次）">
+                很少
+              </button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="7">
+            <label
+              >如果您沒有使用或少用 iAM Smart
+              應用程式，主要原因是？（可選多項）</label
+            >
+            <div class="checkbox-group">
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="應用程式大小太大（約 203MB），佔用儲存空間"
+                />
+                應用程式太大
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="功能太多，介面複雜"
+                />
+                功能太多
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="沒有網頁版，使用電腦不方便"
+                />
+                沒有網頁版
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="註冊或使用時有技術問題（如掃描身份證失敗）"
+                />
+                技術問題
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="不知有此應用程式或如何使用"
+                />
+                不知道如何使用
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="覺得沒有需要（例如其他應用程式已足夠）"
+                />
+                沒有需要
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="擔心安全或隱私問題"
+                />
+                安全/隱私問題
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="沒有特別原因"
+                />
+                沒有特別原因
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.446625939"
+                  value="__other_option__"
+                />
+                其他：
+                <input
+                  type="text"
+                  name="entry.446625939.other_option_response"
+                  placeholder="請輸入其他原因"
+                />
+              </label>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="8">
+            <label>您最常用 iAM Smart 應用程式做什麼功能？（可選多項）</label>
+            <div class="checkbox-group">
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.717724599"
+                  value="身份驗證（登入政府或私人服務）"
+                />
+                身份驗證
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.717724599"
+                  value="填表（e-ME 自動填寫資料）"
+                />
+                e-ME 填表
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.717724599"
+                  value="接收個人化通知（政府服務提示）"
+                />
+                通知提示
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.717724599"
+                  value="電子簽署文件"
+                />
+                電子簽署
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entry.717724599"
+                  value="__other_option__"
+                />
+                其他：
+                <input
+                  type="text"
+                  name="entry.717724599.other_option_response"
+                  placeholder="請輸入其他功能"
+                />
+              </label>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="9">
+            <label>下載及安裝過程順暢程度</label>
+            <input type="hidden" name="entry.1255148912" value="" required />
+            <div class="rating-group">
+              <button class="rating-btn" data-value="1">1</button>
+              <button class="rating-btn" data-value="2">2</button>
+              <button class="rating-btn" data-value="3">3</button>
+              <button class="rating-btn" data-value="4">4</button>
+              <button class="rating-btn" data-value="5">5</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="10">
+            <label>應用程式大小合適</label>
+            <input type="hidden" name="entry.343736260" value="" required />
+            <div class="rating-group">
+              <button class="rating-btn" data-value="1">1</button>
+              <button class="rating-btn" data-value="2">2</button>
+              <button class="rating-btn" data-value="3">3</button>
+              <button class="rating-btn" data-value="4">4</button>
+              <button class="rating-btn" data-value="5">5</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="11">
+            <label>介面設計簡單易用</label>
+            <input type="hidden" name="entry.581203249" value="" required />
+            <div class="rating-group">
+              <button class="rating-btn" data-value="1">1</button>
+              <button class="rating-btn" data-value="2">2</button>
+              <button class="rating-btn" data-value="3">3</button>
+              <button class="rating-btn" data-value="4">4</button>
+              <button class="rating-btn" data-value="5">5</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="12">
+            <label>功能數量適中</label>
+            <input type="hidden" name="entry.1521382670" value="" required />
+            <div class="rating-group">
+              <button class="rating-btn" data-value="1">1</button>
+              <button class="rating-btn" data-value="2">2</button>
+              <button class="rating-btn" data-value="3">3</button>
+              <button class="rating-btn" data-value="4">4</button>
+              <button class="rating-btn" data-value="5">5</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="13">
+            <label>沒有網頁版造成不便</label>
+            <input type="hidden" name="entry.811101830" value="" required />
+            <div class="rating-group">
+              <button class="rating-btn" data-value="1">1</button>
+              <button class="rating-btn" data-value="2">2</button>
+              <button class="rating-btn" data-value="3">3</button>
+              <button class="rating-btn" data-value="4">4</button>
+              <button class="rating-btn" data-value="5">5</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="14">
+            <label>安全及隱私保護足夠</label>
+            <input type="hidden" name="entry.895643282" value="" required />
+            <div class="rating-group">
+              <button class="rating-btn" data-value="1">1</button>
+              <button class="rating-btn" data-value="2">2</button>
+              <button class="rating-btn" data-value="3">3</button>
+              <button class="rating-btn" data-value="4">4</button>
+              <button class="rating-btn" data-value="5">5</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="15">
+            <label>整合更多服務會更好用</label>
+            <input type="hidden" name="entry.2085525098" value="" required />
+            <div class="rating-group">
+              <button class="rating-btn" data-value="1">1</button>
+              <button class="rating-btn" data-value="2">2</button>
+              <button class="rating-btn" data-value="3">3</button>
+              <button class="rating-btn" data-value="4">4</button>
+              <button class="rating-btn" data-value="5">5</button>
+            </div>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="16">
+            <label>改善建議（例如介面、功能、整合其他服務如大學身份）</label>
+            <textarea
+              name="entry.880878810"
+              placeholder="請輸入您的建議"
+              required
+            ></textarea>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="17">
+            <label>是否更願意使用？為何？</label>
+            <textarea
+              name="entry.1242993149"
+              placeholder="請輸入您的想法"
+              required
+            ></textarea>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">下一步</button>
+            </div>
+          </div>
+
+          <div class="question" data-question="18">
+            <label>其他意見</label>
+            <textarea
+              name="entry.1444833074"
+              placeholder="請輸入其他意見"
+              required
+            ></textarea>
+            <p class="alert-message">請填寫此問題！</p>
+            <div class="nav-buttons">
+              <button type="button" class="prev-btn">上一步</button>
+              <button type="button" class="next-btn">提交問卷</button>
+            </div>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <button type="submit" id="submitBtn">提交問卷</button>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      document.fonts.ready.then(() => {
+        document.body.classList.add("font-loaded");
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Check for query parameter with Base64-encoded key
+        const urlParams = new URLSearchParams(window.location.search);
+        const key = urlParams.get("key");
+        const accessDenied = document.getElementById("access-denied");
+        const surveySection = document.querySelector(".survey-section");
+        const expectedKey = atob("c2VjcmV0");
+
+        if (key !== expectedKey) {
+          accessDenied.style.display = "block";
+          surveySection.style.display = "none";
+          return; // Stop further execution
+        }
+
+        const tnc = document.getElementById("tnc");
+        const form = document.getElementById("iamForm");
+        const agreeBtn = document.getElementById("agreeBtn");
+        const questions = document.querySelectorAll(".question");
+        let currentIndex = 0;
+        let isUser = null;
+
+        // Show T&C initially
+        gsap.set(tnc, { opacity: 1, display: "block" });
+        gsap.set(form, { opacity: 0, display: "none" });
+
+        // Handle T&C agreement
+        agreeBtn.addEventListener("click", () => {
+          gsap.to(tnc, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => {
+              tnc.style.display = "none";
+              gsap.set(form, { display: "block" });
+              gsap.to(form, {
+                opacity: 1,
+                duration: 0.5,
+                onComplete: () => {
+                  showQuestion(0);
+                },
+              });
+            },
+          });
+        });
+
+        // Add event listeners for option and rating buttons
+        questions.forEach((question) => {
+          const optionBtns = question.querySelectorAll(
+            ".option-btn, .rating-btn"
+          );
+          const hiddenInput = question.querySelector('input[type="hidden"]');
+          if (optionBtns.length > 0 && hiddenInput) {
+            optionBtns.forEach((btn) => {
+              btn.addEventListener("click", () => {
+                question
+                  .querySelectorAll(".option-btn, .rating-btn")
+                  .forEach((b) => b.classList.remove("selected"));
+                btn.classList.add("selected");
+                hiddenInput.value = btn.dataset.value;
+                setTimeout(handleNext, 300); // Auto-advance for single-choice and rating
+              });
+            });
+          }
+
+          const prevBtn = question.querySelector(".prev-btn");
+          const nextBtn = question.querySelector(".next-btn");
+
+          if (prevBtn) {
+            prevBtn.addEventListener("click", handlePrev);
+          }
+          if (nextBtn) {
+            nextBtn.addEventListener("click", handleNext);
+          }
+        });
+
+        // Handle form submission
+        function handleSubmit(event) {
+          event.preventDefault();
+          const form = document.getElementById("iamForm");
+          const iframe = document.createElement("iframe");
+          iframe.name = "hidden_iframe";
+          iframe.style.display = "none";
+          document.body.appendChild(iframe);
+          form.target = "hidden_iframe";
+          form.submit();
+          setTimeout(() => {
+            window.location.href = "finish.html";
+          }, 1000);
+        }
+        form.addEventListener("submit", handleSubmit);
+
+        function showQuestion(index) {
+          const current = questions[currentIndex];
+          const next = questions[index];
+
+          gsap.to(current, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => {
+              current.style.display = "none";
+              current.classList.remove("active");
+
+              gsap.set(next, { display: "block" });
+              gsap.to(next, {
+                opacity: 1,
+                duration: 0.5,
+                onComplete: () => {
+                  next.classList.add("active");
+                  next.scrollIntoView({ behavior: "smooth", block: "center" });
+                },
+              });
+            },
+          });
+
+          currentIndex = index;
+          updateNavButtons();
+          updateProgress();
+        }
+
+        function handleNext() {
+          const currentQ = questions[currentIndex];
+          if (!validateQuestion(currentQ)) {
+            return; // Stop if validation fails
+          }
+
+          const nextIndex = getNextIndex(currentIndex);
+          if (nextIndex === undefined) {
+            handleSubmit(new Event("submit")); // Call handleSubmit with a synthetic event
+          } else {
+            if (currentIndex === 4) {
+              const value = currentQ.querySelector(
+                'input[type="hidden"]'
+              ).value;
+              isUser = value === "有，使用過（請繼續回答第 6-8 題）";
+            }
+            showQuestion(nextIndex);
+          }
+        }
+
+        function handlePrev() {
+          const prevIndex = getPrevIndex(currentIndex);
+          if (prevIndex !== undefined) {
+            showQuestion(prevIndex);
+          }
+        }
+
+        function getNextIndex(curr) {
+          let next = curr + 1;
+          if (curr === 4) next = isUser ? 5 : 6;
+          if (curr === 6) next = isUser ? 7 : 8;
+          return next < questions.length ? next : undefined;
+        }
+
+        function getPrevIndex(curr) {
+          let prev = curr - 1;
+          if (curr === 8 && !isUser) prev = 6;
+          if (curr === 6 && !isUser) prev = 4;
+          return prev >= 0 ? prev : undefined;
+        }
+
+        function updateNavButtons() {
+          const currentQ = questions[currentIndex];
+          const prevBtn = currentQ.querySelector(".prev-btn");
+          const nextBtn = currentQ.querySelector(".next-btn");
+
+          if (getPrevIndex(currentIndex) === undefined) {
+            if (prevBtn) prevBtn.style.display = "none";
+          } else {
+            if (prevBtn) prevBtn.style.display = "block";
+          }
+
+          if (getNextIndex(currentIndex) === undefined) {
+            nextBtn.textContent = "提交問卷";
+          } else {
+            nextBtn.textContent = "下一步";
+          }
+        }
+
+        function numSkippedBefore(idx) {
+          if (isUser || isUser === null) return 0;
+          let skipped = 0;
+          if (idx > 4) skipped++;
+          if (idx > 6) skipped++;
+          return skipped;
+        }
+
+        function updateProgress() {
+          const step = currentIndex + 1 - numSkippedBefore(currentIndex);
+          const total = isUser === null ? 18 : isUser ? 18 : 16;
+          const progressFill = document.querySelector(".progress-fill");
+          progressFill.style.width = `${(step / total) * 100}%`;
+        }
+
+        function validateQuestion(question) {
+          const hiddenInput = question.querySelector('input[type="hidden"]');
+          const textarea = question.querySelector("textarea");
+          const checkboxGroup = question.querySelector(".checkbox-group");
+          const alertMessage = question.querySelector(".alert-message");
+
+          // Reset previous highlights and alerts
+          if (hiddenInput) hiddenInput.classList.remove("invalid-input");
+          if (textarea) textarea.classList.remove("invalid-input");
+          if (checkboxGroup) checkboxGroup.classList.remove("invalid-input");
+          if (alertMessage) alertMessage.classList.remove("active");
+
+          // Validate and highlight
+          if (hiddenInput && hiddenInput.value === "") {
+            hiddenInput.classList.add("invalid-input");
+            question
+              .querySelector(".option-group, .rating-group")
+              ?.classList.add("invalid-input");
+            alertMessage?.classList.add("active");
+            return false;
+          }
+          if (textarea && textarea.value.trim() === "") {
+            textarea.classList.add("invalid-input");
+            alertMessage?.classList.add("active");
+            return false;
+          }
+          if (checkboxGroup) {
+            const checked = checkboxGroup.querySelectorAll(
+              'input[type="checkbox"]:checked'
+            );
+            if (checked.length === 0) {
+              checkboxGroup.classList.add("invalid-input");
+              alertMessage?.classList.add("active");
+              return false;
+            }
+          }
+          return true;
+        }
+      });
+    </script>
+  </body>
+</html>
