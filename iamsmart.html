@@ -25,7 +25,7 @@
 
       /* Reserve space for alert message */
       .question {
-        padding-bottom: 2rem; /* Reserve space for alert message */
+        padding-bottom: 2rem;
       }
 
       /* Ensure alert is visible when active */
@@ -139,33 +139,179 @@
         margin-bottom: 0.75rem;
         display: block;
       }
-      .option-group,
+      /* Rating group - Updated Likert scale style */
       .rating-group {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
+        flex-direction: column;
+        position: relative;
+        height: auto;
+        margin: 1rem 0;
       }
-      .option-btn,
+
+      .circle-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Align centers of circles in one line */
+        gap: 0; /* Remove fixed gap so inner distances vary with screen; outer gaps fixed at 0 */
+      }
+
+      .label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* Vertically center labels */
+        height: var(
+          --circle-height,
+          60px
+        ); /* Match largest circle height for alignment */
+      }
+
+      .label-text {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--label-color);
+        white-space: nowrap;
+        text-align: center; /* Ensure text is centered under circle */
+        width: var(--size, 60px); /* Match circle width for precise alignment */
+      }
+
+      .label-text.left {
+        --label-color: #f0bb78;
+      }
+
+      .label-text.right {
+        --label-color: #a4b465;
+      }
+
+      .label-spacer {
+        flex: 1;
+      }
+
       .rating-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative; /* Context for absolute tick */
+        transition: all 0.3s ease;
+        display: block; /* Remove flex to avoid tick influencing layout */
+        padding: 0;
+        width: var(--size);
+        height: var(--size);
+      }
+      .circle {
+        width: var(--size); /* Use --size directly for consistency */
+        height: var(--size);
+        border-radius: 50%;
+        background: transparent;
+        border: 3px solid var(--border-color);
+        transition: all 0.3s ease;
+        box-sizing: border-box; /* Ensure border doesn't affect size */
+      }
+
+      .rating-btn:hover .circle,
+      .rating-btn.selected .circle {
+        background: var(--fill-color);
+        border-color: var(--fill-color);
+      }
+
+      .rating-btn.selected .circle {
+        background: var(--selected-fill);
+        border-color: var(--selected-fill);
+      }
+
+      .tick {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: var(--icon-size);
+        color: white;
+        font-weight: 100;
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1; /* Ensure tick is on top */
+        pointer-events: none; /* Prevent tick from intercepting clicks */
+      }
+
+      .rating-btn:hover .tick,
+      .rating-btn.selected .tick {
+        opacity: 1;
+      }
+
+      .rating-btn[data-value="1"] {
+        --size: 60px;
+        --border-color: #f0bb78;
+        --fill-color: #f0bb78;
+        --selected-fill: #f0bb78;
+        --icon-size: 28px;
+      }
+
+      .rating-btn[data-value="2"] {
+        --size: 50px;
+        --border-color: #f0bb78;
+        --fill-color: #f0bb78;
+        --selected-fill: #f0bb78;
+        --icon-size: 22px;
+      }
+
+      .rating-btn[data-value="3"] {
+        --size: 40px;
+        --border-color: #aaaaaa;
+        --fill-color: #aaaaaa;
+        --selected-fill: #aaaaaa;
+        --icon-size: 18px;
+      }
+
+      .rating-btn[data-value="4"] {
+        --size: 50px;
+        --border-color: #a4b465;
+        --fill-color: #a4b465;
+        --selected-fill: #a4b465;
+        --icon-size: 22px;
+      }
+
+      .rating-btn[data-value="5"] {
+        --size: 60px;
+        --border-color: #a4b465;
+        --fill-color: #a4b465;
+        --selected-fill: #a4b465;
+        --icon-size: 28px;
+      }
+      /* Remove unnecessary or erroneous styles */
+      .rating-btn span.number {
+        display: none;
+      }
+
+      .option-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        height: auto;
+        margin: 1rem 0;
+      }
+
+      .option-btn {
         background: #fffdf6;
         border: 1px solid #ddeb9d;
         color: #000000;
-        padding: 1rem 2rem;
+        padding: 0.75rem 1rem;
         border-radius: 8px;
         cursor: pointer;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 500;
         transition: all 0.3s ease;
-        flex: 1;
+        flex: 1 1 calc(50% - 0.5rem);
         text-align: center;
+        margin-bottom: 0.5rem;
       }
-      .option-btn:hover,
-      .rating-btn:hover {
+
+      .option-btn:hover {
         background: #ddeb9d;
         transform: scale(1.05);
       }
-      .option-btn.selected,
-      .rating-btn.selected {
+
+      .option-btn.selected {
         background: #a0c878;
         color: #ffffff;
         border-color: #a0c878;
@@ -197,9 +343,10 @@
         resize: vertical;
         min-height: 140px;
       }
+      /* Updated styles for checkbox-group to display in 2 columns */
       .checkbox-group {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
       .checkbox-group label {
@@ -207,6 +354,20 @@
         align-items: center;
         font-size: 1.1rem;
         font-weight: 400;
+        white-space: nowrap;
+      }
+      .checkbox-group label:last-child {
+        grid-column: 1 / -1;
+      }
+      /* Limit checkbox selection to 3 */
+      .checkbox-group input[type="checkbox"] {
+        margin-right: 0.5rem;
+        accent-color: #626f47;
+        transform: scale(1.3);
+      }
+      .checkbox-group input[type="checkbox"]:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
       }
       .nav-buttons {
         display: flex;
@@ -260,6 +421,12 @@
         display: none;
       }
       @media (max-width: 768px) {
+        .alert-message {
+          font-size: 0.9rem;
+        }
+        .question {
+          padding-bottom: 1.5rem;
+        }
         .survey-section {
           padding: 1.5rem;
         }
@@ -278,25 +445,63 @@
         .survey-form label {
           font-size: 1.1rem;
         }
-        .option-group,
         .rating-group {
-          flex-direction: column;
+          width: 90%;
+          margin-left: auto;
+          margin-right: auto;
         }
-        .option-btn,
-        .rating-btn {
+        .circle-row {
+          gap: 0; /* Remove fixed gap so inner distances vary with screen; outer gaps fixed at 0 */
+        }
+        .rating-btn[data-value="1"],
+        .rating-btn[data-value="5"] {
+          --size: 50px;
+          --icon-size: 22px;
+        }
+        .rating-btn[data-value="2"],
+        .rating-btn[data-value="4"] {
+          --size: 40px;
+          --icon-size: 18px;
+        }
+        .rating-btn[data-value="3"] {
+          --size: 30px;
+          --icon-size: 14px;
+        }
+        .label-text {
+          font-size: 0.7rem;
+          width: var(--size, 50px); /* Match mobile circle sizes */
+        }
+        .label-row {
+          height: var(
+            --circle-height,
+            50px
+          ); /* Match largest mobile circle height */
+        }
+        .option-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .option-btn {
           width: 100%;
           max-width: 100%;
-          padding: 0.75rem;
-          font-size: 1rem;
           margin-bottom: 0.5rem;
+          padding: 0.75rem;
         }
         .survey-form input[type="text"],
         .survey-form textarea {
           font-size: 1rem;
           padding: 0.75rem;
         }
+        .checkbox-group {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
         .checkbox-group label {
           font-size: 1rem;
+        }
+        .checkbox-group label:last-child {
+          grid-column: auto;
         }
         .nav-buttons {
           margin-top: 1.5rem;
@@ -310,7 +515,47 @@
           bottom: -30px;
         }
       }
+      @media (min-width: 769px) {
+        .option-btn {
+          flex: 1 1 calc(25% - 0.75rem);
+          margin-right: 1rem;
+        }
+        .option-btn:last-child {
+          margin-right: 0;
+        }
+      }
       @media (min-width: 1200px) {
+        .rating-group {
+          height: 120px;
+          gap: 1.5%; /* Even closer on large screens */
+        }
+        .circle-row {
+          gap: 0; /* Remove fixed gap so inner distances vary with screen; outer gaps fixed at 0 */
+        }
+        .rating-btn[data-value="1"],
+        .rating-btn[data-value="5"] {
+          --size: 70px;
+          --icon-size: 32px;
+        }
+        .rating-btn[data-value="2"],
+        .rating-btn[data-value="4"] {
+          --size: 55px;
+          --icon-size: 24px;
+        }
+        .rating-btn[data-value="3"] {
+          --size: 45px;
+          --icon-size: 20px;
+        }
+        .label-text {
+          font-size: 1rem;
+          width: var(--size, 70px); /* Match large screen circle sizes */
+        }
+        .label-row {
+          height: var(
+            --circle-height,
+            70px
+          ); /* Match largest large screen circle height */
+        }
         .survey-container {
           max-width: 900px;
         }
@@ -324,8 +569,7 @@
         .survey-form label {
           font-size: 1.4rem;
         }
-        .option-btn,
-        .rating-btn {
+        .option-btn {
           padding: 1.2rem 2.5rem;
           font-size: 1.2rem;
         }
@@ -378,7 +622,11 @@
             此研究未來發表採整體分析，您不會被辨識出，將發表於學位報告，亦無衍生的商業利益。
           </p>
           <p><strong>※ 如同意填寫，請點選「同意」按鈕於下一頁作答。</strong></p>
-          <button type="button" id="agreeBtn">同意</button>
+          <div style="display: flex; justify-content: center">
+            <button type="button" id="agreeBtn" style="text-align: center">
+              同意
+            </button>
+          </div>
         </div>
         <form
           id="iamForm"
@@ -669,11 +917,35 @@
             <label>下載及安裝過程順暢程度</label>
             <input type="hidden" name="entry.1255148912" value="" required />
             <div class="rating-group">
-              <button class="rating-btn" data-value="1">1</button>
-              <button class="rating-btn" data-value="2">2</button>
-              <button class="rating-btn" data-value="3">3</button>
-              <button class="rating-btn" data-value="4">4</button>
-              <button class="rating-btn" data-value="5">5</button>
+              <div class="circle-row">
+                <button class="rating-btn" data-value="1">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="2">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="3">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="4">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="5">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+              </div>
+              <div class="label-row">
+                <span class="label-text left">強烈不認同</span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-text right">強烈認同</span>
+              </div>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -686,11 +958,35 @@
             <label>應用程式大小合適</label>
             <input type="hidden" name="entry.343736260" value="" required />
             <div class="rating-group">
-              <button class="rating-btn" data-value="1">1</button>
-              <button class="rating-btn" data-value="2">2</button>
-              <button class="rating-btn" data-value="3">3</button>
-              <button class="rating-btn" data-value="4">4</button>
-              <button class="rating-btn" data-value="5">5</button>
+              <div class="circle-row">
+                <button class="rating-btn" data-value="1">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="2">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="3">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="4">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="5">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+              </div>
+              <div class="label-row">
+                <span class="label-text left">強烈不認同</span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-text right">強烈認同</span>
+              </div>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -703,11 +999,35 @@
             <label>介面設計簡單易用</label>
             <input type="hidden" name="entry.581203249" value="" required />
             <div class="rating-group">
-              <button class="rating-btn" data-value="1">1</button>
-              <button class="rating-btn" data-value="2">2</button>
-              <button class="rating-btn" data-value="3">3</button>
-              <button class="rating-btn" data-value="4">4</button>
-              <button class="rating-btn" data-value="5">5</button>
+              <div class="circle-row">
+                <button class="rating-btn" data-value="1">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="2">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="3">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="4">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="5">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+              </div>
+              <div class="label-row">
+                <span class="label-text left">強烈不認同</span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-text right">強烈認同</span>
+              </div>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -720,11 +1040,35 @@
             <label>功能數量適中</label>
             <input type="hidden" name="entry.1521382670" value="" required />
             <div class="rating-group">
-              <button class="rating-btn" data-value="1">1</button>
-              <button class="rating-btn" data-value="2">2</button>
-              <button class="rating-btn" data-value="3">3</button>
-              <button class="rating-btn" data-value="4">4</button>
-              <button class="rating-btn" data-value="5">5</button>
+              <div class="circle-row">
+                <button class="rating-btn" data-value="1">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="2">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="3">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="4">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="5">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+              </div>
+              <div class="label-row">
+                <span class="label-text left">強烈不認同</span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-text right">強烈認同</span>
+              </div>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -737,11 +1081,35 @@
             <label>沒有網頁版造成不便</label>
             <input type="hidden" name="entry.811101830" value="" required />
             <div class="rating-group">
-              <button class="rating-btn" data-value="1">1</button>
-              <button class="rating-btn" data-value="2">2</button>
-              <button class="rating-btn" data-value="3">3</button>
-              <button class="rating-btn" data-value="4">4</button>
-              <button class="rating-btn" data-value="5">5</button>
+              <div class="circle-row">
+                <button class="rating-btn" data-value="1">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="2">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="3">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="4">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="5">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+              </div>
+              <div class="label-row">
+                <span class="label-text left">強烈不認同</span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-text right">強烈認同</span>
+              </div>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -754,11 +1122,35 @@
             <label>安全及隱私保護足夠</label>
             <input type="hidden" name="entry.895643282" value="" required />
             <div class="rating-group">
-              <button class="rating-btn" data-value="1">1</button>
-              <button class="rating-btn" data-value="2">2</button>
-              <button class="rating-btn" data-value="3">3</button>
-              <button class="rating-btn" data-value="4">4</button>
-              <button class="rating-btn" data-value="5">5</button>
+              <div class="circle-row">
+                <button class="rating-btn" data-value="1">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="2">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="3">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="4">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="5">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+              </div>
+              <div class="label-row">
+                <span class="label-text left">強烈不認同</span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-text right">強烈認同</span>
+              </div>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -771,11 +1163,35 @@
             <label>整合更多服務會更好用</label>
             <input type="hidden" name="entry.2085525098" value="" required />
             <div class="rating-group">
-              <button class="rating-btn" data-value="1">1</button>
-              <button class="rating-btn" data-value="2">2</button>
-              <button class="rating-btn" data-value="3">3</button>
-              <button class="rating-btn" data-value="4">4</button>
-              <button class="rating-btn" data-value="5">5</button>
+              <div class="circle-row">
+                <button class="rating-btn" data-value="1">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="2">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="3">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="4">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+                <button class="rating-btn" data-value="5">
+                  <div class="circle"></div>
+                  <span class="tick">✓</span>
+                </button>
+              </div>
+              <div class="label-row">
+                <span class="label-text left">強烈不認同</span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-spacer"></span>
+                <span class="label-text right">強烈認同</span>
+              </div>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -884,11 +1300,14 @@
         });
 
         // Add event listeners for option and rating buttons
+        // Limit checkbox selection to 3
         questions.forEach((question) => {
           const optionBtns = question.querySelectorAll(
             ".option-btn, .rating-btn"
           );
           const hiddenInput = question.querySelector('input[type="hidden"]');
+          const checkboxGroup = question.querySelector(".checkbox-group");
+
           if (optionBtns.length > 0 && hiddenInput) {
             optionBtns.forEach((btn) => {
               btn.addEventListener("click", () => {
@@ -902,6 +1321,23 @@
             });
           }
 
+          if (checkboxGroup) {
+            const checkboxes = checkboxGroup.querySelectorAll(
+              'input[type="checkbox"]:not([value="__other_option__"])'
+            );
+            checkboxes.forEach((checkbox) => {
+              checkbox.addEventListener("change", function () {
+                const checkedBoxes = checkboxGroup.querySelectorAll(
+                  'input[type="checkbox"]:not([value="__other_option__"]):checked'
+                );
+                if (checkedBoxes.length > 3) {
+                  this.checked = false;
+                  alert("最多可選擇 3 項");
+                }
+              });
+            });
+          }
+
           const prevBtn = question.querySelector(".prev-btn");
           const nextBtn = question.querySelector(".next-btn");
 
@@ -911,9 +1347,7 @@
           if (nextBtn) {
             nextBtn.addEventListener("click", handleNext);
           }
-        });
-
-        // Handle form submission
+        }); // Handle form submission
         function handleSubmit(event) {
           event.preventDefault();
           const form = document.getElementById("iamForm");
