@@ -425,7 +425,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: calc(800px - 2rem); /* Match survey-container width minus padding */
-  height: 8px; /* Thicker progress bar */
+  height: 10px; /* Thicker progress bar */
   background: #ddeb9d;
   border-radius: 5px;
   overflow: hidden;
@@ -539,7 +539,7 @@ body {
   }
   .progress-bar {
     width: calc(100% - 3rem); /* Match container width minus padding */
-    height: 6px; /* Slightly thicker for mobile */
+    height: 8px; /* Slightly thicker for mobile */
   }
 }
 @media (min-width: 769px) {
