@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.target = "hidden_iframe";
     form.submit();
     setTimeout(() => {
-      window.location.href = "finish.html";
+      window.location.href = isEnglish ? "finish_en.html" : "finish.html";
     }, 1000);
   }
   form.addEventListener("submit", handleSubmit);
