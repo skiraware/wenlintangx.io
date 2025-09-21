@@ -53,9 +53,10 @@ body {
   min-height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center; /* Center vertically */
-  padding: 8rem 2rem; /* Consistent padding, adjusted to account for title */
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  padding: 0; /* No padding to maximize centering */
   box-sizing: border-box;
   position: relative;
 }
@@ -67,6 +68,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; /* Ensure content inside is centered */
+  margin-bottom: 4rem; /* Increased to clear progress bar (1rem height + 1rem gap + extra buffer) */
 }
 
 .survey-title {
@@ -74,14 +76,13 @@ body {
   font-weight: 700;
   text-align: center;
   color: #000000;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  width: 100%;
+  max-width: 800px; /* Match survey-container width */
+  margin: 1rem 0; /* Space above and below title */
   background: #fffdf6;
-  padding: 1rem 0;
+  z-index: 100; /* Keep above other elements if needed */
 }
+
 .survey-form,
 .tnc-container {
   position: relative;
@@ -94,12 +95,24 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddeb9d; /* Visible border for the box */
   max-height: calc(
-    100vh - 10rem - 4rem
-  ); /* Account for title (5rem) and progress bar (1rem + margin) */
+    100vh - 5rem - 4rem
+  ); /* Account for title (~3rem) and progress bar (1rem + 1rem gap) */
   overflow-y: auto; /* Enable scrolling */
   width: 100%; /* Ensure it takes full container width */
   box-sizing: border-box;
-  margin-bottom: 3rem; /* Space for progress bar */
+}
+
+.progress-bar {
+  position: fixed;
+  bottom: 1rem; /* Gap from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(800px - 2rem); /* Match survey-container width minus padding */
+  height: 10px; /* Thicker progress bar */
+  background: #ddeb9d;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 100;
 }
 .tnc-container {
   max-width: 800px;
@@ -419,18 +432,7 @@ body {
 .next-btn:hover {
   background: #ddeb9d;
 }
-.progress-bar {
-  position: fixed;
-  bottom: 1rem; /* Gap from bottom */
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(800px - 2rem); /* Match survey-container width minus padding */
-  height: 10px; /* Thicker progress bar */
-  background: #ddeb9d;
-  border-radius: 5px;
-  overflow: hidden;
-  z-index: 100;
-}
+
 .progress-fill {
   height: 100%;
   background: #a0c878;
@@ -448,31 +450,33 @@ body {
     padding-bottom: 1.5rem;
   }
   .survey-section {
-    padding: 4rem 1.5rem; /* Consistent padding for mobile */
-    align-items: center; /* Ensure vertical centering */
+    padding: 0; /* No padding to maximize centering */
+    justify-content: center; /* Maintain vertical centering */
+  }
+  .survey-title {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .survey-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0 0.5rem;
+    margin-bottom: 3rem; /* Adjusted for smaller progress bar height and gap */
   }
   .survey-form,
   .tnc-container {
     padding: 1.5rem;
     max-height: calc(
-      100vh - 8rem - 3rem
-    ); /* Account for title (4rem) and progress bar (1rem + margin) */
-    overflow-y: auto; /* Enable scrolling */
-    margin-bottom: 2.5rem; /* Space for progress bar */
-    width: 100%; /* Full width */
+      100vh - 2.2rem - 3rem
+    ); /* Account for title (~1.2rem + 1rem margins) and progress bar (0.8rem + 1rem gap) */
+    overflow-y: auto;
+    width: 100%;
     box-sizing: border-box;
   }
-  .survey-title {
-    font-size: 1.2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0.5rem 1rem;
+  .progress-bar {
+    width: calc(100% - 1rem); /* Match container width minus padding */
+    height: 8px; /* Slightly thinner for mobile */
   }
   .rating-group {
     margin-left: auto;
@@ -536,10 +540,6 @@ body {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
   }
-  .progress-bar {
-    width: calc(100% - 3rem); /* Match container width minus padding */
-    height: 8px; /* Slightly thicker for mobile */
-  }
 }
 @media (min-width: 769px) {
   .option-btn {
@@ -576,25 +576,31 @@ body {
   .label-row {
     height: var(--circle-height, 70px);
   }
+  .survey-section {
+    padding: 0; /* No padding to maximize centering */
+    justify-content: center; /* Maintain vertical centering */
+  }
   .survey-container {
     max-width: 900px;
+    margin-bottom: 4rem; /* Consistent with desktop */
   }
-  .survey-section {
-    padding: 8rem 2rem; /* Consistent padding */
-    align-items: center; /* Ensure vertical centering */
+  .survey-title {
+    font-size: 2.5rem;
+    max-width: 900px; /* Match larger container */
+    margin: 1.5rem 0;
   }
   .survey-form,
   .tnc-container {
     padding: 2.5rem;
     max-height: calc(
-      100vh - 11rem - 4rem
-    ); /* Account for title (5rem) and progress bar (1rem + margin) */
-    overflow-y: auto; /* Enable scrolling */
+      100vh - 5.5rem - 4rem
+    ); /* Account for larger title (~3.5rem) and progress bar (1rem + 1rem gap) */
+    overflow-y: auto;
     width: 100%;
     box-sizing: border-box;
   }
-  .survey-title {
-    font-size: 2.5rem;
+  .progress-bar {
+    width: calc(900px - 2rem); /* Match larger container */
   }
   .survey-form label {
     font-size: 1.4rem;
@@ -615,8 +621,5 @@ body {
   .next-btn {
     padding: 1.2rem 2.5rem;
     font-size: 1.2rem;
-  }
-  .progress-bar {
-    width: calc(900px - 2rem); /* Match larger container */
   }
 }
