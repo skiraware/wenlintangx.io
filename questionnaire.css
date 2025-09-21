@@ -547,9 +547,6 @@ body {
     flex: 1 1 calc(25% - 0.75rem);
     margin-right: 1rem;
   }
-  .option-btn:last-child {
-    margin-right: 0;
-  }
 }
 @media (min-width: 1200px) {
   .rating-group {
