@@ -1,19 +1,41 @@
 // scripts.js: Fixed initial load flash - Hide footer on load, show after initial content fade-in. Reduced scrub to 0.5 (faster catch-up). Shortened end to "+=50vh" (quicker pin release). Added anticipatePin: 1 to prevent flash on fast scrolls. Animate nested elements only.
+// Mobile menu toggle
 const showMenu = (toggleId, navId) => {
-  const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId);
+  const toggle = document.getElementById(toggleId);
+  const nav = document.getElementById(navId);
 
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
       nav.classList.toggle("show-menu");
       toggle.classList.toggle("show-icon");
+      console.log(
+        `Menu toggled. Show-menu: ${nav.classList.contains("show-menu")}`
+      ); // Debug
     });
+  } else {
+    console.error("Toggle or nav element not found:", { toggle, nav });
   }
 };
+
+// Initialize menu toggle
 showMenu("nav-toggle", "nav-menu");
 
 // Seamless page transitions with GSAP fade
 const links = document.querySelectorAll(".nav__link");
+links.forEach((link) => {
+  console.log(`Adding click listener to ${link.getAttribute("data-page")}`); // Debug
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const page = link.getAttribute("data-page");
+    if (page) {
+      console.log(`Loading page: ${page}`); // Debug
+      loadPage(page);
+      // Close mobile menu
+      document.getElementById("nav-menu").classList.remove("show-menu");
+      document.getElementById("nav-toggle").classList.remove("show-icon");
+    }
+  });
+});
 const content = document.getElementById("content");
 
 function loadPage(pageUrl) {
@@ -90,7 +112,7 @@ function initInteractions() {
     });
   });
 
-  // Booking form placeholder
+  // Booking form
   const bookingForm = document.querySelector(".booking-form");
   if (bookingForm) {
     bookingForm.addEventListener("submit", (e) => {
@@ -99,15 +121,6 @@ function initInteractions() {
       alert("預訂已提交！ / Booking submitted! (Placeholder)");
     });
   }
-
-  // Mobile menu close on link click
-  const mobileLinks = document.querySelectorAll(".nav__link");
-  mobileLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      document.getElementById("nav-menu").classList.remove("show-menu");
-      document.getElementById("nav-toggle").classList.remove("show-icon");
-    });
-  });
 }
 
 // Mobile video autoplay handling
