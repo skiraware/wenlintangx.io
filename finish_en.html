@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You for Your Submission</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="finish.css" />
+    <script>
+      document.fonts.ready.then(() => {
+        document.body.classList.add("font-loaded");
+      });
+    </script>
+  </head>
+  <body>
+    <h1 class="thankyou-title">Thank You for Your Submission</h1>
+    <section class="thankyou-section">
+      <div class="thankyou-container">
+        <h1>Survey Successfully Submitted!</h1>
+        <p>
+          Thank you for participating in this study. Your feedback is very
+          important to us.
+        </p>
+        <p>
+          You can close this page or <a href="/">return to the homepage</a>.
+        </p>
+      </div>
+    </section>
+    <div id="access-denied">
+      <h1>Access Denied</h1>
+      <p>Please use the correct link to access this page.</p>
+    </div>
+  </body>
+</html>

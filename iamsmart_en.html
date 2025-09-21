@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iAM Smart 應用程式之使用情況及意見</title>
+    <title>iAM Smart Application Usage and Feedback</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -18,35 +18,50 @@
       id="access-denied"
       style="display: none; text-align: center; padding: 20%"
     >
-      <h1 style="color: red">無權訪問</h1>
-      <p>請使用正確的連結訪問此頁面。</p>
+      <h1 style="color: red">Access Denied</h1>
+      <p>Please use the correct link to access this page.</p>
     </div>
     <section class="survey-section">
-      <h1 class="survey-title">iAM Smart 應用程式之使用情況及意見</h1>
+      <h1 class="survey-title">iAM Smart Application Usage and Feedback</h1>
       <div class="survey-container">
         <div class="tnc-container" id="tnc">
-          <h2>iAM Smart 應用程式之使用情況及意見</h2>
+          <h2>iAM Smart Application Usage and Feedback</h2>
           <p>
-            本問卷旨在了解香港市民對現有 iAM Smart
-            應用程式之使用情況及意見，用以改善應用程式之設計及功能。所有答案完全匿名，不會收集個人識別資料。填寫需時約
-            5 分鐘。
+            This survey aims to understand Hong Kong residents' usage and
+            opinions of the iAM Smart application to improve its design and
+            functionality. All responses are completely anonymous, and no
+            personally identifiable information will be collected. The survey
+            takes approximately 5 minutes to complete.
           </p>
           <p>
-            本研究為 CUHK SEEM 系FYP Project 之一，主要探討 iAM Smart
-            應用程式之使用者經驗及改善方案。問卷採不記名及無法辨識個人之方式作答，電子資料保存至
-            2026 年 12
-            月即刪除。研究團隊將盡力維護您的隱私及善盡保密責任，盡量減少可能的風險。
+            This study is part of a CUHK SEEM Department FYP Project, focusing
+            on the user experience and potential improvements of the iAM Smart
+            application. Responses are collected anonymously and cannot be
+            traced back to individuals. Electronic data will be stored until
+            December 2026 and then deleted. The research team will make every
+            effort to protect your privacy and maintain confidentiality,
+            minimizing any potential risks.
           </p>
           <p>
-            請您自由決定是否填寫，亦可中途不填寫，無需感到壓力，惟一旦送交，本問卷無記名且無編碼，研究團隊將無法辨識送出的問卷，恕無法刪除您填寫的內容。
+            You are free to decide whether to participate and may withdraw at
+            any time without pressure. However, once submitted, as the survey is
+            anonymous and untraceable, the research team will be unable to
+            identify or delete your responses.
           </p>
           <p>
-            此研究未來發表採整體分析，您不會被辨識出，將發表於學位報告，亦無衍生的商業利益。
+            The study will be analyzed in aggregate, and no individual will be
+            identified. Results will be published in an academic report with no
+            commercial interests involved.
           </p>
-          <p><strong>※ 如同意填寫，請點選「同意」按鈕於下一頁作答。</strong></p>
+          <p>
+            <strong
+              >※ If you agree to participate, please click the "Agree" button to
+              proceed.</strong
+            >
+          </p>
           <div style="display: flex; justify-content: center">
             <button type="button" id="agreeBtn" style="text-align: center">
-              同意
+              Agree
             </button>
           </div>
         </div>
@@ -59,47 +74,59 @@
           onsubmit="handleSubmit(event)"
         >
           <div class="question" data-question="1">
-            <label>您的年齡是？<span style="color: red">*</span></label>
+            <label>What is your age? <span style="color: red">*</span></label>
             <input type="hidden" name="entry.1616353833" value="" required />
             <div class="option-group">
-              <button class="option-btn" data-value="18-30 歲">18-30 歲</button>
-              <button class="option-btn" data-value="31-50 歲">31-50 歲</button>
-              <button class="option-btn" data-value="51-65 歲">51-65 歲</button>
+              <button class="option-btn" data-value="18-30 歲">
+                18-30 years
+              </button>
+              <button class="option-btn" data-value="31-50 歲">
+                31-50 years
+              </button>
+              <button class="option-btn" data-value="51-65 歲">
+                51-65 years
+              </button>
               <button class="option-btn" data-value="66 歲或以上">
-                66 歲或以上
+                66 years or above
               </button>
             </div>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="2">
-            <label>您的教育水平是？ <span style="color: red">*</span></label>
+            <label
+              >What is your education level?
+              <span style="color: red">*</span></label
+            >
             <input type="hidden" name="entry.262463565" value="" required />
             <div class="option-group">
               <button class="option-btn" data-value="中學或以下">
-                中學或以下
+                Secondary or below
               </button>
               <button class="option-btn" data-value="大專 / 副學士">
-                大專/副學士
+                Diploma/Associate Degree
               </button>
-              <button class="option-btn" data-value="大學學士">大學學士</button>
+              <button class="option-btn" data-value="大學學士">
+                Bachelor's Degree
+              </button>
               <button class="option-btn" data-value="大學碩士或以上">
-                碩士或以上
+                Master's Degree or above
               </button>
             </div>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="3">
             <label
-              >您使用智能手機的經驗是？ <span style="color: red">*</span></label
+              >What is your experience level with smartphones?
+              <span style="color: red">*</span></label
             >
             <input type="hidden" name="entry.471278835" value="" required />
             <div class="option-group">
@@ -107,37 +134,37 @@
                 class="option-btn"
                 data-value="非常熟練（可輕鬆使用多數應用程式）"
               >
-                非常熟練
+                Very proficient
               </button>
               <button
                 class="option-btn"
                 data-value="一般（可完成基本操作，如通訊、瀏覽）"
               >
-                一般
+                Average
               </button>
               <button
                 class="option-btn"
                 data-value="不太熟練（常需協助或覺操作困難）"
               >
-                不太熟練
+                Not very proficient
               </button>
               <button
                 class="option-btn"
                 data-value="幾乎不熟練（無智能手機或極少操作）"
               >
-                幾乎不熟練
+                Almost not proficient
               </button>
             </div>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="4">
             <label
-              >您有無使用過iAM Smart應用程式？
+              >Have you used the iAM Smart application?
               <span style="color: red">*</span></label
             >
             <input type="hidden" name="entry.2062216059" value="" required />
@@ -146,53 +173,57 @@
                 class="option-btn"
                 data-value="有，使用過（請繼續回答第 6-8 題）"
               >
-                有，使用過
+                Yes, I have used it
               </button>
               <button
                 class="option-btn"
                 data-value="有下載，但沒有使用過（請跳至第 7 題）"
               >
-                有下載但未使用
+                Downloaded but not used
               </button>
               <button
                 class="option-btn"
                 data-value="沒有下載/沒有使用過（請跳至第 7 題）"
               >
-                未下載/未使用
+                Not downloaded/not used
               </button>
             </div>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="5">
             <label
-              >您使用 iAM Smart 應用程式的頻率是？
+              >How frequently do you use the iAM Smart application?
               <span style="color: red">*</span></label
             >
             <input type="hidden" name="entry.457110651" value="" required />
             <div class="option-group">
-              <button class="option-btn" data-value="每日">每日</button>
-              <button class="option-btn" data-value="每週數次">每週數次</button>
-              <button class="option-btn" data-value="每月數次">每月數次</button>
+              <button class="option-btn" data-value="每日">Daily</button>
+              <button class="option-btn" data-value="每週數次">
+                Several times a week
+              </button>
+              <button class="option-btn" data-value="每月數次">
+                Several times a month
+              </button>
               <button class="option-btn" data-value="很少（少於每月一次）">
-                很少
+                Rarely
               </button>
             </div>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="6">
             <label
-              >如果您沒有使用或少用 iAM Smart
-              應用程式，主要原因是？（最多選3項）
+              >If you have not used or rarely use the iAM Smart application,
+              what are the main reasons? (Select up to 3)
               <span style="color: red">*</span></label
             >
             <div class="checkbox-group">
@@ -202,7 +233,7 @@
                   name="entry.446625939"
                   value="應用程式大小太大（約 203MB），佔用儲存空間"
                 />
-                應用程式太大
+                Application too large
               </label>
               <label>
                 <input
@@ -210,7 +241,7 @@
                   name="entry.446625939"
                   value="介面複雜或難用"
                 />
-                介面複雜或難用
+                Complex or difficult interface
               </label>
               <label>
                 <input
@@ -218,7 +249,7 @@
                   name="entry.446625939"
                   value="沒有網頁版，使用電腦不方便"
                 />
-                沒有網頁版
+                No web version
               </label>
               <label>
                 <input
@@ -226,7 +257,7 @@
                   name="entry.446625939"
                   value="註冊或使用時有技術問題（如掃描身份證失敗）"
                 />
-                技術問題
+                Technical issues
               </label>
               <label>
                 <input
@@ -234,7 +265,7 @@
                   name="entry.446625939"
                   value="不知有此應用程式或如何使用"
                 />
-                不知道如何使用
+                Unaware of how to use
               </label>
               <label>
                 <input
@@ -242,7 +273,7 @@
                   name="entry.446625939"
                   value="覺得沒有需要（例如其他應用程式已足夠）"
                 />
-                沒有需要
+                No need
               </label>
               <label>
                 <input
@@ -250,7 +281,7 @@
                   name="entry.446625939"
                   value="擔心安全或隱私問題"
                 />
-                安全/隱私問題
+                Security/privacy concerns
               </label>
               <label>
                 <input
@@ -258,25 +289,25 @@
                   name="entry.446625939"
                   value="__other_option__"
                 />
-                其他：
+                Other:
                 <input
                   type="text"
                   name="entry.446625939.other_option_response"
-                  placeholder="請輸入其他原因"
+                  placeholder="Please specify other reasons"
                 />
               </label>
             </div>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="7">
             <label
-              >您最常用 iAM Smart 應用程式做什麼功能？（最多選3項）
-              <span style="color: red">*</span></label
+              >Which functions of the iAM Smart application do you use most
+              often? (Select up to 3) <span style="color: red">*</span></label
             >
             <div class="checkbox-group">
               <label>
@@ -285,7 +316,7 @@
                   name="entry.717724599"
                   value="身份驗證（登入政府或私人服務）"
                 />
-                身份驗證
+                Authentication
               </label>
               <label>
                 <input
@@ -293,7 +324,7 @@
                   name="entry.717724599"
                   value="填表（e-ME 自動填寫資料）"
                 />
-                e-ME 填表
+                e-ME form filling
               </label>
               <label>
                 <input
@@ -301,7 +332,7 @@
                   name="entry.717724599"
                   value="接收個人化通知（政府服務提示）"
                 />
-                通知提示
+                Notifications
               </label>
               <label>
                 <input
@@ -309,7 +340,7 @@
                   name="entry.717724599"
                   value="電子簽署文件"
                 />
-                電子簽署
+                Digital signing
               </label>
               <label>
                 <input
@@ -317,28 +348,28 @@
                   name="entry.717724599"
                   value="__other_option__"
                 />
-                其他：
+                Other:
                 <input
                   type="text"
                   name="entry.717724599.other_option_response"
-                  placeholder="請輸入其他功能"
+                  placeholder="Please specify other functions"
                 />
               </label>
             </div>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="8" class="no-auto-question">
             <label
-              >您對以下iAM Smart應用程式嘅評價如何？
-              <span style="color: red">*</span></label
+              >How do you rate the following aspects of the iAM Smart
+              application? <span style="color: red">*</span></label
             >
             <div class="sub-rating">
-              <label>下載及安裝過程順暢</label>
+              <label>Smooth download and installation process</label>
               <input type="hidden" name="entry.1255148912" value="" required />
               <div class="rating-group">
                 <div class="circle-row">
@@ -364,16 +395,19 @@
                   </button>
                 </div>
                 <div class="label-row">
-                  <span class="label-text left">強烈不認同</span>
+                  <span class="label-text left">Strongly Disagree</span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
-                  <span class="label-text right">強烈認同</span>
+                  <span class="label-text right">Strongly Agree</span>
                 </div>
               </div>
             </div>
             <div class="sub-rating">
-              <label>應用程式的大小（約 203MB）對我的裝置來說合適。</label>
+              <label
+                >The application size (about 203MB) is suitable for my
+                device.</label
+              >
               <input type="hidden" name="entry.343736260" value="" required />
               <div class="rating-group">
                 <div class="circle-row">
@@ -399,16 +433,18 @@
                   </button>
                 </div>
                 <div class="label-row">
-                  <span class="label-text left">強烈不認同</span>
+                  <span class="label-text left">Strongly Disagree</span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
-                  <span class="label-text right">強烈認同</span>
+                  <span class="label-text right">Strongly Agree</span>
                 </div>
               </div>
             </div>
             <div class="sub-rating">
-              <label>應用程式介面設計簡單易用。</label>
+              <label
+                >The application interface is simple and easy to use.</label
+              >
               <input type="hidden" name="entry.581203249" value="" required />
               <div class="rating-group">
                 <div class="circle-row">
@@ -434,16 +470,19 @@
                   </button>
                 </div>
                 <div class="label-row">
-                  <span class="label-text left">強烈不認同</span>
+                  <span class="label-text left">Strongly Disagree</span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
-                  <span class="label-text right">強烈認同</span>
+                  <span class="label-text right">Strongly Agree</span>
                 </div>
               </div>
             </div>
             <div class="sub-rating">
-              <label>應用程式功能數量適中，不會覺得過多或混亂。</label>
+              <label
+                >The number of features is appropriate, not overwhelming or
+                confusing.</label
+              >
               <input type="hidden" name="entry.1521382670" value="" required />
               <div class="rating-group">
                 <div class="circle-row">
@@ -469,16 +508,19 @@
                   </button>
                 </div>
                 <div class="label-row">
-                  <span class="label-text left">強烈不認同</span>
+                  <span class="label-text left">Strongly Disagree</span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
-                  <span class="label-text right">強烈認同</span>
+                  <span class="label-text right">Strongly Agree</span>
                 </div>
               </div>
             </div>
             <div class="sub-rating">
-              <label>沒有網頁版（僅有應用程式）對使用造成不便。</label>
+              <label
+                >The lack of a web version (app-only) causes
+                inconvenience.</label
+              >
               <input type="hidden" name="entry.811101830" value="" required />
               <div class="rating-group">
                 <div class="circle-row">
@@ -504,16 +546,19 @@
                   </button>
                 </div>
                 <div class="label-row">
-                  <span class="label-text left">強烈不認同</span>
+                  <span class="label-text left">Strongly Disagree</span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
-                  <span class="label-text right">強烈認同</span>
+                  <span class="label-text right">Strongly Agree</span>
                 </div>
               </div>
             </div>
             <div class="sub-rating">
-              <label>應用程式的安全措施及隱私保護足夠。</label>
+              <label
+                >The application's security measures and privacy protection are
+                sufficient.</label
+              >
               <input type="hidden" name="entry.895643282" value="" required />
               <div class="rating-group">
                 <div class="circle-row">
@@ -539,17 +584,18 @@
                   </button>
                 </div>
                 <div class="label-row">
-                  <span class="label-text left">強烈不認同</span>
+                  <span class="label-text left">Strongly Disagree</span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
-                  <span class="label-text right">強烈認同</span>
+                  <span class="label-text right">Strongly Agree</span>
                 </div>
               </div>
             </div>
             <div class="sub-rating">
               <label
-                >如果整合更多服務（如 1823 投訴系統），應用程式會更好用。</label
+                >Integrating more services (e.g., 1823 complaint system) would
+                make the application more useful.</label
               >
               <input type="hidden" name="entry.2085525098" value="" required />
               <div class="rating-group">
@@ -576,65 +622,71 @@
                   </button>
                 </div>
                 <div class="label-row">
-                  <span class="label-text left">強烈不認同</span>
+                  <span class="label-text left">Strongly Disagree</span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
                   <span class="label-spacer"></span>
-                  <span class="label-text right">強烈認同</span>
+                  <span class="label-text right">Strongly Agree</span>
                 </div>
               </div>
             </div>
-            <p class="alert-message">請填寫所有評價！</p>
+            <p class="alert-message">Please complete all ratings!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
           <div class="question" data-question="9" class="no-auto-question">
             <label
-              >您是否支持iAM Smart整合大學身份（如登入大學系統或儲存學術憑證）？
-              <span style="color: red">*</span></label
+              >Do you support integrating iAM Smart with university systems
+              (e.g., logging into university systems or storing academic
+              credentials)? <span style="color: red">*</span></label
             >
             <input type="hidden" name="entry.1871568646" value="" required />
             <div class="option-group">
-              <button class="option-btn no-auto" data-value="支持">支持</button>
+              <button class="option-btn no-auto" data-value="支持">
+                Support
+              </button>
               <button class="option-btn no-auto" data-value="不支持">
-                不支持
+                Do not support
               </button>
               <button class="option-btn no-auto" data-value="無意見">
-                無意見
+                No opinion
               </button>
             </div>
-            <label>請說明原因</label>
+            <label>Please provide reasons</label>
             <textarea
               name="entry.1408690760"
-              placeholder="請輸入您的原因"
+              placeholder="Please enter your reasons"
             ></textarea>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">下一步</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Next</button>
             </div>
           </div>
 
           <div class="question" data-question="10">
-            <label>您有沒有其他意見或建議關於iAM Smart應用程式？</label>
+            <label
+              >Do you have any other comments or suggestions about the iAM Smart
+              application?</label
+            >
             <textarea
               name="entry.1444833074"
-              placeholder="請輸入其他意見"
+              placeholder="Please enter other comments"
               required
             ></textarea>
-            <p class="alert-message">請填寫此問題！</p>
+            <p class="alert-message">Please answer this question!</p>
             <div class="nav-buttons">
-              <button type="button" class="prev-btn">上一步</button>
-              <button type="button" class="next-btn">提交問卷</button>
+              <button type="button" class="prev-btn">Previous</button>
+              <button type="button" class="next-btn">Submit Survey</button>
             </div>
           </div>
 
           <div class="progress-bar">
             <div class="progress-fill"></div>
           </div>
-          <button type="submit" id="submitBtn">提交問卷</button>
+          <button type="submit" id="submitBtn">Submit Survey</button>
         </form>
       </div>
     </section>

@@ -1,0 +1,160 @@
+@font-face {
+  font-family: "Zen Maru Gothic";
+  src: url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap");
+  font-display: swap;
+}
+body {
+  margin: 0;
+  font-family: "Zen Maru Gothic", sans-serif;
+  background-color: #fffdf6; /* Match survey page background */
+  color: #000000;
+  visibility: hidden;
+}
+body.font-loaded {
+  visibility: visible;
+}
+.thankyou-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center vertically */
+  padding: 5rem 2rem; /* Match survey page padding */
+  box-sizing: border-box;
+}
+.thankyou-container {
+  max-width: 800px; /* Match survey page max-width */
+  width: 100%;
+  padding: 2rem;
+  background: #faf6e9; /* Match survey form box background */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddeb9d; /* Match survey form border */
+  text-align: center;
+  box-sizing: border-box;
+}
+.thankyou-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #fffdf6; /* Match survey page title background */
+  padding: 1rem 0;
+  margin: 0;
+}
+.thankyou-container h1 {
+  font-size: clamp(1.8rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #a0c878; /* Match survey page accent color */
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-in-out;
+}
+.thankyou-container p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #000000;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.thankyou-container a {
+  color: #a0c878;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #a0c878;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.thankyou-container a:hover {
+  background: #a0c878;
+  color: #ffffff;
+}
+#access-denied {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  background: #faf6e9;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddeb9d;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+#access-denied h1 {
+  font-size: clamp(1.8rem, 4vw, 2rem);
+  color: #ff4d4d;
+  margin-bottom: 1rem;
+}
+#access-denied p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #000000;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .thankyou-section {
+    padding: 4rem 1.5rem; /* Match survey page mobile padding */
+  }
+  .thankyou-container {
+    padding: 1.5rem;
+    max-width: 100%; /* Full width on mobile */
+  }
+  .thankyou-title {
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0.5rem 1rem;
+  }
+  .thankyou-container h1 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+  .thankyou-container p {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+  .thankyou-container a {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  #access-denied {
+    padding: 1.5rem;
+    margin: 1.5rem;
+  }
+  #access-denied h1 {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+  }
+  #access-denied p {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+}
+@media (min-width: 1200px) {
+  .thankyou-container {
+    max-width: 900px; /* Match survey page larger screen width */
+    padding: 2.5rem;
+  }
+  .thankyou-title {
+    font-size: 2.5rem;
+  }
+  .thankyou-container h1 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+  .thankyou-container p {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+  }
+  .thankyou-container a {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}
