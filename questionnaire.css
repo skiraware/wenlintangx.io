@@ -450,7 +450,7 @@ body {
     padding-bottom: 1.5rem;
   }
   .survey-section {
-    padding: 0; /* No padding to maximize centering */
+    padding: 0px 20px; /* No padding to maximize centering */
     justify-content: center; /* Maintain vertical centering */
   }
   .survey-title {
