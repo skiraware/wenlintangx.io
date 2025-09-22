@@ -86,6 +86,54 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.classList.add("selected");
         if (hidden) hidden.value = btn.dataset.value;
 
+        // Clear answers for questions 5, 6 (functions), and 7 (reasons) based on question 4's answer
+        if (question.dataset.question === "4") {
+          const newValue = btn.dataset.value;
+          const isNowUser = newValue === "有，使用過（請繼續回答第 6-8 題）";
+
+          // Clear question 5 (frequency) if switching to non-user
+          const q5HiddenInput = questions[4].querySelector(
+            'input[type="hidden"]'
+          );
+          if (!isNowUser && q5HiddenInput) {
+            q5HiddenInput.value = "";
+            questions[4]
+              .querySelectorAll(".option-btn")
+              .forEach((b) => b.classList.remove("selected"));
+            questions[4].classList.remove("invalid-input");
+            const q5Alert = questions[4].querySelector(".alert-message");
+            if (q5Alert) q5Alert.classList.remove("active");
+          }
+
+          // Clear question 6 (functions) if switching to non-user
+          const q6CheckboxGroup = questions[5].querySelector(".checkbox-group");
+          if (!isNowUser && q6CheckboxGroup) {
+            q6CheckboxGroup
+              .querySelectorAll('input[type="checkbox"]')
+              .forEach((cb) => {
+                cb.checked = false;
+              });
+            q6CheckboxGroup.querySelector('input[type="text"]').value = "";
+            q6CheckboxGroup.classList.remove("invalid-input");
+            const q6Alert = questions[5].querySelector(".alert-message");
+            if (q6Alert) q6Alert.classList.remove("active");
+          }
+
+          // Clear question 7 (reasons) if switching to user
+          const q7CheckboxGroup = questions[6].querySelector(".checkbox-group");
+          if (isNowUser && q7CheckboxGroup) {
+            q7CheckboxGroup
+              .querySelectorAll('input[type="checkbox"]')
+              .forEach((cb) => {
+                cb.checked = false;
+              });
+            q7CheckboxGroup.querySelector('input[type="text"]').value = "";
+            q7CheckboxGroup.classList.remove("invalid-input");
+            const q7Alert = questions[6].querySelector(".alert-message");
+            if (q7Alert) q7Alert.classList.remove("active");
+          }
+        }
+
         if (btn.classList.contains("rating-btn")) {
           const sub = btn.closest(".sub-rating");
           sub.classList.add("completed");
@@ -227,23 +275,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getNextIndex(curr) {
     let next = curr + 1;
-    if (curr === 3) next = isUser ? 4 : 5;
-    if (curr === 4) next = isLowFrequency ? 5 : 6;
-    if (curr === 5) next = isUser ? 6 : 7;
-    if (curr === 6) next = 7;
+    if (curr === 3) {
+      const value = questions[curr].querySelector('input[type="hidden"]').value;
+      isUser = value === "有，使用過（請繼續回答第 6-8 題）";
+      next = isUser ? 4 : 6; // If user, go to Q5 (frequency); else go to Q7 (reasons)
+    }
+    if (curr === 4) {
+      next = 5; // From frequency (Q5), go to Q6 (functions)
+    }
+    if (curr === 5) {
+      const q5Value = questions[4].querySelector('input[type="hidden"]').value;
+      isLowFrequency =
+        q5Value === "每月數次" || q5Value === "很少（少於每月一次）";
+      next = isLowFrequency ? 6 : 7; // If low frequency, go to Q7 (reasons); else go to Q8 (ratings)
+    }
+    if (curr === 6) {
+      next = 7; // From reasons (Q7), go to Q8 (ratings)
+    }
     return next < questions.length ? next : undefined;
   }
 
   function getPrevIndex(curr) {
     let prev = curr - 1;
-    if (curr === 5) {
-      prev = isUser ? 4 : 3;
-    }
     if (curr === 6) {
-      if (isLowFrequency === false) prev = 4;
+      prev = isUser ? 5 : 3; // From reasons (Q7), go back to functions (Q6) if user, else to Q4
+    }
+    if (curr === 5) {
+      prev = 4; // From functions (Q6), go back to frequency (Q5)
     }
     if (curr === 7) {
-      prev = isUser ? 6 : 5;
+      prev = isUser && isLowFrequency ? 6 : isUser ? 5 : 6; // From ratings (Q8), go back to reasons (Q7) if user and low frequency, else to functions (Q6) or reasons (Q7)
     }
     return prev >= 0 ? prev : undefined;
   }
@@ -270,11 +331,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let skipped = 0;
     if (isUser !== null) {
       if (!isUser) {
-        if (idx > 3) skipped++; // skip freq (4)
-        if (idx > 5) skipped++; // skip functions (6)
+        if (idx > 3) skipped++; // Skip frequency (Q5)
+        if (idx > 5) skipped++; // Skip functions (Q6)
       } else if (isLowFrequency !== null) {
         if (!isLowFrequency) {
-          if (idx > 4) skipped++; // skip reasons (5)
+          if (idx > 5) skipped++; // Skip reasons (Q7)
         }
       }
     }
