@@ -358,6 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const textarea = question.querySelector("textarea");
     const checkboxGroup = question.querySelector(".checkbox-group");
     const alertMessage = question.querySelector(".alert-message");
+    const questionNumber = question.getAttribute("data-question");
 
     // Reset highlights
     hiddenInputs.forEach((inp) => inp.classList.remove("invalid-input"));
@@ -383,8 +384,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Validate textarea
-    if (textarea && textarea.value.trim() === "") {
+    // Validate textarea only for questions other than 9
+    if (textarea && questionNumber !== "9" && textarea.value.trim() === "") {
       textarea.classList.add("invalid-input");
       valid = false;
     }
