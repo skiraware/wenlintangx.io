@@ -346,7 +346,7 @@ function numSkippedBefore(idx) {
       }
     }
   }
-  return skipped;
+  return skipped; //push
 }
 
   function updateProgress() {
