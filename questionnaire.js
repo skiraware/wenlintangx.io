@@ -273,41 +273,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function getNextIndex(curr) {
-    let next = curr + 1;
-    if (curr === 3) {
-      const value = questions[curr].querySelector('input[type="hidden"]').value;
-      isUser = value === "有，使用過（請繼續回答第 6-8 題）";
-      next = isUser ? 4 : 6; // If user, go to Q5 (frequency); else go to Q7 (reasons)
-    }
-    if (curr === 4) {
-      next = 5; // From frequency (Q5), go to Q6 (functions)
-    }
-    if (curr === 5) {
-      const q5Value = questions[4].querySelector('input[type="hidden"]').value;
-      isLowFrequency =
-        q5Value === "每月數次" || q5Value === "很少（少於每月一次）";
-      next = isLowFrequency ? 6 : 7; // If low frequency, go to Q7 (reasons); else go to Q8 (ratings)
-    }
-    if (curr === 6) {
-      next = 7; // From reasons (Q7), go to Q8 (ratings)
-    }
-    return next < questions.length ? next : undefined;
+function getNextIndex(curr) {
+  let next = curr + 1;
+  if (curr === 3) {
+    const value = questions[curr].querySelector('input[type="hidden"]').value;
+    isUser = value === "有，使用過（請繼續回答第 6-8 題）";
+    next = isUser ? 4 : 6; // If user, go to Q5 (frequency); else go to Q7 (reasons)
   }
+  if (curr === 4) {
+    next = 5; // From frequency (Q5), go to Q6 (functions)
+  }
+  if (curr === 5) {
+    const q5Value = questions[4].querySelector('input[type="hidden"]').value;
+    isLowFrequency =
+      q5Value === "每月數次" || q5Value === "很少（少於每月一次）";
+    next = isLowFrequency ? 6 : 7; // If low frequency, go to Q7 (reasons); else go to Q8 (ratings)
+  }
+  if (curr === 6) {
+    next = isUser ? 7 : 8; // From reasons (Q7), go to Q8 (ratings) if user, else go to Q9 (university integration)
+  }
+  if (curr === 7) {
+    next = 8; // From ratings (Q8), go to Q9 (university integration)
+  }
+  return next < questions.length ? next : undefined;
+}
 
-  function getPrevIndex(curr) {
-    let prev = curr - 1;
-    if (curr === 6) {
-      prev = isUser ? 5 : 3; // From reasons (Q7), go back to functions (Q6) if user, else to Q4
-    }
-    if (curr === 5) {
-      prev = 4; // From functions (Q6), go back to frequency (Q5)
-    }
-    if (curr === 7) {
-      prev = isUser && isLowFrequency ? 6 : isUser ? 5 : 6; // From ratings (Q8), go back to reasons (Q7) if user and low frequency, else to functions (Q6) or reasons (Q7)
-    }
-    return prev >= 0 ? prev : undefined;
+function getPrevIndex(curr) {
+  let prev = curr - 1;
+  if (curr === 6) {
+    prev = isUser ? 5 : 3; // From reasons (Q7), go back to functions (Q6) if user, else to Q4
   }
+  if (curr === 5) {
+    prev = 4; // From functions (Q6), go back to frequency (Q5)
+  }
+  if (curr === 8) {
+    prev = isUser ? 7 : 6; // From university integration (Q9), go back to ratings (Q8) if user, else to reasons (Q7)
+  }
+  if (curr === 7) {
+    prev = isUser && isLowFrequency ? 6 : isUser ? 5 : 6; // From ratings (Q8), go back to reasons (Q7) if user and low frequency, else to functions (Q6) or reasons (Q7)
+  }
+  return prev >= 0 ? prev : undefined;
+}
 
   function updateNavButtons() {
     const currentQ = questions[currentIndex];
@@ -327,20 +333,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function numSkippedBefore(idx) {
-    let skipped = 0;
-    if (isUser !== null) {
-      if (!isUser) {
-        if (idx > 3) skipped++; // Skip frequency (Q5)
-        if (idx > 5) skipped++; // Skip functions (Q6)
-      } else if (isLowFrequency !== null) {
-        if (!isLowFrequency) {
-          if (idx > 5) skipped++; // Skip reasons (Q7)
-        }
+function numSkippedBefore(idx) {
+  let skipped = 0;
+  if (isUser !== null) {
+    if (!isUser) {
+      if (idx > 3) skipped++; // Skip frequency (Q5)
+      if (idx > 5) skipped++; // Skip functions (Q6)
+      if (idx > 6) skipped++; // Skip ratings (Q8)
+    } else if (isLowFrequency !== null) {
+      if (!isLowFrequency) {
+        if (idx > 5) skipped++; // Skip reasons (Q7)
       }
     }
-    return skipped;
   }
+  return skipped;
+}
 
   function updateProgress() {
     const step = currentIndex + 1 - numSkippedBefore(currentIndex);
