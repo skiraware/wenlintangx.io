@@ -164,16 +164,16 @@ function initGSAPEffects() {
         scrollTrigger: {
           trigger: "#hero",
           start: "top top",
-          end: "+=50vh", // Shorter duration for quicker unpin – adjust as needed (e.g., +=30vh for even faster)
-          scrub: 0.5, // Reduced for snappier response (0.5s catch-up; try 0.3 or true for instant)
+          end: "+=50vh",
+          scrub: 0.5,
           pin: true,
-          anticipatePin: 1, // Prevents flash on fast scrolls
-          pinSpacing: true, // Ensures space for content below
-          ease: "none", // Linear scrub for natural feel
+          anticipatePin: 1,
+          pinSpacing: true,
+          ease: "none",
         },
       });
 
-      if (video) tl.to(video, { opacity: 1, duration: 0.8 }); // Slightly shorter duration
+      if (video) tl.to(video, { opacity: 1, duration: 0.8 });
       if (title) tl.to(title, { opacity: 1, duration: 0.8 }, "-=0.4");
       if (subtitle) tl.to(subtitle, { opacity: 1, duration: 0.8 }, "-=0.4");
     }
@@ -181,7 +181,7 @@ function initGSAPEffects() {
     // Fade-in animations for sections and cards (handle empty selectors)
     gsap.utils.toArray(".full-screen-section").forEach((section) => {
       const selectors =
-        ".section-title, .team-card, .facility-card, .rule-item, .content-block";
+        ".section-title, .team-card, .facility-card, .rule-item, .content-block, .hero-img, .outro-img";
       const elements = Array.from(section.querySelectorAll(selectors)); // Convert to Array
       if (elements.length > 0) {
         // Skip if empty
@@ -195,8 +195,8 @@ function initGSAPEffects() {
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.6, // Slightly faster fade-in
-                stagger: 0.15, // Tighter stagger
+                duration: 0.6,
+                stagger: 0.15,
                 ease: "power2.out",
               }
             ),
@@ -204,9 +204,67 @@ function initGSAPEffects() {
       }
     });
 
-    // Optional: Full-screen snap for sections (comment out if too "sticky")
-    // ScrollTrigger.normalizeScroll(true);
-    ScrollTrigger.config({ ignoreMobileResize: true });
+    // Animate text elements for home.html
+    gsap.utils.toArray(".animate-text").forEach((textElement) => {
+      textElement.setAttribute("data-text", textElement.textContent.trim());
+
+      ScrollTrigger.create({
+        trigger: textElement,
+        start: "top 50%",
+        end: "bottom 50%",
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const clipValue = Math.max(0, 100 - self.progress * 100);
+          textElement.style.setProperty("--clip-value", `${clipValue}%`);
+        },
+      });
+    });
+
+    // Animate services headers (horizontal movement)
+    const servicesSection = document.querySelector(".services");
+    if (servicesSection) {
+      ScrollTrigger.create({
+        trigger: ".services",
+        start: "top bottom",
+        end: "top top",
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const headers = document.querySelectorAll(".services-header");
+          gsap.set(headers[0], { x: `${100 - self.progress * 100}%` });
+          gsap.set(headers[1], { x: `${-100 + self.progress * 100}%` });
+          gsap.set(headers[2], { x: `${100 - self.progress * 100}%` });
+        },
+      });
+
+      // Animate services headers (vertical movement and scaling)
+      ScrollTrigger.create({
+        trigger: ".services",
+        start: "top top",
+        end: `+=${window.innerHeight * 2}`,
+        pin: true,
+        scrub: 0.5,
+        pinSpacing: false,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          const headers = document.querySelectorAll(".services-header");
+
+          if (self.progress <= 0.5) {
+            const yProgress = self.progress / 0.5;
+            gsap.set(headers[0], { y: `${yProgress * 100}%` });
+            gsap.set(headers[2], { y: `${yProgress * -100}%` });
+          } else {
+            gsap.set(headers[0], { y: "100%" });
+            gsap.set(headers[2], { y: "-100%" });
+
+            const scaleProgress = (self.progress - 0.5) / 0.5;
+            const minScale = 0.5; // Adjusted to make the final size larger
+            const scale = 1 - scaleProgress * (1 - minScale);
+
+            headers.forEach((header) => gsap.set(header, { scale }));
+          }
+        },
+      });
+    }
 
     // Refresh on resize
     let resizeTimeout;
@@ -235,9 +293,20 @@ document.addEventListener("DOMContentLoaded", () => {
   window.isInitialLoad = true; // Flag for initial load to handle footer visibility
   loadPage("home");
   // Header scroll effect
+  let lastScrollTop = 0;
   window.addEventListener("scroll", () => {
-    document
-      .querySelector(".header")
-      .classList.toggle("scrolled", window.scrollY > 50);
+    const header = document.querySelector(".header");
+    const currentScrollTop = window.scrollY;
+
+    // Toggle scrolled class for shadow effect
+    header.classList.toggle("scrolled", currentScrollTop > 50);
+
+    // Hide header on scroll down, show on scroll up
+    if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
+      header.classList.add("header--hidden");
+    } else {
+      header.classList.remove("header--hidden");
+    }
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
   });
 });

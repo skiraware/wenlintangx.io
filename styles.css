@@ -1,14 +1,14 @@
-/* styles.css: Fixed initial load flash - Added display: none to #footer initially. Minor update for smoother hero - Added will-change: transform to #hero for hardware acceleration. Reduced full-screen padding slightly for tighter feel. No major changes. */
+/* Existing styles from WenLinTang project */
 body,
 html {
   scroll-behavior: smooth;
-  min-height: 100vh; /* Changed from height: 100% – allows growth */
+  min-height: 100vh;
   margin: 0 !important;
   color: white !important;
   background-color: black !important;
   max-width: 100vw;
   font-family: "Agdasima", sans-serif;
-  overflow-x: hidden; /* Keep for horizontal, y auto by default */
+  overflow-x: hidden;
 }
 
 * {
@@ -38,7 +38,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: var(--header-height) 1rem 1.5rem; /* Slightly reduced bottom padding for tighter scroll */
+  padding: var(--header-height) 1rem 1.5rem;
   box-sizing: border-box;
 }
 
@@ -55,10 +55,14 @@ a {
   width: 100%;
   background-color: black;
   box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
-  transition: box-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transform transition */
   z-index: 1000;
 }
 
+/* Class to hide header */
+.header--hidden {
+  transform: translateY(-100%);
+}
 .scrolled {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
@@ -102,7 +106,7 @@ a {
   width: 32px;
   height: 32px;
   margin-left: auto;
-  display: none; /* Hidden on desktop */
+  display: none;
 }
 
 .nav__toggle.show-icon .nav__burger {
@@ -175,7 +179,7 @@ a {
 /* Mobile menu */
 @media screen and (max-width: 978px) {
   .nav__toggle {
-    display: flex; /* Ensure toggle is visible on mobile */
+    display: flex;
     align-items: center;
     justify-content: center;
   }
@@ -218,6 +222,7 @@ a {
     padding: calc(var(--header-height) + 2rem) 1rem 1.5rem;
   }
 }
+
 /* Hero/Video Section */
 #hero {
   position: relative;
@@ -230,7 +235,7 @@ a {
   align-items: center;
   text-align: center;
   overflow: hidden;
-  will-change: transform; /* Hardware acceleration for smoother pinning */
+  will-change: transform;
 }
 
 .shadow {
@@ -253,7 +258,7 @@ a {
   z-index: 1;
   filter: brightness(50%);
   object-fit: cover;
-  opacity: 0; /* GSAP will animate this */
+  opacity: 0;
 }
 
 .hero-subtitle {
@@ -263,7 +268,7 @@ a {
   transform: translateX(-50%);
   font-size: 1.2rem;
   max-width: 80%;
-  opacity: 0; /* GSAP will animate this */
+  opacity: 0;
   z-index: 2;
 }
 
@@ -275,7 +280,7 @@ a {
   color: white;
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   z-index: 2;
-  opacity: 0; /* GSAP will animate this */
+  opacity: 0;
 }
 
 /* Section Titles & Subtitles */
@@ -284,7 +289,7 @@ a {
   font-size: clamp(1.8rem, 5vw, 3rem);
   margin-bottom: 1rem;
   text-align: center;
-  opacity: 1; /* Default visible, GSAP fades in */
+  opacity: 1;
 }
 
 .section-subtitle {
@@ -343,7 +348,7 @@ iframe {
   padding: 1.5rem;
   border-radius: 10px;
   text-align: center;
-  opacity: 1; /* Default visible */
+  opacity: 1;
 }
 
 .team-card img {
@@ -391,7 +396,7 @@ iframe {
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  opacity: 1; /* Default visible */
+  opacity: 1;
 }
 
 .rule-item:hover {
@@ -478,7 +483,7 @@ main #content table td {
   text-align: center;
   color: white;
   width: 100%;
-  display: none; /* Hide initially to prevent flash on load */
+  display: none;
 }
 
 .social-links {
@@ -533,4 +538,112 @@ main #content table td {
 .animate-slide-up {
   opacity: 0;
   transform: translateY(30px);
+}
+
+/* New styles for home.html content */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: -0.15rem;
+  line-height: 1.125;
+  text-align: center;
+}
+
+.hero,
+.outro,
+.about {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-img,
+.outro-img {
+  width: 300px;
+  aspect-ratio: 5/7;
+  overflow: hidden;
+}
+
+.services {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.services-header {
+  position: relative;
+  width: 100%;
+  padding: 0 2rem;
+  background-color: black;
+  will-change: transform;
+}
+
+.services-header img {
+  object-fit: contain;
+}
+
+.services-header:nth-child(1),
+.services-header:nth-child(3) {
+  transform: translateX(100%) translateY(0%);
+}
+
+.services-header:nth-child(2) {
+  transform: translateX(-100%) translateY(0%);
+  z-index: 2;
+}
+
+.services-copy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 155svh;
+  padding: 2rem 2rem 25svh 2rem;
+  text-align: center;
+}
+
+.animate-text {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  color: #4f4f4f;
+  --clip-value: 100%;
+}
+
+.animate-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--lime-color);
+  clip-path: inset(0 0 var(--clip-value) 0);
+  will-change: clip-path;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 2rem;
+    letter-spacing: -0.05rem;
+  }
+
+  .animate-text {
+    width: 100%;
+  }
 }
