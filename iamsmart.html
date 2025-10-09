@@ -10,6 +10,17 @@
     />
     <link rel="stylesheet" href="questionnaire.css" />
     <link rel="icon" href="images/iamsmart_icon.png" type="image/png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="questionnaire.js"></script>
@@ -69,6 +80,7 @@
               <button class="option-btn" data-value="66 歲或以上">
                 66 歲或以上
               </button>
+              <button class="option-btn" data-value="不願透露">不願透露</button>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -77,7 +89,10 @@
           </div>
 
           <div class="question" data-question="2">
-            <label>您的教育水平是？ <span style="color: red">*</span></label>
+            <label
+              >您目前或最高的教育水平是？
+              <span style="color: red">*</span></label
+            >
             <input type="hidden" name="entry.262463565" value="" required />
             <div class="option-group">
               <button class="option-btn" data-value="中學或以下">
@@ -90,6 +105,7 @@
               <button class="option-btn" data-value="大學碩士或以上">
                 碩士或以上
               </button>
+              <button class="option-btn" data-value="不願透露">不願透露</button>
             </div>
             <p class="alert-message">請填寫此問題！</p>
             <div class="nav-buttons">
@@ -596,6 +612,59 @@
               >您是否支持iAM Smart整合大學身份（如登入大學系統或儲存學術憑證）？
               <span style="color: red">*</span></label
             >
+            <img
+              id="viewExample"
+              class="info-icon"
+              width="24"
+              height="24"
+              src="https://img.icons8.com/material-outlined/24/info--v1.png"
+              alt="info--v1"
+              style="cursor: pointer; vertical-align: middle; margin-left: 8px"
+            />
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      城市大學 iAM Smart 例子
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="關閉"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <img
+                      src="images/login.png"
+                      alt="香港城市大學 iAM Smart 登入畫面"
+                      style="width: 100%; height: auto"
+                    />
+                    <p>
+                      香港城市大學使用 iAM Smart
+                      作為登入大學系統的另一選擇，用戶可掃描 QR
+                      碼進行無密碼登入。
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      關閉
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <input type="hidden" name="entry.1871568646" value="" required />
             <div class="option-group">
               <button class="option-btn no-auto" data-value="支持">支持</button>
@@ -617,7 +686,6 @@
               <button type="button" class="next-btn">下一步</button>
             </div>
           </div>
-
           <div class="question" data-question="10">
             <label>您有沒有其他意見或建議關於iAM Smart應用程式？</label>
             <textarea
