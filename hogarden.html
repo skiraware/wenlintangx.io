@@ -1,41 +1,215 @@
 <section id="hogarden-hero" class="full-screen-section">
   <h1>Welcome to Ho Garden</h1>
+  <p class="hero-subtitle">
+    Experience a moment of peace and focus in our dedicated space.
+  </p>
 </section>
 
-<!-- Booking System Section -->
-<section id="hogarden-booking" class="full-screen-section container">
-  <h2 class="section-title">Book it</h2>
-  <p class="section-subtitle">Try it</p>
-  <p style="color: #fff; font-size: 1.2rem; text-align: center">Select it...</p>
+<!-- <section id="hogarden-rules" class="full-screen-section container">
+  <h2 class="section-title">Guidelines for Ho Garden</h2>
+  <p class="section-subtitle">
+    Maintain the wonderful space by following these simple rules.
+  </p>
+
+  <div class="rules-accordion" style="max-width: 900px; margin-top: 2rem">
+    <div class="rule-item">
+      <h3>⏰ Time Management</h3>
+      <p
+        style="
+          display: none;
+          height: 0;
+          opacity: 0;
+          padding-top: 0.5rem;
+          color: #ccc;
+        "
+      >
+        Please **exit within 15 minutes** of your reservation ending to avoid
+        delays for the next user.
+      </p>
+    </div>
+    <div class="rule-item">
+      <h3>✨ Cleanliness and Order</h3>
+      <p
+        style="
+          display: none;
+          height: 0;
+          opacity: 0;
+          padding-top: 0.5rem;
+          color: #ccc;
+        "
+      >
+        **Return all items** (books, games, etc.) to their original place after
+        use. Please dispose of trash in the correct recycling bins.
+      </p>
+    </div>
+    <div class="rule-item">
+      <h3>🤫 Quiet Environment</h3>
+      <p
+        style="
+          display: none;
+          height: 0;
+          opacity: 0;
+          padding-top: 0.5rem;
+          color: #ccc;
+        "
+      >
+        In common areas, please keep **noise levels under 50 decibels**. The
+        study area is a strictly quiet zone.
+      </p>
+    </div>
+    <div class="rule-item">
+      <h3>🛡️ Safety First</h3>
+      <p
+        style="
+          display: none;
+          height: 0;
+          opacity: 0;
+          padding-top: 0.5rem;
+          color: #ccc;
+        "
+      >
+        **Food is prohibited** (only plain water is allowed). Please do not
+        bring or use any fire sources or flammable items.
+      </p>
+    </div>
+    <div class="rule-item">
+      <h3>🚫 Non-Compliance Policy</h3>
+      <p
+        style="
+          display: none;
+          height: 0;
+          opacity: 0;
+          padding-top: 0.5rem;
+          color: #ccc;
+        "
+      >
+        First violation will result in a warning. **Repeated violations** may
+        lead to the cancellation of your access privileges.
+      </p>
+    </div>
+  </div>
+</section> -->
+<section
+  id="hogarden-booking"
+  class="full-screen-section container"
+  style="background-color: #0d0d0d"
+>
+  <h2 class="section-title">Reserve Your Spot</h2>
   <div
-    id="booking-system"
+    id="booking-card"
     class="facility-card"
     style="
-      padding: 1.5rem;
-      background: rgba(256, 256, 256);
+      padding: 2.5rem;
+      background: rgba(256, 256, 256, 0.05);
       border: 1px solid var(--lime-color);
       border-radius: 10px;
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 600px;
+      margin: 2rem auto 0;
+      text-align: center;
     "
   >
-    <iframe
-      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3WdFQMC6FD-QyzbkUIRQp5d9UOvDlhzvjcxVDFkaHnr6CJ4gXniWy98M_jEBPTu0xYG14eU3Z0?gv=true"
+    <p
+      style="color: var(--white-color); font-size: 1.2rem; margin-bottom: 2rem"
+    >
+      Ready to book? Your next session is just a click away!
+    </p>
+
+    <div
+      id="calendar-button-container"
+      style="min-height: 50px; text-align: center"
+    >
+      <a
+        href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3WdFQMC6FD-QyzbkUIRQp5d9UOvDlhzvjcxVDFkaHnr6CJ4gXniWy98M_jEBPTu0xYG14eU3Z0?gv=true"
+        target="_blank"
+        class="calendar-fallback-link"
+        style="
+          display: inline-block;
+          background-color: #32cd32;
+          color: #000;
+          padding: 0.75rem 1.5rem;
+          border-radius: 5px;
+          font-family: 'Agdasima', sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          text-decoration: none;
+        "
+      >
+        Book Now
+      </a>
+
+      <link
+        href="https://calendar.google.com/calendar/scheduling-button-script.css"
+        rel="stylesheet"
+      />
+      <script
+        src="https://calendar.google.com/calendar/scheduling-button-script.js"
+        async
+      ></script>
+      <script>
+        (function () {
+          var container = document.getElementById("calendar-button-container");
+          var fallbackLink = container.querySelector(".calendar-fallback-link");
+
+          // Hide the fallback link immediately before attempting to load the script
+          if (fallbackLink) {
+            fallbackLink.style.display = "none";
+          }
+
+          window.addEventListener("load", function () {
+            // Set a small timeout to give GSAP's transition time to complete
+            setTimeout(function () {
+              if (
+                typeof calendar !== "undefined" &&
+                calendar.schedulingButton &&
+                container
+              ) {
+                calendar.schedulingButton.load({
+                  url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3WdFQMC6FD-QyzbkUIRQp5d9UOvDlhzvjcxVDFkaHnr6CJ4gXniWy98M_jEBPTu0xYG14eU3Z0?gv=true",
+                  color: "#32CD32",
+                  label: "Book Now / 進行預約",
+                  target: container,
+                });
+              } else if (fallbackLink) {
+                // If script fails, show the manually styled link
+                fallbackLink.style.display = "inline-block";
+              }
+            }, 100); // 100ms delay often works wonders with GSAP transitions
+          });
+        })();
+      </script>
+    </div>
+    <p
       style="
-        border: 0;
-        width: 100%;
-        height: 600px;
-        max-height: 80vh;
-        border-radius: 8px;
-        filter: contrast(1.2) brightness(1.1) saturate(1.2);
+        color: #ccc;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 2rem;
       "
-      frameborder="0"
-    ></iframe>
+    >
+      Booking opens in a new tab. Please ensure pop-ups are allowed.
+    </p>
   </div>
-  <p
-    style="color: #ccc; font-size: 0.9rem; text-align: center; margin-top: 1rem"
-  >
-    You should not be here... Please go back.
-  </p>
 </section>
+<style>
+  .calendar-scheduling-button,
+  .calendar-fallback-link {
+    font-family: "Agdasima", sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: #000 !important;
+    border-radius: 5px !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: background-color 0.3s ease !important;
+  }
+
+  /* Hover effect for the script-generated button */
+  .calendar-scheduling-button:hover {
+    background-color: #1e7e34 !important; /* Darker shade of lime on hover */
+  }
+
+  /* Hover effect for the fallback link */
+  .calendar-fallback-link:hover {
+    background-color: #1e7e34 !important;
+  }
+</style>
