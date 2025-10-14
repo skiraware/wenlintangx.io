@@ -181,7 +181,7 @@ function initGSAPEffects() {
     // Fade-in animations for sections and cards (handle empty selectors)
     gsap.utils.toArray(".full-screen-section").forEach((section) => {
       const selectors =
-        ".section-title, .team-card, .facility-card, .rule-item, .content-block, .hero-img, .outro-img";
+        " .team-card, .facility-card, .rule-item, .content-block, .hero-img, .outro-img";
       const elements = Array.from(section.querySelectorAll(selectors)); // Convert to Array
       if (elements.length > 0) {
         // Skip if empty
@@ -210,8 +210,8 @@ function initGSAPEffects() {
 
       ScrollTrigger.create({
         trigger: textElement,
-        start: "top 50%",
-        end: "bottom 50%",
+        start: "top 80%",
+        end: "bottom 80%",
         scrub: 0.5,
         onUpdate: (self) => {
           const clipValue = Math.max(0, 100 - self.progress * 100);
