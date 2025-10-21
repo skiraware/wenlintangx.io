@@ -210,8 +210,8 @@ function initGSAPEffects() {
 
       ScrollTrigger.create({
         trigger: textElement,
-        start: "top 80%",
-        end: "bottom 80%",
+        start: "top 90%",
+        end: "bottom 90%",
         scrub: 0.5,
         onUpdate: (self) => {
           const clipValue = Math.max(0, 100 - self.progress * 100);

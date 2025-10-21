@@ -621,7 +621,7 @@ h1 {
 
 .animate-text {
   position: relative;
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
   color: #4f4f4f;
   --clip-value: 100%;
@@ -632,7 +632,7 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  color: var(--lime-color);
+  color: var(--white-color);
   clip-path: inset(0 0 var(--clip-value) 0);
   will-change: clip-path;
 }
