@@ -1,0 +1,747 @@
+{
+  "sets": [
+    {
+      "id": "set1",
+      "questions": [
+        {
+          "question": "Which Enumeration Order begins with Water and echoes the emphasis on Water as the primeval element?",
+          "options": [
+            "A: Mutual Production Order",
+            "B: Mutual Conquest Order",
+            "C: Cosmogonic Order",
+            "D: ‘Modern’ Order"
+          ],
+          "correct": "C",
+          "explanation": "宇宙生成順序以水開始，呼應中國文獻中反覆強調水為原始元素。",
+          "quote": "The Cosmogonic Order was the order in which the elements were supposed to have come into being. It begins with Water, thus echoing the recurrent emphasis in Chinese writings on Water as the primeval element. (par.15)"
+        },
+        {
+          "question": "In the Mutual Production Order, which element corresponds to Spring?",
+          "options": ["A: Water", "B: Fire", "C: Wood", "D: Earth"],
+          "correct": "C",
+          "explanation": "相生順序中木對應春天，水對應冬天。",
+          "quote": "it gave the seasons in correct order, beginning with Wood for the Spring and Water for Winter (Earth corresponding to a month situated in between summer and autumn). (par.15)"
+        },
+        {
+          "question": "Which order was associated with Tsou Yen and based on everyday observations like Wood conquering Earth with a spade?",
+          "options": [
+            "A: Cosmogonic Order",
+            "B: Mutual Conquest Order",
+            "C: Mutual Production Order",
+            "D: ‘Modern’ Order"
+          ],
+          "correct": "B",
+          "explanation": "相剋順序與鄒衍相關，基於日常事實如木以鏟掘土。",
+          "quote": "It was, in a sense, the most venerable order since it was the one associated with the teaching of Tsou Yen himself. (par.16)"
+        },
+        {
+          "question": "What is the ‘Modern’ Order that appears in Chinese colloquial speech and nursery rhymes?",
+          "options": ["A: wFWME", "B: WFEMw", "C: WMFwE", "D: MWwFE"],
+          "correct": "D",
+          "explanation": "「近代」順序為金木水火土，至今仍見於口語及童謠。",
+          "quote": "However, it is this order that has come down to us in Chinese colloquial speech, where everyone still learns ‘Metal, Wood, Water, Fire, Earth’, even in nursery rhymes. (par.16)"
+        },
+        {
+          "question": "According to the Principle of Control, which element controls the conquest of Wood by Metal?",
+          "options": ["A: Water", "B: Fire", "C: Earth", "D: Wood"],
+          "correct": "B",
+          "explanation": "控制原理源自相剋，金剋木而火控制之。",
+          "quote": "For example, Metal conquers Wood but Fire controls the process; (par.17)"
+        },
+        {
+          "question": "What does the Principle of Masking refer to in relation to the Enumeration Orders?",
+          "options": [
+            "A: Complete inhibition of a process",
+            "B: One process creating more material than another destroys",
+            "C: Equal balance between production and conquest",
+            "D: Seasonal changes only"
+          ],
+          "correct": "B",
+          "explanation": "掩蔽原理指一過程產生物質多於另一過程所毀。",
+          "quote": "It refers to the masking of a process of change by some other process which creates more of the material than is being destroyed, or makes it faster. (par.19)"
+        },
+        {
+          "question": "Which group of symbolic correlations likely originated in northern China due to absence of rice?",
+          "options": [
+            "A: Medical group",
+            "B: Astronomical group",
+            "C: Agricultural group",
+            "D: Yin-Yang group"
+          ],
+          "correct": "C",
+          "explanation": "農業相關組無稻米，推測源自華北或更早時期。",
+          "quote": "A striking point about the agricultural groups is that they contain no reference to rice in their lists of grains, although it does appear in a medical group (not given here); presumably then the agricultural correlations arose in northern China, or at an earlier date. (par.22)"
+        },
+        {
+          "question": "In Tung Chung-Shu’s view, how do the Yin and Yang of Heaven and man interact?",
+          "options": [
+            "A: They operate independently",
+            "B: One responds to the other in kind",
+            "C: Yin always dominates Yang",
+            "D: They never interact"
+          ],
+          "correct": "B",
+          "explanation": "天人陰陽相應，同類相感。",
+          "quote": "When the Yin chhi of Heaven and Earth begins [to dominate], the Yin chhi of man responds by taking the lead also. Or if the Yin chhi of man begins to advance, the Yin chhi of Heaven and Earth must by rights respond to it by rising also. (par.28)"
+        }
+      ]
+    },
+    {
+      "id": "set2",
+      "questions": [
+        {
+          "question": "Which order is represented as WMFwE in the Enumeration Orders?",
+          "options": [
+            "A: Cosmogonic Order",
+            "B: Mutual Production Order",
+            "C: Mutual Conquest Order",
+            "D: ‘Modern’ Order"
+          ],
+          "correct": "C",
+          "explanation": "相剋順序為木金火水土。",
+          "quote": "iii The Mutual Conquest Order WMFwE (par.14)"
+        },
+        {
+          "question": "What political use was made of the Mutual Conquest Order?",
+          "options": [
+            "A: Predicting agricultural yields",
+            "B: Explaining the course of history",
+            "C: Determining medical treatments",
+            "D: Astronomical calculations"
+          ],
+          "correct": "B",
+          "explanation": "相剋順序用以解釋歷史進程並預測未來。",
+          "quote": "it was put forward as an explanation of the course of history, with the implication that it would continue to apply in the future and was, therefore, useful for prediction. (par.16)"
+        },
+        {
+          "question": "In the Principle of Control, what provides feedback in the example of Wood conquering Earth?",
+          "options": [
+            "A: Fire producing Wood",
+            "B: Earth producing Metal",
+            "C: Water producing Earth",
+            "D: Metal producing Fire"
+          ],
+          "correct": "B",
+          "explanation": "木剋土受金控制，而土生金故有回饋。",
+          "quote": "Wood conquers Earth in a process controlled by Metal, but Metal is a product of Earth, so there is bound to be a feedback. (par.18)"
+        },
+        {
+          "question": "What quantitative criticism did the Mohists make of the Five Elements?",
+          "options": [
+            "A: They always conquer equally",
+            "B: Conquest depends on sufficient quantity",
+            "C: Elements never interact",
+            "D: Only four elements exist"
+          ],
+          "correct": "B",
+          "explanation": "墨家指出五行相剋非永恆，視數量而定，如足量火可熔金。",
+          "quote": "Quite apart [from any cycle] Fire naturally melts Metal, if there is enough Fire. Or Metal may pulverise a burning Fire to cinders, if there is enough Metal. (par.20)"
+        },
+        {
+          "question": "Which scholar likely contributed to the astronomical symbolic correlations?",
+          "options": [
+            "A: Tsou Yen",
+            "B: Kan Té",
+            "C: Shen Kua",
+            "D: Wang Chhung"
+          ],
+          "correct": "B",
+          "explanation": "天文相關組可能早至公元前九世紀，顯見甘德之手。",
+          "quote": "The astronomical group, for instance, may go back as early as the ninth century B.C., though it seems to show definite evidence of the hand of the great astronomer Kan Té of the fourth century B.c., (par.22)"
+        },
+        {
+          "question": "What transformation did Shen Kua observe as evidence for the Su Wen principles?",
+          "options": [
+            "A: Wood to Fire",
+            "B: Water to Metal",
+            "C: Fire to Earth",
+            "D: Metal to Water"
+          ],
+          "correct": "B",
+          "explanation": "沈括觀察苦泉水經加熱變銅，證水可生金。",
+          "quote": "Thus Water can be transformed into Metal — an extraordinary change of substance. (par.23)"
+        },
+        {
+          "question": "In the I Ching, how are the 64 hexagrams derived?",
+          "options": [
+            "A: Random combination",
+            "B: Successive splitting of Yang and Yin",
+            "C: Five-element cycles",
+            "D: Numerical addition only"
+          ],
+          "correct": "B",
+          "explanation": "六十四卦由陽陰反覆分裂而成。",
+          "quote": "showing how the Yang splits into two, then four, then eight, and so on until 64 alternations exist. (par.29)"
+        },
+        {
+          "question": "What are the Two Fundamental Forces derived from, according to the text?",
+          "options": [
+            "A: Five Elements",
+            "B: Human sexual experience",
+            "C: Astronomical observations",
+            "D: Agricultural cycles"
+          ],
+          "correct": "B",
+          "explanation": "陰陽二力源自人類性經驗之正負投射。",
+          "quote": "the Two Forces, the Yin and Yang, were derived from the negative and positive projections of Man’s own sexual experience, (par.30)"
+        }
+      ]
+    },
+    {
+      "id": "set3",
+      "questions": [
+        {
+          "question": "Which element conquers Fire in the Mutual Conquest Order?",
+          "options": ["A: Wood", "B: Metal", "C: Water", "D: Earth"],
+          "correct": "C",
+          "explanation": "相剋中水滅火。",
+          "quote": "Water conquers Fire because it can extinguish it; (par.16)"
+        },
+        {
+          "question": "What modern analogy is given for the Principle of Control?",
+          "options": [
+            "A: Chemical equilibrium",
+            "B: Ecological balance of animal species",
+            "C: Planetary orbits",
+            "D: Electrical circuits"
+          ],
+          "correct": "B",
+          "explanation": "控制原理類似生態中捕食者數量平衡。",
+          "quote": "in the ecological balance of animal species, the abundance of various forms that prey on one another in a sequence depends on their sizes and habits; (par.17)"
+        },
+        {
+          "question": "In the Principle of Masking example, what masks Wood conquering Earth?",
+          "options": ["A: Metal", "B: Water", "C: Fire", "D: Wood"],
+          "correct": "C",
+          "explanation": "火燒木生灰，掩蔽木剋土。",
+          "quote": "Wood destroys (conquers) Earth, but Fire masks the process, since Fire will destroy Wood and make Earth (ash) at a greater rate than Wood can destroy Earth. (par.19)"
+        },
+        {
+          "question": "Who criticised the symbolic correlations using animals like the tiger and dog?",
+          "options": [
+            "A: Shen Kua",
+            "B: Tung Chung-Shu",
+            "C: Wang Chhung",
+            "D: Tsou Yen"
+          ],
+          "correct": "C",
+          "explanation": "王充指摘動物並不依相關理論相剋。",
+          "quote": "This attack by Wang Chhung was part of the Chinese sceptical tradition, (par.23)"
+        },
+        {
+          "question": "What medical classic did Shen Kua cite to support his observation?",
+          "options": [
+            "A: I Ching",
+            "B: Su Wen",
+            "C: Tao Té Ching",
+            "D: Mo Ching"
+          ],
+          "correct": "B",
+          "explanation": "沈括引《素問》證五行原理。",
+          "quote": "According to the (Huang Ti Nei Ching) Su Wen [the medical classic] (par.23)"
+        },
+        {
+          "question": "What does associative thinking emphasise instead of mechanical causation?",
+          "options": [
+            "A: Random events",
+            "B: Pattern and induction effect",
+            "C: Linear progression",
+            "D: Isolated laws"
+          ],
+          "correct": "B",
+          "explanation": "聯想思維注重圖案與感應效應。",
+          "quote": "Things influence one another not by mechanical causes but by a kind of induction effect. (par.33)"
+        },
+        {
+          "question": "According to Tung Chung-Shu, what happens when two similar chhi meet?",
+          "options": [
+            "A: They repel",
+            "B: They coalesce",
+            "C: They neutralise",
+            "D: They ignore each other"
+          ],
+          "correct": "B",
+          "explanation": "同類氣相感則合。",
+          "quote": "if [two] chhi are similar, they will coalesce; (par.35)"
+        },
+        {
+          "question": "What is the universe compared to in the Chinese organic view?",
+          "options": [
+            "A: A machine",
+            "B: A vast organism",
+            "C: A chain of events",
+            "D: Random particles"
+          ],
+          "correct": "B",
+          "explanation": "宇宙如巨大有機體，各部分相互配合。",
+          "quote": "The universe is a vast organism, with now one component, now another, taking the lead at any one time, with all the parts co-operating in a mutual service which is perfect freedom. (par.41)"
+        }
+      ]
+    },
+    {
+      "id": "set4",
+      "questions": [
+        {
+          "question": "Which element is conquered by Earth in the Mutual Conquest Order?",
+          "options": ["A: Fire", "B: Metal", "C: Water", "D: Wood"],
+          "correct": "C",
+          "explanation": "土可壩水而容之。",
+          "quote": "Earth conquers Water because it can dam it and contain it (par.16)"
+        },
+        {
+          "question": "What feedback example is given in biochemistry for the Principle of Control?",
+          "options": [
+            "A: DNA replication",
+            "B: Myosin as adenosine-triphosphatase",
+            "C: Photosynthesis",
+            "D: Cell division"
+          ],
+          "correct": "B",
+          "explanation": "肌球蛋白既收縮又分解提供能量之物質。",
+          "quote": "one of the contractile proteins of our muscles, myosin, is itself the enzyme adenosine-triphosphatase that breaks down the substance bringing energy to it. (par.18)"
+        },
+        {
+          "question": "What do the Mohists say about Metal and Water in their criticism?",
+          "options": [
+            "A: Metal produces Water",
+            "B: Metal stores Water but does not produce it",
+            "C: Water melts Metal",
+            "D: They never interact"
+          ],
+          "correct": "B",
+          "explanation": "金可儲水但非生水。",
+          "quote": "Metal will store Water [but does not produce it]. (par.20)"
+        },
+        {
+          "question": "Which medical system used a sixfold series instead of five?",
+          "options": [
+            "A: Agricultural",
+            "B: Astronomical",
+            "C: Medical philosophers",
+            "D: Yin-Yang"
+          ],
+          "correct": "C",
+          "explanation": "醫家早有六陽臟六陰腑之分。",
+          "quote": "the medical philosophers had from very early times a sixfold series complementing or replacing the fivefold one of the scientific thinkers. (par.22)"
+        },
+        {
+          "question": "What did Shen Kua record for the first time regarding copper precipitation?",
+          "options": [
+            "A: Gold from lead",
+            "B: Iron displacing copper",
+            "C: Silver from mercury",
+            "D: Tin from zinc"
+          ],
+          "correct": "B",
+          "explanation": "鐵置換沉澱金屬銅，首見於沈括記述。",
+          "quote": "his account is probably the first record in any language of the precipitation of metallic copper by iron, (par.23)"
+        },
+        {
+          "question": "In the I Ching process, what remains recessive in each split?",
+          "options": [
+            "A: Only Yang",
+            "B: Half of the opposite",
+            "C: Complete separation",
+            "D: Random lines"
+          ],
+          "correct": "B",
+          "explanation": "每次分裂含對方之半於隱性。",
+          "quote": "Yin and Yang separate, but each contains half of its opposite in a ‘recessive’ state, (Fig. 23 caption, par.32)"
+        },
+        {
+          "question": "What lies behind every substance and process in Chinese thought?",
+          "options": [
+            "A: Yin-Yang only",
+            "B: Five Elements",
+            "C: Hexagrams",
+            "D: Numerology"
+          ],
+          "correct": "B",
+          "explanation": "五行為一切物質與過程之本。",
+          "quote": "the Five Elements were believed to lie behind every substance and every process. (par.30)"
+        },
+        {
+          "question": "What do things reject and follow according to Tung Chung-Shu?",
+          "options": [
+            "A: Reject similar, follow different",
+            "B: Reject different, follow akin",
+            "C: Reject all",
+            "D: Follow randomly"
+          ],
+          "correct": "B",
+          "explanation": "物拒異而從類。",
+          "quote": "All things reject what is different [to themselves] and follow what is akin. (par.35)"
+        }
+      ]
+    },
+    {
+      "id": "set5",
+      "questions": [
+        {
+          "question": "In the Cosmogonic Order, what follows Water?",
+          "options": ["A: Fire", "B: Wood", "C: Earth", "D: Metal"],
+          "correct": "A",
+          "explanation": "宇宙生成順序為水火木金土。",
+          "quote": "i The Cosmogonic Order wFWME (par.14)"
+        },
+        {
+          "question": "What everyday fact supports Metal conquering Wood?",
+          "options": [
+            "A: Melting wood",
+            "B: Cutting and carving",
+            "C: Damming wood",
+            "D: Extinguishing wood"
+          ],
+          "correct": "B",
+          "explanation": "金可切雕木。",
+          "quote": "Metal conquers Wood since it can cut and carve it; (par.16)"
+        },
+        {
+          "question": "What modern example illustrates the Principle of Masking?",
+          "options": [
+            "A: Bird population control",
+            "B: Lemming population increase",
+            "C: Plant growth cycles",
+            "D: Weather patterns"
+          ],
+          "correct": "B",
+          "explanation": "挪威旅鼠數量劇增掩蔽捕食作用。",
+          "quote": "as when the action of large carnivores in devouring lemmings in Norway is masked by other factors that enormously increase the lemming population. (par.19)"
+        },
+        {
+          "question": "Which branch animal corresponds to Wood in the correlations?",
+          "options": [
+            "A: Tiger and hare",
+            "B: Horse and serpent",
+            "C: Dog and ox",
+            "D: Cock and monkey"
+          ],
+          "correct": "A",
+          "explanation": "木對應寅虎卯兔。",
+          "quote": "寅 (tiger), 卯 (hare) (Table 9, par.21)"
+        },
+        {
+          "question": "What did Wang Chhung question about rats and horses?",
+          "options": [
+            "A: Rats devouring horses",
+            "B: Horses attacking rats",
+            "C: Equal strength",
+            "D: No interaction"
+          ],
+          "correct": "A",
+          "explanation": "若水剋火，鼠應攻馬。",
+          "quote": "If Water really conquers Fire, [it would be much more convincing if] rats normally attacked horses and drove them away. (par.23)"
+        },
+        {
+          "question": "What  What parallel does the I Ching splitting have in modern science?",
+          "options": [
+            "A: Atomic structure",
+            "B: Genetics",
+            "C: Thermodynamics",
+            "D: Mechanics"
+          ],
+          "correct": "B",
+          "explanation": "陰陽分裂類似遺傳中顯隱性。",
+          "quote": "this splitting and re-splitting of two factors, with one dominant and one recessive, has parallels in modern scientific thinking, e.g. in genetics. (par.29)"
+        },
+        {
+          "question": "What is the main purpose of number-mysticism in Chinese thought?",
+          "options": [
+            "A: Predict future events",
+            "B: Relate numerical categories",
+            "C: Replace observation",
+            "D: Limit correlations"
+          ],
+          "correct": "B",
+          "explanation": "數神秘主義旨在聯繫各數字類別。",
+          "quote": "number-mysticism, of which the main purpose was to relate the various numerical categories with one another. (par.30)"
+        },
+        {
+          "question": "In Chinese causality, what is subordinated to interdependence?",
+          "options": [
+            "A: Succession",
+            "B: Isolation",
+            "C: Randomness",
+            "D: Mechanical push"
+          ],
+          "correct": "A",
+          "explanation": "因果中繼承性從屬於相互依賴。",
+          "quote": "the concept of causality where the idea of succession was subordinated to that of interdependence dominated Chinese thinking. (par.42)"
+        }
+      ]
+    },
+    {
+      "id": "set6",
+      "questions": [
+        {
+          "question": "Which order gives seasons correctly starting with Spring as Wood?",
+          "options": [
+            "A: Mutual Conquest",
+            "B: Mutual Production",
+            "C: Cosmogonic",
+            "D: ‘Modern’"
+          ],
+          "correct": "B",
+          "explanation": "相生順序正確給出四季。",
+          "quote": "it gave the seasons in correct order, beginning with Wood for the Spring (par.15)"
+        },
+        {
+          "question": "What hydraulic importance supports Earth conquering Water?",
+          "options": [
+            "A: Irrigation and engineering",
+            "B: Drinking water",
+            "C: Ocean tides",
+            "D: Rain cycles"
+          ],
+          "correct": "A",
+          "explanation": "灌溉水利使土容水。",
+          "quote": "a very natural metaphor for people to whom irrigation and hydraulic engineering were so important. (par.16)"
+        },
+        {
+          "question": "What do both Principles of Control and Masking contain?",
+          "options": [
+            "A: Purely qualitative ideas",
+            "B: Strong quantitative element",
+            "C: Only seasonal references",
+            "D: No rates"
+          ],
+          "correct": "B",
+          "explanation": "二原理皆含強烈數量因素。",
+          "quote": "in both these principles there lurks a strong quantitative element: the conclusions depend on quantities, speeds and rates. (par.20)"
+        },
+        {
+          "question": "Which taste correlates with Fire?",
+          "options": ["A: Sour", "B: Bitter", "C: Sweet", "D: Salty"],
+          "correct": "B",
+          "explanation": "火對應苦味。",
+          "quote": "Bitter (Table 9, par.21)"
+        },
+        {
+          "question": "What substance did Shen Kua heat to produce copper?",
+          "options": ["A: Bitter alum", "B: Iron ore", "C: Lead", "D: Salt"],
+          "correct": "A",
+          "explanation": "苦礬加熱得銅。",
+          "quote": "When its water is heated it becomes tan fan [bitter alum, literally “gall-alum” — probably impure copper sulphate]. When this is heated it gives copper. (par.23)"
+        },
+        {
+          "question": "What do Yin and Yang never become in the I Ching?",
+          "options": [
+            "A: Completely separated",
+            "B: Equal",
+            "C: Dominant always",
+            "D: Static"
+          ],
+          "correct": "A",
+          "explanation": "陰陽永不完全分離。",
+          "quote": "The Yin and Yang components never become completely separated, (par.29)"
+        },
+        {
+          "question": "What does associative thinking work by?",
+          "options": [
+            "A: Mechanical laws",
+            "B: Association and intuition",
+            "C: Random chance",
+            "D: Isolation"
+          ],
+          "correct": "B",
+          "explanation": "聯想思維依聯想與直覺運作。",
+          "quote": "It is a system that works by association and intuition, (par.33)"
+        },
+        {
+          "question": "What modern analogy is used for Chinese causality?",
+          "options": [
+            "A: Chain reaction",
+            "B: Endocrine orchestra",
+            "C: Billiard balls",
+            "D: Clockwork"
+          ],
+          "correct": "B",
+          "explanation": "類似哺乳動物內分泌協奏。",
+          "quote": "like what the modern biologist calls the ‘endocrine orchestra’ of mammals (par.42)"
+        }
+      ]
+    },
+    {
+      "id": "set7",
+      "questions": [
+        {
+          "question": "Which element conquers Metal in the Mutual Conquest Order?",
+          "options": ["A: Water", "B: Fire", "C: Earth", "D: Wood"],
+          "correct": "B",
+          "explanation": "火熔金。",
+          "quote": "Fire conquers Metal for it can melt or even vaporise it; (par.16)"
+        },
+        {
+          "question": "What social consequence did Confucians derive from the Principle of Control?",
+          "options": [
+            "A: Economic policy",
+            "B: Right of revenge",
+            "C: Marriage laws",
+            "D: Education"
+          ],
+          "correct": "B",
+          "explanation": "子可復仇於父敵。",
+          "quote": "This idea could have social consequences as when the Confucians adopted it to prove that a son had the right to take revenge on the enemy of his father. (par.18)"
+        },
+        {
+          "question": "Which musical note corresponds to Earth?",
+          "options": [
+            "A: 角 (chio)",
+            "B: 徵 (chih)",
+            "C: 宮 (king)",
+            "D: 商 (shang)"
+          ],
+          "correct": "C",
+          "explanation": "土對應宮音。",
+          "quote": "宮 (king) (Table 9, par.21)"
+        },
+        {
+          "question": "What did Wang Chhung say about cocks and hares?",
+          "options": [
+            "A: Cocks devour hares",
+            "B: Hares attack cocks",
+            "C: They coexist",
+            "D: No relation"
+          ],
+          "correct": "A",
+          "explanation": "若金剋木，雞應食兔。",
+          "quote": "If metal really conquers wood, why do cocks not devour hares? (par.23)"
+        },
+        {
+          "question": "What did Shen Kua change an iron pan into?",
+          "options": ["A: Gold", "B: Copper", "C: Silver", "D: Lead"],
+          "correct": "B",
+          "explanation": "鐵鍋長時加熱礬變銅。",
+          "quote": "If this “alum” is heated for a long time in an iron pan, the pan is changed to copper. (par.23)"
+        },
+        {
+          "question": "What intrinsic natures determine behavior in the Chinese view?",
+          "options": [
+            "A: External pushes",
+            "B: Position in cyclical universe",
+            "C: Random forces",
+            "D: Divine will"
+          ],
+          "correct": "B",
+          "explanation": "行為由循環宇宙中位置之本性決定。",
+          "quote": "their position in the ever-changing cyclical universe was such that they were endowed with intrinsic natures which made such behaviour natural for them. (par.34)"
+        },
+        {
+          "question": "What resonates when notes correspond, per Tung Chung-Shu?",
+          "options": [
+            "A: They silence",
+            "B: They resonate",
+            "C: They clash",
+            "D: They ignore"
+          ],
+          "correct": "B",
+          "explanation": "同音相應而共鳴。",
+          "quote": "if notes correspond they resonate. (par.35)"
+        },
+        {
+          "question": "What is causation like in the Chinese stratified pattern?",
+          "options": [
+            "A: Random",
+            "B: Selective effects",
+            "C: Mechanical",
+            "D: Isolated"
+          ],
+          "correct": "B",
+          "explanation": "因果為分層選擇性效應。",
+          "quote": "his relationships were part of a closely knit universe with selective effects. (par.35)"
+        }
+      ]
+    },
+    {
+      "id": "set8",
+      "questions": [
+        {
+          "question": "Which order is WFEMw?",
+          "options": [
+            "A: Cosmogonic",
+            "B: Mutual Production",
+            "C: Mutual Conquest",
+            "D: ‘Modern’"
+          ],
+          "correct": "B",
+          "explanation": "相生順序為木火土金水。",
+          "quote": "ii The Mutual Production Order WFEMw (par.14)"
+        },
+        {
+          "question": "What controls the process when Water conquers Fire?",
+          "options": ["A: Earth", "B: Metal", "C: Wood", "D: Fire"],
+          "correct": "A",
+          "explanation": "水剋火受土控制。",
+          "quote": "Fire conquers Metal but Water controls the process, and so on. (par.17)"
+        },
+        {
+          "question": "Which planet correlates with Wood?",
+          "options": ["A: Mars", "B: Jupiter", "C: Saturn", "D: Venus"],
+          "correct": "B",
+          "explanation": "木對應歲星。",
+          "quote": "Jupiter (Table 9, par.21)"
+        },
+        {
+          "question": "What origin is suggested for the medical sixfold series?",
+          "options": [
+            "A: Indigenous Chinese",
+            "B: Possibly Babylonian",
+            "C: Indian",
+            "D: Greek"
+          ],
+          "correct": "B",
+          "explanation": "六分法或源自巴比倫六十進位。",
+          "quote": "Perhaps it originated from Babylonia where counting in sixties, not tens, was dominant; (par.22)"
+        },
+        {
+          "question": "What did Shen Kua see as proof that Water produces Metal?",
+          "options": [
+            "A: River sediments",
+            "B: Bitter spring to copper",
+            "C: Ice to stone",
+            "D: Rain to ore"
+          ],
+          "correct": "B",
+          "explanation": "苦泉變銅證水生金。",
+          "quote": "here we see that Water can also produce metal and stone. These instances are therefore proofs that the principles of the Su Wen are right. (par.23)"
+        },
+        {
+          "question": "What happens if things do not behave according to their position?",
+          "options": [
+            "A: They strengthen",
+            "B: They cease to exist",
+            "C: They multiply",
+            "D: They change color"
+          ],
+          "correct": "B",
+          "explanation": "違位則失其與他物關係，變為他物。",
+          "quote": "If they did not behave in those particular ways they would lose their positions, and their relations to other things (which made them what they were) would alter and would turn them into something other than themselves. (par.34)"
+        },
+        {
+          "question": "What is the Chinese universe governed by, unlike laws or atomic clashes?",
+          "options": [
+            "A: Harmony of wills",
+            "B: Supreme creator",
+            "C: Inexorable laws",
+            "D: Random motion"
+          ],
+          "correct": "A",
+          "explanation": "宇宙由意志和諧治理，如鄉村舞。",
+          "quote": "but by a harmony of wills, spontaneous but ordered in patterns, rather like the dancers in a country dance, (par.38)"
+        },
+        {
+          "question": "In the endocrine orchestra analogy, what is hard to find?",
+          "options": [
+            "A: Which gland leads",
+            "B: Total glands",
+            "C: Hormones",
+            "D: Blood flow"
+          ],
+          "correct": "A",
+          "explanation": "難辨何腺於某時主導。",
+          "quote": "though all the endocrine glands work, it is not easy to find which element is taking the lead at any one time. (par.42)"
+        }
+      ]
+    }
+  ]
+}

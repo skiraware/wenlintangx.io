@@ -1,0 +1,96 @@
+/* ----- add to style.css (or inside <style> if you prefer) ----- */
+.explanation {
+  background: #f0f8ff;
+  padding: 10px;
+  margin: 10px 0;
+  border-left: 4px solid #007bff;
+}
+.quote {
+  background: #e8f5e8;
+  padding: 10px;
+  margin: 10px 0;
+  font-style: italic;
+}
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 280px; /* smaller on desktop */
+  height: 280px;
+  margin: 0 auto;
+}
+#pie-chart {
+  width: 100% !important;
+  height: 100% !important;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+}
+
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dee2e6;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto 80px auto; /* Space for fixed navbar */
+  padding: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.question p {
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#results .option-correct {
+  color: green;
+  font-weight: bold;
+}
+
+#results .option-incorrect {
+  color: red;
+  font-weight: bold;
+}
+
+#sets-stats .list-group-item-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+#sets-stats .list-group-item-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+#sets-stats .list-group-item-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.navbar {
+  padding: 0.5rem 1rem;
+}
+
+.nav-link {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 10px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+}
