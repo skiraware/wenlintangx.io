@@ -1,0 +1,812 @@
+{
+  "sets": [
+    {
+      "id": "set1",
+      "questions": [
+        {
+          "question": "According to the Foreword, what is more important to the minority than television?",
+          "options": [
+            "A: A higher standard of living",
+            "B: The opportunity to see geese",
+            "C: Mechanized breakfast",
+            "D: Scientific discoveries"
+          ],
+          "correct": "B",
+          "explanation": "少數派認為看到雁鴨的機會比電視更重要，這是對自然野性事物的重視。",
+          "quote": "For us of the minority, the opportunity to see geese is more important than television, and the chance to find a pasque-flower is a right as inalienable as free speech. (Foreword, par.2, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what does the author say conservation is incompatible with?",
+          "options": [
+            "A: Scientific progress",
+            "B: Our Abrahamic concept of land",
+            "C: Personal experience",
+            "D: Mechanized man"
+          ],
+          "correct": "B",
+          "explanation": "保護之所以無效，是因為與我們亞伯拉罕式的土地觀念不相容，我們視土地為商品。",
+          "quote": "Conservation is getting nowhere because it is incompatible with our Abrahamic concept of land. (Foreword, par.9, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what does the howl of the wolf represent to the mountain itself?",
+          "options": [
+            "A: A threat of red ink",
+            "B: A deeper meaning known only to the mountain",
+            "C: A promise of gleanings",
+            "D: A challenge of fang against bullet"
+          ],
+          "correct": "B",
+          "explanation": "狼嚎對山而言有更深層意義，只有山能客觀聆聽。",
+          "quote": "Yet behind these obvious and immediate hopes and fears there lies a deeper meaning, known only to the mountain itself. Only the mountain has lived long enough to listen objectively to the howl of a wolf. (Thinking Like a Mountain, par.2, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what did the author realize after seeing the fierce green fire die in the wolf's eyes?",
+          "options": [
+            "A: Fewer wolves mean more deer",
+            "B: The wolf and the mountain disagreed with killing wolves",
+            "C: Hunting is always accurate",
+            "D: Wolves are a threat to cows"
+          ],
+          "correct": "B",
+          "explanation": "看到狼眼中綠火熄滅後，作者感悟狼與山都不認同少狼多鹿的觀點。",
+          "quote": "I realized then, and have known ever since, that there was something new to me in those eyes - something known only to her and to the mountain. I was young then, and full of trigger-itch; I thought that because fewer wolves meant more deer, that no wolves would mean hunters' paradise. But after seeing the green fire die, I sensed that neither the wolf nor the mountain agreed with such a view. (Thinking Like a Mountain, par.6, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is the third step in the ethical sequence?",
+          "options": [
+            "A: Relation between individuals",
+            "B: Relation between individual and society",
+            "C: Man's relation to land",
+            "D: Relation to slave-girls"
+          ],
+          "correct": "C",
+          "explanation": "倫理序列的第三步是人類與土地的關係，目前土地仍僅是經濟財產。",
+          "quote": "There is as yet no ethic dealing with man's relation to land and to the animals and plants which grow upon it. (The Land Ethic, par.7, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what does the land ethic enlarge the boundaries of the community to include?",
+          "options": [
+            "A: Only soils and waters",
+            "B.Soils, waters, plants, and animals; or collectively: the land",
+            "C: Only animals",
+            "D: Only economic resources"
+          ],
+          "correct": "B",
+          "explanation": "土地倫理將社群邊界擴大至包括土壤、水、植物與動物，即土地。",
+          "quote": "The land ethic simply enlarges the boundaries of the community to include soils, waters, plants, and animals; or collectively: the land. (The Land Ethic, par.11, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what role does a land ethic change Homo sapiens from?",
+          "options": [
+            "A: Plain member to conqueror",
+            "B: Conqueror to plain member and citizen",
+            "C: Citizen to slave",
+            "D: Biotic team member to isolated individual"
+          ],
+          "correct": "B",
+          "explanation": "土地倫理將人類從土地社群的征服者轉變為普通成員與公民。",
+          "quote": "In short, a land ethic changes the role of Homo sapiens from conqueror of the land-community to plain member and citizen of it. (The Land Ethic, par.13, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is conservation according to the definition given?",
+          "options": [
+            "A: A state of war between men and land",
+            "B: A state of harmony between men and land",
+            "C: Only government regulation",
+            "D: Economic self-interest"
+          ],
+          "correct": "B",
+          "explanation": "保護是人與土地之間的和諧狀態。",
+          "quote": "Conservation is a state of harmony between men and land. (The Land Ethic, par.24, full sentence)"
+        }
+      ]
+    },
+    {
+      "id": "set2",
+      "questions": [
+        {
+          "question": "In the Foreword, what do the essays in Part I describe?",
+          "options": [
+            "A: Philosophical questions",
+            "B: What the family sees and does at 'the shack'",
+            "C: Episodes scattered over the continent",
+            "D: Logical terms of dissent"
+          ],
+          "correct": "B",
+          "explanation": "第一部分描述家庭在沙郡小屋的所見所為，作為對過度現代化的避難。",
+          "quote": "Part I tells what my family sees and does at its week-end refuge from too much modernity: 'the shack.' (Foreword, par.5, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what is the basic concept of ecology mentioned?",
+          "options": [
+            "A: Land as a commodity",
+            "B: That land is a community",
+            "C: Diminishing returns in progress",
+            "D: Mechanized man"
+          ],
+          "correct": "B",
+          "explanation": "生態學的基本概念是土地是一個社群。",
+          "quote": "That land is a community is the basic concept of ecology, but that land is to be loved and respected is an extension of ethics. (Foreword, par.10, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what happens to mountains after states extirpate wolves?",
+          "options": [
+            "A: They become hunters' paradise",
+            "B: South-facing slopes wrinkle with new deer trails and bushes browsed to death",
+            "C: Wolves return quickly",
+            "D: Deer herds decrease"
+          ],
+          "correct": "B",
+          "explanation": "無狼的山坡布滿鹿徑，可食灌木被啃至死亡。",
+          "quote": "I have watched the face of many a newly wolfless mountain, and seen the south-facing slopes wrinkle with a maze of new deer trails. I have seen every edible bush and seedling browsed, first to anaemic desuetude, and then to death. (Thinking Like a Mountain, par.7, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what does the cowman fail to realize when cleaning his range of wolves?",
+          "options": [
+            "A: He is helping the deer",
+            "B: He is taking over the wolf's job of trimming the herd",
+            "C: Wolves are harmless",
+            "D: Mountains fear cows"
+          ],
+          "correct": "B",
+          "explanation": "清除狼的牧人未意識到自己接手了狼修剪鹿群的工作。",
+          "quote": "The cowman who cleans his range of wolves does not realize that he is taking over the wolf's job of trimming the herd to fit the range. (Thinking Like a Mountain, par.9, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what example from Odysseus illustrates the treatment of property?",
+          "options": [
+            "A: Fidelity of his wife",
+            "B: Hanging a dozen slave-girls",
+            "C: Returning from Troy",
+            "D: Black-prowed galleys"
+          ],
+          "correct": "B",
+          "explanation": "奧德修斯吊死十二名女奴，僅因財產處置的權宜，而非對錯。",
+          "quote": "When god-like Odysseus returned from the wars in Troy, he hanged all on one rope a dozen slave-girls of his household whom he suspected of misbehavior during his absence. (The Land Ethic, par.1, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what prompts the individual to compete and to co-operate in the community?",
+          "options": [
+            "A: Only ethics",
+            "B: Instincts to compete, ethics to co-operate",
+            "C: Only instincts",
+            "D: Government laws"
+          ],
+          "correct": "B",
+          "explanation": "本能促使競爭，倫理促使合作。",
+          "quote": "His instincts prompt him to compete for his place in that community, but his ethics prompt him also to co-operate (perhaps in order that there may be a place to compete for). (The Land Ethic, par.10, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what does a land ethic affirm about 'resources'?",
+          "options": [
+            "A: They should be exterminated",
+            "B: Their right to continued existence in a natural state in spots",
+            "C: Only economic use",
+            "D: No obligations"
+          ],
+          "correct": "B",
+          "explanation": "土地倫理確認資源有權在某些地方以自然狀態持續存在。",
+          "quote": "A land ethic of course cannot prevent the alteration, management, and use of these 'resources,' but it does affirm their right to continued existence, and, at least in spots, their continued existence in a natural state. (The Land Ethic, par.12, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', why is the conqueror role self-defeating?",
+          "options": [
+            "A: It knows exactly what makes the community tick",
+            "B: The conqueror knows neither what is valuable nor how the community works",
+            "C: It is always successful",
+            "D: Land is property"
+          ],
+          "correct": "B",
+          "explanation": "征服者角色最終自敗，因為不知社群運作與何者有價值。",
+          "quote": "Because it is implicit in such a role that the conqueror knows, ex cathedra, just what makes the community clock tick, and just what and who is valuable, and what and who is worthless, in community life. It always turns out that he knows neither, and this is why his conquests eventually defeat themselves. (The Land Ethic, par.14, full sentence)"
+        }
+      ]
+    },
+    {
+      "id": "set3",
+      "questions": [
+        {
+          "question": "In the Foreword, what does the author seek and still find at the shack?",
+          "options": [
+            "A: Television and breakfast",
+            "B: Our meat from God",
+            "C: Bigger-and-better society",
+            "D: Philosophical wrestling"
+          ],
+          "correct": "B",
+          "explanation": "在小屋，他們用鏟與斧重建失去的事物，並尋得上帝的食物。",
+          "quote": "It is here that we seek-and still find-our meat from God. (Foreword, par.5, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what shift of values does the author suggest achieving?",
+          "options": [
+            "A: More bathtubs",
+            "B: Reappraising unnatural in terms of natural, wild, and free",
+            "C: Obsession with economic health",
+            "D: Greed for material blessings"
+          ],
+          "correct": "B",
+          "explanation": "價值轉移可透過以自然、野性、自由重新評估非自然事物達成。",
+          "quote": "Perhaps such a shift of values can be achieved by reappraising things unnatural, tame, and confined in terms of things natural, wild, and free. (Foreword, par.13, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what tingles in the spine of those in wolf country?",
+          "options": [
+            "A: Fear of cows",
+            "B: The presence or absence of wolves",
+            "C: Midnight scuffles",
+            "D: Blood upon the snow"
+          ],
+          "correct": "B",
+          "explanation": "狼國中，狼的有無使人脊背發麻。",
+          "quote": "It tingles in the spine of all who hear wolves by night, or who scan their tracks by day. (Thinking Like a Mountain, par.3, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what is behind Thoreau's dictum according to the author?",
+          "options": [
+            "A: Too much safety yields danger",
+            "B: Peace in our time",
+            "C: Strive for dullness",
+            "D: Machines and votes"
+          ],
+          "correct": "A",
+          "explanation": "過多安全最終帶來危險，或許是梭羅格言的隱藏意義。",
+          "quote": "Too much safety seems to yield only danger in the long run. Perhaps this is behind Thoreau's dictum: In wildness is the salvation of the world. (Thinking Like a Mountain, par.10, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is an ethic ecologically?",
+          "options": [
+            "A: A differentiation of social from anti-social conduct",
+            "B: A limitation on freedom of action in the struggle for existence",
+            "C: Replacement of competition by co-operation",
+            "D: Both B and a philosophical definition"
+          ],
+          "correct": "B",
+          "explanation": "生態上，倫理是生存競爭中對行動自由的限制。",
+          "quote": "An ethic, ecologically, is a limitation on freedom of action in the struggle for existence. (The Land Ethic, par.4, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what has society not yet affirmed regarding despoliation of land?",
+          "options": [
+            "A: It is expedient",
+            "B: It is wrong",
+            "C: It is profitable",
+            "D: It is necessary"
+          ],
+          "correct": "B",
+          "explanation": "社會尚未確認土地掠奪不僅不宜且錯誤。",
+          "quote": "Individual thinkers since the days of Ezekiel and Isaiah have asserted that the despoliation of land is not only inexpedient  but wrong. Society, however, has not yet affirmed their belief. (The Land Ethic, par.8, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what determined historical facts as potently as men in ecological history?",
+          "options": [
+            "A: The characteristics of the land",
+            "B: Human enterprise alone",
+            "C: Slave-girls",
+            "D: Golden Rule"
+          ],
+          "correct": "A",
+          "explanation": "土地特性與人類特性同樣強力決定歷史事實。",
+          "quote": "The characteristics of the land determined the facts quite as potently as the characteristics of the men who lived on it. (The Land Ethic, par.17, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', why does conservation proceed at a snail's pace?",
+          "options": [
+            "A: Lack of propaganda",
+            "B: Despite nearly a century of propaganda",
+            "C: Too much education",
+            "D: No letterhead pieties"
+          ],
+          "correct": "B",
+          "explanation": "儘管近百年宣傳，保護仍緩慢前進。",
+          "quote": "Despite nearly a century of propaganda, conservation still proceeds at a snail's pace; progress still consists largely of letterhead pieties and convention oratory. (The Land Ethic, par.24, full sentence)"
+        }
+      ]
+    },
+    {
+      "id": "set4",
+      "questions": [
+        {
+          "question": "In the Foreword, what label do the issues in Part II bear collectively?",
+          "options": [
+            "A: Progress",
+            "B: Conservation",
+            "C: Modernity",
+            "D: Philosophy"
+          ],
+          "correct": "B",
+          "explanation": "第二部分事件集體標籤為保護。",
+          "quote": "These episodes, scattered over the continent and through forty years of time, present a fair sample of the issues that bear the collective label: conservation. (Foreword, par.7, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what has our society lost the capacity to do, like a hypochondriac?",
+          "options": [
+            "A: Build bathtubs",
+            "B: Remain healthy",
+            "C: Turn off the tap",
+            "D: Reap esthetic harvest"
+          ],
+          "correct": "B",
+          "explanation": "社會如憂病症患者，迷於經濟健康而失健康能力。",
+          "quote": "...our bigger-and-better society is now like a hypo-chondriac, so obsessed with its own economic health as to have lost the capacity to remain healthy. (Foreword, par.12, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what did the author and others do upon seeing what they thought was a doe?",
+          "options": [
+            "A: Watched quietly",
+            "B: Pumped lead into the pack",
+            "C: Called the cowman",
+            "D: Listened to the howl"
+          ],
+          "correct": "B",
+          "explanation": "他們向狼群開槍，雖興奮但不準。",
+          "quote": "In a second we were pumping lead into the pack, but with more excitement than accuracy: how to aim a steep downhill shot is always confusing. (Thinking Like a Mountain, par.5, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what lives in mortal fear of its deer, similar to deer fearing wolves?",
+          "options": [
+            "A: The cowman",
+            "B: A mountain",
+            "C: The hunter",
+            "D: The coyote"
+          ],
+          "correct": "B",
+          "explanation": "山如鹿群恐狼般恐其鹿，且理由更佳。",
+          "quote": "I now suspect that just as a deer herd lives in mortal fear of its wolves, so does a mountain live in mortal fear of its deer. (Thinking Like a Mountain, par.8, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is the Golden Rule an attempt to integrate?",
+          "options": [
+            "A: Individual to society",
+            "B: Land to ethics",
+            "C: Competition to symbiosis",
+            "D: Sticks to bullets"
+          ],
+          "correct": "A",
+          "explanation": "金律試圖整合個人至社會。",
+          "quote": "The Golden Rule tries to integrate the individual to society; democracy to integrate social organization to the individual. (The Land Ethic, par.6, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what cannot a land ethic prevent but does affirm?",
+          "options": [
+            "A: Love for soil",
+            "B: Alteration of resources but affirms right to existence",
+            "C: Sending soil downriver",
+            "D: Exterminating plants"
+          ],
+          "correct": "B",
+          "explanation": "土地倫理無法防止資源改變，但確認其存在權。",
+          "quote": "A land ethic of course cannot prevent the alteration, management, and use of these 'resources,' but it does affirm their right to continued existence, and, at least in spots, their continued existence in a natural state. (The Land Ethic, par.12, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what biotic interaction is illustrated by the settlement of the Mississippi valley?",
+          "options": [
+            "A: Indian vs. traders",
+            "B: Cane-lands becoming bluegrass under pioneer forces",
+            "C: English at Detroit",
+            "D: Colonial migration"
+          ],
+          "correct": "B",
+          "explanation": "開墾力量使甘蔗地變藍草，影響歷史。",
+          "quote": "It is time now to ponder the fact that the cane-lands, when subjected to the particular mixture of forces represented by the cow, plow, fire, and axe of the pioneer, became bluegrass. (The Land Ethic, par.18, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is lacking in the content of conservation education?",
+          "options": [
+            "A: Volume",
+            "B: Mention of obligations to land beyond self-interest",
+            "C: Joining organizations",
+            "D: Government help"
+          ],
+          "correct": "B",
+          "explanation": "教育內容缺超越自利對土地的義務。",
+          "quote": "But the education actually in progress makes no mention of obligations to land over and above those dictated by self-interest. (The Land Ethic, par.30, full sentence)"
+        }
+      ]
+    },
+    {
+      "id": "set5",
+      "questions": [
+        {
+          "question": "In the Foreword, what are the essays grouped as in Part I?",
+          "options": [
+            "A: Sketches Here and There",
+            "B: Sand County Almanac",
+            "C: The Upshot",
+            "D: Philosophical questions"
+          ],
+          "correct": "B",
+          "explanation": "小屋素描按季節排列為沙郡年曆。",
+          "quote": "These shack sketches are arranged seasonally as a 'Sand County Almanac.' (Foreword, par.6, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what yields a cultural harvest?",
+          "options": [
+            "A: Science alone",
+            "B: Land",
+            "C: Mechanized man",
+            "D: Bathtubs"
+          ],
+          "correct": "B",
+          "explanation": "土地在科學下能貢獻文化收穫。",
+          "quote": "That land yields a cultural harvest is a fact long known, but latterly often forgotten. (Foreword, par.10, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what is implicit in small events in wolf country even without sight or sound of wolf?",
+          "options": [
+            "A: Pack horse whinny",
+            "B: The presence or absence of wolves",
+            "C: Rolling rocks",
+            "D: Fleeing deer"
+          ],
+          "correct": "B",
+          "explanation": "無狼視聽，狼有無仍隱含於小事件。",
+          "quote": "Even without sight or sound of wolf, it is implicit in a hundred small events: the midnight whinny of a pack horse, the rattle of rolling rocks, the bound of a fleeing deer, the way shadows lie under the spruces. (Thinking Like a Mountain, par.3, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what results from too much safety in the long run?",
+          "options": [
+            "A: Objective thinking",
+            "B: Danger",
+            "C: Prosperity",
+            "D: Comfort"
+          ],
+          "correct": "B",
+          "explanation": "過多安全長期僅生危險。",
+          "quote": "A measure of success in this is all well enough, and perhaps is a requisite to objective thinking, but too much safety seems to yield only danger in the long run. (Thinking Like a Mountain, par.10, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what originates in the tendency to evolve co-operation?",
+          "options": [
+            "A: Free-for-all competition",
+            "B: The thing (ethic)",
+            "C: Politics",
+            "D: Economics"
+          ],
+          "correct": "B",
+          "explanation": "倫理源於互依個體演化合作模式。",
+          "quote": "The thing has its origin in the tendency of interdependent individuals or groups to evolve modes of co-operation. (The Land Ethic, par.4, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is the present conservation movement the embryo of?",
+          "options": [
+            "A: Despoliation",
+            "B: Affirmation that despoliation is wrong",
+            "C: Expediency",
+            "D: Property disposal"
+          ],
+          "correct": "B",
+          "explanation": "當前保護運動是確認土地掠奪錯誤的胚胎。",
+          "quote": "I regard the present conservation movement as the embryo of such an affirmation. (The Land Ethic, par.8, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what might have happened if cane-lands became worthless sedge instead of bluegrass?",
+          "options": [
+            "A: Boone and Kenton hold out",
+            "B: No overflow into other states, no Louisiana Purchase",
+            "C: More Indian control",
+            "D: English victory"
+          ],
+          "correct": "B",
+          "explanation": "若成無價值雜草，無溢流、無購地、無內戰。",
+          "quote": "What if the plant succession inherent in this dark and bloody ground had, under the impact of these forces, given us some worthless sedge, shrub, or weed? Would Boone and Kenton have held out? Would there have been any overflow into Ohio, Indiana, Illinois, and Missouri? Any Louisiana Purchase? Any transcontinental union of new states? Any Civil War? (The Land Ethic, par.18, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what do farmers ignore in soil conservation practices?",
+          "options": [
+            "A: Strip-cropping",
+            "B: Practices profitable to community but not to themselves",
+            "C: CCC labor",
+            "D: Immediate gain"
+          ],
+          "correct": "B",
+          "explanation": "農民忽略對社群有利但對己無明顯利之實踐。",
+          "quote": "The farmers, in short, have selected those remedial practices which were profitable anyhow, and ignored those which were profitable to the community, but not clearly profitable to themselves. (The Land Ethic, par.29, full sentence)"
+        }
+      ]
+    },
+    {
+      "id": "set6",
+      "questions": [
+        {
+          "question": "In the Foreword, who will wish to wrestle with philosophical questions in Part III?",
+          "options": [
+            "A: Opponents of progress",
+            "B: The very sympathetic reader",
+            "C: The company out of step",
+            "D: Mechanized man"
+          ],
+          "correct": "B",
+          "explanation": "僅極富同情心的讀者願與第三部分哲學問題搏鬥。",
+          "quote": "Only the very sympathetic reader will wish to wrestle with the philosophical questions of Part III. (Foreword, par.8, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what do we abuse land as because we regard it as?",
+          "options": [
+            "A: A community",
+            "B: A commodity belonging to us",
+            "C: To be loved",
+            "D: Ecology"
+          ],
+          "correct": "B",
+          "explanation": "我們視土地為屬我們的商品，故濫用之。",
+          "quote": "We abuse land because we regard it as a commodity belonging to us. (Foreword, par.9, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what joined in a welcoming melee when the wolf climbed the bank?",
+          "options": [
+            "A: Deer and coyote",
+            "B: A half-dozen grown pups",
+            "C: Cowman and hunter",
+            "D: Pines and spruces"
+          ],
+          "correct": "B",
+          "explanation": "半打成狼幼崽加入歡迎混戰。",
+          "quote": "A half-dozen others, evidently grown pups, sprang from the willows and all joined in a welcoming melee of wagging tails and playful maulings. (Thinking Like a Mountain, par.4, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what looks as if God was given new pruning shears?",
+          "options": [
+            "A: Wolfless mountain with browsed vegetation",
+            "B: Dustbowls",
+            "C: Rivers to the sea",
+            "D: Deer paradise"
+          ],
+          "correct": "A",
+          "explanation": "無狼山如上帝獲新修枝剪，僅限其他運動。",
+          "quote": "Such a mountain looks as if someone had given God a new pruning shears, and forbidden Him all other exercise. (Thinking Like a Mountain, par.7, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', with what has the complexity of co-operative mechanisms increased?",
+          "options": [
+            "A: Population density and tool efficiency",
+            "B: Mastodons",
+            "C: Billboards",
+            "D: Motors"
+          ],
+          "correct": "A",
+          "explanation": "合作機制複雜度隨人口密度與工具效率增。",
+          "quote": "The complexity of co-operative mechanisms has increased with population density, and with the efficiency of tools. (The Land Ethic, par.5, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is still strictly economic in the land-relation?",
+          "options": [
+            "A: Obligations",
+            "B: The land-relation entailing privileges but not obligations",
+            "C: Love and respect",
+            "D: Community"
+          ],
+          "correct": "B",
+          "explanation": "土地關係仍純經濟，仅權利無義務。",
+          "quote": "The land-relation is still strictly economic, entailing privileges but not obligations. (The Land Ethic, par.7, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', in the Southwest, what did occupancy impact bring instead of bluegrass?",
+          "options": [
+            "A: Stable equilibrium",
+            "B: Progressive deterioration through worthless grasses",
+            "C: Bluegrass",
+            "D: Pueblo civilization"
+          ],
+          "correct": "B",
+          "explanation": "西南開墾帶來逐漸惡化，非藍草。",
+          "quote": "This region, when grazed by livestock, reverted through a series of more and more worthless grasses, shrubs, and weeds to a condition of unstable equilibrium. (The Land Ethic, par.20, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is the extension of the social conscience from people to land?",
+          "options": [
+            "A: The problem we face",
+            "B: Already achieved",
+            "C: Unnecessary",
+            "D: Economic"
+          ],
+          "correct": "A",
+          "explanation": "我們面對的問題是將社會良知擴至土地。",
+          "quote": "...and the problem we face is the extension of the social conscience from people to land. (The Land Ethic, par.32, full sentence)"
+        }
+      ]
+    },
+    {
+      "id": "set7",
+      "questions": [
+        {
+          "question": "In the Foreword, what do the essays attempt to weld?",
+          "options": [
+            "A: Three parts",
+            "B: These three concepts (community, ethics, cultural harvest)",
+            "C: Shovel and axe",
+            "D: Winds and sunsets"
+          ],
+          "correct": "B",
+          "explanation": "散文試圖焊接三概念：土地社群、倫理、文化收穫。",
+          "quote": "These essays attempt to weld these three concepts. (Foreword, par.11, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what is crystal-clear despite blurs of personal bias?",
+          "options": [
+            "A: Truth lies elsewhere",
+            "B: Society has lost capacity to remain healthy",
+            "C: More bathtubs",
+            "D: Stability to build"
+          ],
+          "correct": "B",
+          "explanation": "儘管個人偏見模糊，社會失健康能力清晰。",
+          "quote": "But wherever the truth may lie, this much is crystal-clear: our bigger-and-better society is now like a hypo-chondriac, so obsessed with its own economic health as to have lost the capacity to remain healthy. (Foreword, par.12, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what distinguishes wolf country from other land?",
+          "options": [
+            "A: Cowman threats",
+            "B: The hidden meaning felt in wolf country",
+            "C: Deer reminders",
+            "D: Pine forecasts"
+          ],
+          "correct": "B",
+          "explanation": "狼國有隱藏意義，使其區別他地。",
+          "quote": "Those unable to decipher the hidden meaning know nevertheless that it is there, for it is felt in all wolf country, and distinguishes that country from all other land. (Thinking Like a Mountain, par.3, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what hidden meaning may be in the howl of the wolf?",
+          "options": [
+            "A: Contempt for adversities",
+            "B: In wildness is the salvation of the world",
+            "C: Peace in our time",
+            "D: Gleanings to come"
+          ],
+          "correct": "B",
+          "explanation": "狼嚎隱義或為野性救世界。",
+          "quote": "Perhaps this is the hidden meaning in the howl of the wolf, long known among mountains, but seldom perceived among men. (Thinking Like a Mountain, par.10, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what are ethics possibly a kind of?",
+          "options": [
+            "A: Animal instincts",
+            "B: Community instinct in-the-making",
+            "C: Social expediency",
+            "D: Intricate situations"
+          ],
+          "correct": "B",
+          "explanation": "倫理或為社群本能形成中。",
+          "quote": "Ethics are possibly a kind of community instinct in-the-making. (The Land Ethic, par.9, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what does the land ethic imply respect for?",
+          "options": [
+            "A: Fellow-members and the community as such",
+            "B: Only conqueror",
+            "C: Milk and honey",
+            "D: Education degree"
+          ],
+          "correct": "A",
+          "explanation": "土地倫理暗示對同儕成員與社群的尊重。",
+          "quote": "It implies respect for his fellow-members, and also respect for the community as such. (The Land Ethic, par.13, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what steered the course of history in the plant succession example?",
+          "options": [
+            "A: Pioneer alone",
+            "B: The plant succession",
+            "C: Good luck",
+            "D: Deep wisdom"
+          ],
+          "correct": "B",
+          "explanation": "植物演替引導歷史進程。",
+          "quote": "In short, the plant succession steered the course of history; the pioneer simply demonstrated, for good or ill, what successions inhered in the land. (The Land Ethic, par.23, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what have farmers continued only after the five-year contract?",
+          "options": [
+            "A: All remedial practices",
+            "B: Practices yielding immediate economic gain",
+            "C: CCC installations",
+            "D: Forgotten rules"
+          ],
+          "correct": "B",
+          "explanation": "農民僅續立即經濟獲利的實踐。",
+          "quote": "The farmers continued only those practices that yielded an immediate and visible economic gain for themselves. (The Land Ethic, par.28, full sentence)"
+        }
+      ]
+    },
+    {
+      "id": "set8",
+      "questions": [
+        {
+          "question": "In the Foreword, what is a right as inalienable as free speech for the minority?",
+          "options": [
+            "A: Television",
+            "B: The chance to find a pasque-flower",
+            "C: Higher standard of living",
+            "D: Mechanization"
+          ],
+          "correct": "B",
+          "explanation": "對少數派，尋找pasque-flower的機會如言論自由般不可剥奪。",
+          "quote": "...and the chance to find a pasque-flower is a right as inalienable as free speech. (Foreword, par.2, full sentence)"
+        },
+        {
+          "question": "In the Foreword, what do we of the minority see in progress?",
+          "options": [
+            "A: Higher standard worth the cost",
+            "B: A law of diminishing returns",
+            "C: Opponents agree",
+            "D: No conflict"
+          ],
+          "correct": "B",
+          "explanation": "少數派見進步有遞減報酬律。",
+          "quote": "We of the minority see a law of diminishing returns in progress; our opponents do not. (Foreword, par.3, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', what did only the mountain live long enough to do?",
+          "options": [
+            "A: Hear the coyote",
+            "B: Listen objectively to the howl of a wolf",
+            "C: See the deer",
+            "D: Feel the pine"
+          ],
+          "correct": "B",
+          "explanation": "僅山活夠久客觀聽狼嚎。",
+          "quote": "Only the mountain has lived long enough to listen objectively to the howl of a wolf. (Thinking Like a Mountain, par.2, full sentence)"
+        },
+        {
+          "question": "In 'Thinking Like a Mountain', why may a range pulled down by too many deer fail replacement in decades?",
+          "options": [
+            "A: Buck replaced in years",
+            "B: While a buck pulled down by wolves can be replaced in two or three years",
+            "C: Deer fear wolves",
+            "D: Better cause"
+          ],
+          "correct": "B",
+          "explanation": "狼拉倒的雄鹿數年可替，太多鹿毀範圍數十年難恢。",
+          "quote": "...for while a buck pulled down by wolves can be replaced in two or three years, a range pulled down by too many deer may fail of replacement in as many decades. (Thinking Like a Mountain, par.8, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what have ethical criteria been extended to with shrinkages in expediency?",
+          "options": [
+            "A: Only wives",
+            "B: Many fields of conduct",
+            "C: Slave-girls",
+            "D: Property"
+          ],
+          "correct": "B",
+          "explanation": "倫理標準擴至多行為領域，權宜縮減。",
+          "quote": "During the three thousand years which have since elapsed, ethical criteria have been extended to many fields of conduct, with corresponding shrinkages in those judged by expediency only. (The Land Ethic, par.3, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what is an evolutionary possibility and ecological necessity?",
+          "options": [
+            "A: Third ethic on land",
+            "B: The extension of ethics to land",
+            "C: Despoliation wrong",
+            "D: Embryonic movement"
+          ],
+          "correct": "B",
+          "explanation": "將倫理擴至土地是演化可能與生態必要。",
+          "quote": "The extension of ethics to this third element in human environment is, if I read the evidence correctly, an evolutionary possibility and an ecological necessity. (The Land Ethic, par.8, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', what do we certainly not love according to the examples?",
+          "options": [
+            "A: The land of the free",
+            "B: The soil which we are sending helter-skelter downriver",
+            "C: Home of the brave",
+            "D: Obligation to land"
+          ],
+          "correct": "B",
+          "explanation": "我們不愛被沖下河的土壤。",
+          "quote": "Certainly not the soil, which we are sending helter-skelter downriver. (The Land Ethic, par.12, full sentence)"
+        },
+        {
+          "question": "In 'The Land Ethic', no county has written a single rule after a decade because?",
+          "options": [
+            "A: Community ready",
+            "B: No county organized",
+            "C: Education mentions obligations",
+            "D: After a decade of operation, no county has yet written a single rule"
+          ],
+          "correct": "D",
+          "explanation": "十年後無縣寫單一規則。",
+          "quote": "...but after a decade of operation, no county has yet written a single rule. (The Land Ethic, par.29, full sentence)"
+        }
+      ]
+    }
+  ]
+}
