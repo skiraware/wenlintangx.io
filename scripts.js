@@ -180,8 +180,9 @@ function initGSAPEffects() {
 
     // Fade-in animations for sections and cards (handle empty selectors)
     gsap.utils.toArray(".full-screen-section").forEach((section) => {
+      // Added .map-wrapper to the selectors list for fade-in animation
       const selectors =
-        " .team-card, .facility-card, .rule-item, .content-block, .hero-img, .outro-img";
+        " .team-card, .facility-card, .rule-item, .content-block, .hero-img, .outro-img, .map-wrapper";
       const elements = Array.from(section.querySelectorAll(selectors)); // Convert to Array
       if (elements.length > 0) {
         // Skip if empty
