@@ -46,6 +46,7 @@ a {
   max-width: 1200px;
   width: 100% !important;
   padding: 0 1rem;
+  margin: 0 auto;
 }
 
 /* Header */
@@ -55,11 +56,12 @@ a {
   width: 100%;
   background-color: black;
   box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transform transition */
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   z-index: 1000;
 }
 
-/* Class to hide header */
 .header--hidden {
   transform: translateY(-100%);
 }
@@ -114,9 +116,6 @@ a {
 }
 .nav__toggle.show-icon .nav__close {
   display: block;
-}
-.nav__toggle .nav__close {
-  display: none;
 }
 .nav__burger,
 .nav__close {
@@ -223,66 +222,6 @@ a {
   }
 }
 
-/* Hero/Video Section */
-#hero {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-  will-change: transform;
-}
-
-.shadow {
-  position: absolute;
-  bottom: 100%;
-  height: 300px;
-  width: 100%;
-  left: 0;
-  z-index: 20;
-  background: linear-gradient(to top, #000000, transparent);
-}
-
-#background-video,
-#hogarden-background-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  filter: brightness(50%);
-  object-fit: cover;
-  opacity: 0;
-}
-
-.hero-subtitle {
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.2rem;
-  max-width: 80%;
-  opacity: 0;
-  z-index: 2;
-}
-
-#hero h1 {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  z-index: 2;
-  opacity: 0;
-}
-
 /* Section Titles & Subtitles */
 .section-title {
   color: var(--lime-color);
@@ -376,13 +315,6 @@ iframe {
   left: 0;
 }
 
-/* Big Text */
-.big-text {
-  font-size: 2rem;
-  color: var(--lime-color);
-  font-weight: bold;
-}
-
 /* Rules Accordion */
 .rules-accordion {
   width: 100%;
@@ -414,16 +346,6 @@ iframe {
 }
 
 /* Booking Specific */
-.booking-steps {
-  list-style-position: inside;
-  margin: 1rem 0;
-  text-align: left;
-}
-
-.booking-steps li {
-  margin-bottom: 0.5rem;
-}
-
 .booking-form {
   display: flex;
   flex-direction: column;
@@ -454,25 +376,6 @@ iframe {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-}
-
-.booking-note {
-  font-style: italic;
-  color: #ccc;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-main #content table {
-  width: 100%;
-  margin-top: 1rem;
-}
-
-main #content table th,
-main #content table td {
-  padding: 0.5rem;
-  text-align: center;
-  border: 1px solid var(--lime-color);
 }
 
 /* Footer */
@@ -549,34 +452,6 @@ img {
   object-fit: cover;
 }
 
-h1 {
-  font-size: 4rem;
-  font-weight: 900;
-  letter-spacing: -0.15rem;
-  line-height: 1.125;
-  text-align: center;
-}
-
-.hero,
-.outro,
-.about {
-  position: relative;
-  width: 100%;
-  height: 100svh;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.hero-img,
-.outro-img {
-  width: 300px;
-  aspect-ratio: 5/7;
-  overflow: hidden;
-}
-
 .services {
   position: relative;
   width: 100%;
@@ -638,11 +513,6 @@ h1 {
 }
 
 @media (max-width: 1000px) {
-  h1 {
-    font-size: 2rem;
-    letter-spacing: -0.05rem;
-  }
-
   .animate-text {
     width: 100%;
   }
@@ -672,5 +542,251 @@ h1 {
   .map-wrapper {
     height: 350px; /* Smaller height on mobile */
     margin: 1rem auto;
+  }
+}
+
+/* JOIN US PAGE STYLES */
+
+.btn-apply {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 3rem;
+  border: 1px solid var(--lime-color);
+  color: var(--lime-color);
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  background: transparent;
+  font-size: 1.1rem;
+}
+.btn-apply:hover {
+  background: var(--lime-color);
+  color: black;
+  box-shadow: 0 0 20px rgba(50, 205, 50, 0.4);
+}
+.btn-icon {
+  margin-left: 0.5rem;
+}
+
+/* Intro Section */
+.ju-intro-section {
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 205, 50, 0.1) 0%,
+    black 70%
+  );
+}
+.ju-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.ju-subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Services Section */
+.ju-services-section {
+  padding: 4rem 0;
+  background: black;
+}
+.ju-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.ju-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+  border: 1px solid transparent;
+}
+.ju-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(50, 205, 50, 0.3);
+}
+.ju-icon {
+  font-size: 3rem;
+  color: var(--lime-color);
+  margin-bottom: 1rem;
+}
+.ju-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.ju-card p {
+  color: #aaa;
+  line-height: 1.5;
+}
+
+/* Founder Story Section (Instagram Style) */
+.ju-story-section {
+  background: black;
+  overflow: hidden;
+}
+.story-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  height: 80vh;
+}
+.ju-text-side {
+  flex: 1;
+  padding-left: 2rem;
+}
+.ju-story-title {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+.ju-story-desc {
+  font-size: 1.5rem;
+  color: #888;
+  transition: opacity 0.3s ease;
+}
+
+/* Phone Container */
+.story-phone-container {
+  flex: 0 0 380px; /* Fixed width like a phone */
+  height: 700px;
+  background: #111;
+  border-radius: 35px;
+  border: 8px solid #222;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.story-screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 25px; /* Inner radius */
+  overflow: hidden;
+  background: black;
+}
+
+.story-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlays */
+.story-overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  pointer-events: none;
+}
+
+.story-bars {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+.s-bar-bg {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.s-bar-fill {
+  height: 100%;
+  background: white;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.story-header-row {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+.story-avatar-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.story-meta-text {
+  display: flex;
+  flex-direction: column;
+}
+.s-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-shadow: 0 1px 2px black;
+}
+.s-role {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px black;
+}
+
+/* Tap Navigation Areas */
+.tap-area {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  z-index: 5;
+  cursor: pointer;
+}
+.tap-area.left {
+  left: 0;
+}
+.tap-area.right {
+  right: 0;
+}
+
+/* Apply Section */
+.ju-apply-section {
+  padding: 6rem 1rem;
+  background: black;
+  border-top: 1px solid #111;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .story-wrapper {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+  .ju-text-side {
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  .story-phone-container {
+    width: 100%;
+    max-width: 400px;
+    height: 70vh;
   }
 }

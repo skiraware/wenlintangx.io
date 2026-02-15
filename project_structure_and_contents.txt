@@ -1,0 +1,2468 @@
+=== PROJECT STRUCTURE (.) ===
+
+./
+├── .github/
+    └── copilot-instructions.md
+├── .vscode/
+    └── settings.json
+├── images/
+    ├── bernard.MOV
+    ├── bernard.png
+    ├── iamsmart_icon.png
+    ├── login.png
+    ├── logo.png
+    ├── simon.MOV
+    ├── simon.png
+    └── wenlintang.svg
+
+
+=== TEXT FILE CONTENTS ===
+
+──── .github/copilot-instructions.md ────
+# Copilot Instructions for AI Coding Agents
+
+## Project Overview
+This is a static website project for wenlintangx.io. The codebase consists of HTML files, a single CSS file (`styles.css`), a JavaScript file (`scripts.js`), and an `images/` directory containing media assets. There is no build system, package manager, or backend code—everything is client-side and manually managed.
+
+## Key Files & Structure
+- `index.html`, `home.html`, `association.html`, `hogarden.html`: Main site pages. Each is standalone and may have unique structure/content.
+- `styles.css`: Central stylesheet for all pages. Changes here affect the entire site.
+- `scripts.js`: Contains all JavaScript for interactive features. No module system; all code is global.
+- `images/`: Contains all image and video assets referenced by the HTML and CSS.
+- `CNAME`: Used for custom domain configuration (GitHub Pages).
+
+## Developer Workflows
+- **Previewing changes:** Open HTML files directly in a browser. No local server required.
+- **Deploying:** Push changes to the `main` branch. GitHub Pages will automatically update the live site.
+- **Debugging:** Use browser DevTools for inspecting HTML, CSS, and JS. No automated test suite is present.
+
+## Project-Specific Patterns
+- **No frameworks:** All code is vanilla HTML, CSS, and JS. Do not introduce React, Vue, or other frameworks.
+- **Global scope:** JavaScript is written in the global scope. Avoid ES6 modules or imports.
+- **Asset references:** Use relative paths for images/videos (e.g., `images/logo.png`).
+- **Styling:** All styles are in `styles.css`. Inline styles are discouraged unless absolutely necessary.
+- **Page navigation:** Each HTML file is a separate page; navigation is via `<a href="...">` links.
+
+## Integration Points
+- **GitHub Pages:** Deployment is handled automatically via GitHub Pages. No CI/CD configuration is present.
+- **Custom Domain:** The `CNAME` file configures the custom domain for the site.
+
+## Examples
+- To add a new image, place it in `images/` and reference it in HTML/CSS using a relative path.
+- To update site-wide styles, edit `styles.css`.
+- To add interactivity, update `scripts.js` and ensure code works across all pages.
+
+## Conventions
+- Keep code simple and readable; avoid unnecessary abstraction.
+- Maintain consistent formatting across HTML, CSS, and JS files.
+- Do not add build tools, package managers, or external dependencies.
+
+---
+For questions about unclear patterns or missing documentation, ask the user for clarification before making assumptions.
+
+──── .gitignore ────
+.DS_Store
+
+──── .vscode/settings.json ────
+{
+    "liveServer.settings.port": 5501
+}
+
+──── CNAME ────
+wenlintang.org
+
+──── ai_content_scrapper.py ────
+#!/usr/bin/env python3
+# generate_structure.py – creates project overview + text file contents
+# Adapted for small static HTML/JS/CSS projects (2025–2026 style)
+# ----------------------------------------------------------------------
+import os
+from pathlib import Path
+import sys
+
+# ----------------------------------------------------------------------
+# CONFIGURATION
+# ----------------------------------------------------------------------
+OUTPUT_FILE = "project_structure_and_contents.txt"
+
+# Folders to completely skip (never show in tree or content)
+SKIP_FOLDERS_ALWAYS = {
+    "node_modules", ".git", "__pycache__", "dist", "build",
+    ".cache", ".expo", ".venv", "venv", "Pods", "DerivedData",
+}
+
+# Files / extensions whose *content* we never include
+SKIP_CONTENT_EXTENSIONS = {
+    ".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico", ".svg",
+    ".woff", ".woff2", ".ttf", ".eot", ".otf",
+    ".mp3", ".mp4", ".mov", ".webm",
+    ".zip", ".rar", ".pdf", ".docx", ".xlsx",
+}
+
+SKIP_CONTENT_FILENAMES = {
+    ".DS_Store", "Thumbs.db", "desktop.ini",
+    "package-lock.json", "yarn.lock", "pnpm-lock.yaml",
+}
+
+# Never include content from files in these folders
+SKIP_CONTENT_FOLDERS = {
+    "images", "assets", "media", "fonts", "public",
+}
+
+# ----------------------------------------------------------------------
+# HELPERS
+# ----------------------------------------------------------------------
+def is_likely_binary(path: Path) -> bool:
+    try:
+        with path.open("rb") as f:
+            header = f.read(8192)
+            if b"\0" in header:
+                return True
+            # Very basic signature check
+            if header.startswith((b"\x89PNG", b"\xff\xd8\xff", b"GIF8", b"%PDF")):
+                return True
+    except:
+        return True
+    return False
+
+
+def should_skip_tree(path: Path) -> bool:
+    return any(part in SKIP_FOLDERS_ALWAYS for part in path.parts)
+
+
+def should_skip_content(path: Path) -> bool:
+    if path.name in SKIP_CONTENT_FILENAMES:
+        return True
+    if path.suffix.lower() in SKIP_CONTENT_EXTENSIONS:
+        return True
+    if any(p in SKIP_CONTENT_FOLDERS for p in path.parts):
+        return True
+    if is_likely_binary(path):
+        return True
+    return False
+
+
+def ask_include_demo() -> bool:
+    while True:
+        print("\nInclude the 'demo' folder?")
+        print("  y = yes (include demo/ and all its files)")
+        print("  n = no  (exclude demo/ completely)")
+        choice = input("y/n ? ").strip().lower()
+        if choice in ("y", "yes"):
+            return True
+        if choice in ("n", "no", ""):
+            return False
+        print("Please answer y or n.\n")
+
+
+# ----------------------------------------------------------------------
+# TREE PRINTING (more like unix tree)
+# ----------------------------------------------------------------------
+def collect_tree_entries(root: Path, exclude_demo: bool):
+    entries = []
+
+    for dirpath, dirnames, filenames in os.walk(root, topdown=True):
+        cur = Path(dirpath)
+
+        if should_skip_tree(cur):
+            dirnames.clear()
+            continue
+
+        # Filter directories in-place
+        dirnames[:] = [d for d in dirnames if not should_skip_tree(cur / d)]
+
+        if exclude_demo and "demo" in dirnames:
+            dirnames.remove("demo")
+
+        dirnames.sort()
+        filenames.sort()
+
+        rel = cur.relative_to(root)
+        entries.append((rel, list(dirnames), list(filenames)))
+
+    # Sort by depth then lexicographical
+    entries.sort(key=lambda x: (len(x[0].parts), x[0]))
+
+    return entries
+
+
+def write_tree(fp, entries, root_name="."):
+    fp.write(f"=== PROJECT STRUCTURE ({root_name}) ===\n\n")
+
+    printed = set()
+
+    for rel, dirs, files in entries:
+        if rel == Path("."):
+            fp.write(f"{root_name}/\n")
+            continue
+
+        parts = rel.parts
+        for i in range(1, len(parts) + 1):
+            prefix = Path(*parts[:i])
+            if prefix not in printed:
+                indent = "│   " * (i - 1)
+                name = parts[i-1]
+                fp.write(f"{indent}├── {name}/\n")
+                printed.add(prefix)
+
+        # Print files at this level
+        indent = "│   " * (len(parts) - 1) if len(parts) > 1 else "    "
+        all_children = dirs + files
+        for j, name in enumerate(all_children):
+            is_last = j == len(all_children) - 1
+            branch = "└── " if is_last else "├── "
+            suffix = "/" if name in dirs else ""
+            fp.write(f"{indent}{branch}{name}{suffix}\n")
+
+
+# ----------------------------------------------------------------------
+# CONTENT DUMP
+# ----------------------------------------------------------------------
+def write_contents(fp, root: Path, exclude_demo: bool):
+    fp.write("\n\n=== TEXT FILE CONTENTS ===\n\n")
+
+    text_files = []
+
+    for dirpath, _, filenames in os.walk(root):
+        cur = Path(dirpath)
+        if should_skip_tree(cur):
+            continue
+        if exclude_demo and "demo" in cur.parts:
+            continue
+
+        for fn in sorted(filenames):
+            path = cur / fn
+            if should_skip_content(path):
+                continue
+            text_files.append(path)
+
+    text_files.sort()
+
+    for path in text_files:
+        try:
+            rel = path.relative_to(root)
+            fp.write(f"──── {rel} ────\n")
+            content = path.read_text(encoding="utf-8", errors="replace")
+            fp.write(content.rstrip() + "\n\n")
+        except Exception as e:
+            fp.write(f"[ERROR reading {rel}: {e}]\n\n")
+
+
+# ----------------------------------------------------------------------
+# MAIN
+# ----------------------------------------------------------------------
+def main():
+    repo_root = Path(__file__).resolve().parent
+
+    include_demo = ask_include_demo()
+
+    if not repo_root.is_dir():
+        print("Error: script must be run from project root", file=sys.stderr)
+        return 1
+
+    entries = collect_tree_entries(repo_root, exclude_demo=not include_demo)
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        write_tree(f, entries)
+        write_contents(f, repo_root, exclude_demo=not include_demo)
+
+    print(f"\nDone. Output saved to: {OUTPUT_FILE}")
+    print(f"demo folder: {'included' if include_demo else 'excluded'}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+──── association.html ────
+<section id="hogarden-hero" class="full-screen-section">
+  <h1>Revamping...</h1>
+</section>
+
+──── hogarden.html ────
+<section id="hogarden-hero" class="full-screen-section">
+  <h1>Welcome to Ho Garden</h1>
+  <p class="hero-subtitle">
+    Experience a moment of peace and focus in our dedicated space.
+  </p>
+</section>
+
+<!-- <section id="hogarden-rules" class="full-screen-section container">
+  <h2 class="section-title">Guidelines for Ho Garden</h2>
+  <p class="section-subtitle">
+    Maintain the wonderful space by following these simple rules.
+  </p>
+
+  <div
+    class="rules-content"
+    style="
+      max-width: 900px;
+      margin-top: 2rem;
+      background: rgba(50, 205, 50, 0.1);
+      padding: 2rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--lime-color);
+    "
+  >
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        📚 First-Come, First-Served Seating
+      </h3>
+      <p style="color: #ccc; line-height: 1.6">
+        Seats in the study room are available on a
+        <strong>first-come-first-served basis</strong>.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        🤫 Quiet Environment & Cleanliness
+      </h3>
+      <p style="color: #ccc; line-height: 1.6">
+        Users have to <strong>stay quiet and keep the study room clean</strong>.
+        Users should clean up before leaving, and make sure that all tables and
+        chairs are neat and tidy.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        🛡️ Facility Protection
+      </h3>
+      <p style="color: #ccc; line-height: 1.6">
+        Do not <strong>deface, cut, mark, scratch or damage</strong> any part or
+        fixtures of the study room. Users are bound to compensate the Ho Garden
+        for any damages. To avoid electrical hazards, users are
+        <strong>forbidden to connect energy-consuming plug-in devices</strong>
+        to the power supply.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        🚫 Prohibited Activities
+      </h3>
+      <p style="color: #ccc; line-height: 1.6">
+        <strong
+          >Talking, eating, drinking, sleeping, smoking, horseplaying,
+          tutoring</strong
+        >
+        or any activity causing nuisance to others are not allowed. Users should
+        <strong>not move tables or chairs without permission</strong>.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        💼 Personal Belongings
+      </h3>
+      <p style="color: #ccc; line-height: 1.6">
+        Users are responsible for the
+        <strong>safekeeping of their own personal belongings</strong>. The
+        Office is not liable for any loss or damage of any kind. Users should
+        <strong>take all belongings upon leaving</strong>.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        👥 Seat Reservation Policy
+      </h3>
+      <p style="color: #ccc; line-height: 1.6">
+        <strong
+          >Occupying seats with objects or reserving seats for others is
+          forbidden</strong
+        >. The Office has the right to allocate vacant seats to other users.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        📢 Reporting Violations
+      </h3>
+      <p style="color: #ccc; line-height: 1.6">
+        Users can <strong>report any violation</strong> of the "Rules for the
+        Use of Study Room" to our staff on duty for appropriate action.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      "
+    >
+      <h3 style="color: var(--lime-color); margin-bottom: 0.5rem">
+        🌪️ Weather Warning Arrangements
+      </h3>
+      <p style="color: #ccc; line-height: 1.6; margin-bottom: 1rem">
+        <strong>(a) Tropical Cyclone Signal No. 8 or above:</strong><br />
+        • If hoisted during service hours, the study room will
+        <strong>close</strong>.<br />
+        • If hoisted 2+ hours before service starts, the study room will
+        <strong>close</strong>.
+      </p>
+      <p style="color: #ccc; line-height: 1.6; margin-bottom: 1rem">
+        <strong>(b) Black Rainstorm Warning:</strong><br />
+        • If issued during service hours, <strong>users can stay</strong>.<br />
+        • If issued 2+ hours before service starts, the study room will
+        <strong>close</strong>.
+      </p>
+      <p style="color: #ccc; line-height: 1.6">
+        <strong
+          >(c) Tropical Cyclone Signal No. 3 or Red Rainstorm Warning:</strong
+        ><br />
+        The study room will <strong>remain open</strong>.
+      </p>
+      <p
+        style="
+          color: #ccc;
+          line-height: 1.6;
+          margin-top: 1rem;
+          font-style: italic;
+        "
+      >
+        The Ho Garden and study rooms will
+        <strong>resume service within 2 hours</strong> after signals/warnings
+        are cancelled.
+      </p>
+    </div>
+
+    <div
+      class="rule-item"
+      style="
+        margin-bottom: 0;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-top: 2px solid var(--lime-color);
+      "
+    >
+      <p
+        style="
+          color: #ccc;
+          line-height: 1.6;
+          font-weight: bold;
+          text-align: center;
+        "
+      >
+        <strong>Ho Garden reserves the right to make the final decision</strong>
+        on any disputes arising from violations of these rules.
+      </p>
+    </div>
+  </div>
+</section> -->
+
+<section id="hogarden-booking" class="full-screen-section container">
+  <h2 class="section-title">Reserve Your Spot</h2>
+  <div
+    id="booking-card"
+    class="facility-card"
+    style="
+      padding: 2.5rem;
+      background: rgba(256, 256, 256, 0.05);
+      border: 1px solid var(--lime-color);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto 0;
+      text-align: center;
+    "
+  >
+    <p
+      style="color: var(--white-color); font-size: 1.2rem; margin-bottom: 2rem"
+    >
+      Ready to book? Your next session is just a click away!
+    </p>
+
+    <div
+      id="calendar-button-container"
+      style="min-height: 50px; text-align: center"
+    >
+      <a
+        href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3WdFQMC6FD-QyzbkUIRQp5d9UOvDlhzvjcxVDFkaHnr6CJ4gXniWy98M_jEBPTu0xYG14eU3Z0?gv=true"
+        target="_blank"
+        class="calendar-fallback-link"
+        style="
+          display: inline-block;
+          background-color: #32cd32;
+          color: #000;
+          padding: 0.75rem 1.5rem;
+          border-radius: 5px;
+          font-family: 'Agdasima', sans-serif;
+          font-weight: 700;
+          text-transform: uppercase;
+          text-decoration: none;
+        "
+      >
+        Book Now
+      </a>
+
+      <link
+        href="https://calendar.google.com/calendar/scheduling-button-script.css"
+        rel="stylesheet"
+      />
+      <script
+        src="https://calendar.google.com/calendar/scheduling-button-script.js"
+        async
+      ></script>
+      <script>
+        (function () {
+          var container = document.getElementById("calendar-button-container");
+          var fallbackLink = container.querySelector(".calendar-fallback-link");
+
+          if (fallbackLink) {
+            fallbackLink.style.display = "none";
+          }
+
+          window.addEventListener("load", function () {
+            setTimeout(function () {
+              if (
+                typeof calendar !== "undefined" &&
+                calendar.schedulingButton &&
+                container
+              ) {
+                calendar.schedulingButton.load({
+                  url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3WdFQMC6FD-QyzbkUIRQp5d9UOvDlhzvjcxVDFkaHnr6CJ4gXniWy98M_jEBPTu0xYG14eU3Z0?gv=true",
+                  color: "#32CD32",
+                  label: "Book Now / 進行預約",
+                  target: container,
+                });
+              } else if (fallbackLink) {
+                fallbackLink.style.display = "inline-block";
+              }
+            }, 100);
+          });
+        })();
+      </script>
+    </div>
+    <p
+      style="
+        color: #ccc;
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 2rem;
+      "
+    >
+      Booking opens in a new tab. Please ensure pop-ups are allowed.
+    </p>
+  </div>
+</section>
+
+<style>
+  .rules-content .rule-item {
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .rules-content .rule-item:hover {
+    background: rgba(50, 205, 50, 0.15) !important;
+    transform: translateX(5px);
+  }
+
+  .rules-content .rule-item h3 {
+    font-family: "Agdasima", sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .rules-content .rule-item p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* Ensure consistency with existing card styles */
+  .facility-card,
+  .rules-content {
+    backdrop-filter: blur(10px);
+  }
+
+  @media (max-width: 768px) {
+    .rules-content {
+      padding: 1.5rem;
+    }
+
+    .rules-content .rule-item {
+      padding: 0.75rem;
+    }
+
+    .rules-content .rule-item h3 {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+──── home.html ────
+<main id="content">
+  <section class="services full-screen-section">
+    <div class="services-header">
+      <img src="images/wenlintang.svg" alt="Service 1" />
+    </div>
+    <div class="services-header">
+      <img src="images/wenlintang.svg" alt="Service 2" />
+    </div>
+    <div class="services-header">
+      <img src="images/wenlintang.svg" alt="Service 3" />
+    </div>
+  </section>
+
+  <section class="services-copy">
+    <h1 class="animate-text section-title" style="font-weight: 500">
+      offers a amazing living experience where Chung Chi students can grow,
+      connect, and make lasting memories beyond the CUHK.
+    </h1>
+  </section>
+
+  <!-- New Location Section -->
+  <section class="location-section full-screen-section">
+    <h2 class="section-title">Location</h2>
+    <div class="map-wrapper">
+      <iframe
+        width="100%"
+        height="100%"
+        frameborder="0"
+        scrolling="no"
+        marginheight="0"
+        marginwidth="0"
+        src="https://maps.google.com/maps?q=Wen+Lin+Tang, Chinese University of Hong Kong&t=&z=17&ie=UTF8&iwloc=&output=embed"
+      >
+      </iframe>
+    </div>
+    <p class="section-subtitle" style="margin-top: 1rem">
+      Wen Lin Tang, Chung Chi College, CUHK
+    </p>
+  </section>
+</main>
+
+──── index.html ────
+<!-- index.html: Full fixed version - Single Bootstrap link. GSAP scripts before custom JS. Title bilingual. Paths relative (assume root). Added <base href="/"> if needed for subdir, but comment it out unless deployed. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>豪聚園 Ho Garden - WenLinTang Organization</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.10.4/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.10.4/dist/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Moved AFTER Bootstrap for override priority -->
+    <!-- <base href="/"> -->
+    <!-- Uncomment if files in subdir; else root-relative works -->
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="nav__data">
+          <a href="#" class="nav__logo">
+            <img src="images/logo.png" alt="WenLinTang Logo" />
+          </a>
+          <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line nav__burger"></i>
+            <i class="ri-close-line nav__close"></i>
+          </div>
+        </div>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li>
+              <a href="#home" data-page="home" class="nav__link">HOME</a>
+            </li>
+            <li>
+              <a href="#hogarden" data-page="hogarden" class="nav__link"
+                >HO GARDEN</a
+              >
+            </li>
+            <li>
+              <a href="#association" data-page="association" class="nav__link"
+                >HOSTEL ASSOCIATION</a
+              >
+            </li>
+            <li>
+              <a href="#joinus" data-page="joinus" class="nav__link">JOIN US</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content">
+      <!-- Dynamic content will be loaded here via JS -->
+    </main>
+
+    <footer class="container-fluid" id="footer">
+      <p>© 2025 WENLINTANG. All rights reserved.</p>
+      <div class="social-links">
+        <a
+          href="https://www.youtube.com/@wenlintangcuhk"
+          target="_blank"
+          rel="noopener noreferrer"
+          >YouTube</a
+        >
+        <a
+          href="https://www.instagram.com/wenlintang_taiporoad/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Instagram (Taiporoad)</a
+        >
+        <a
+          href="https://www.instagram.com/wenlintang_film/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Instagram (Film)</a
+        >
+        <a
+          href="https://www.instagram.com/wenlintang_hanlin/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Instagram (Hanlin)</a
+        >
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
+
+──── joinus.html ────
+<!-- JOIN US PAGE -->
+
+<!-- 1. INTRO SECTION -->
+<section class="ju-intro-section full-screen-section">
+  <div class="ju-intro-content animate-fade-up">
+    <h1 class="ju-title">
+      BECOME PART OF<br /><span style="color: var(--lime-color)"
+        >THE LEGACY</span
+      >
+    </h1>
+    <p class="ju-subtitle">
+      WenLinTang is more than just a hostel. It's a community of creators,
+      dreamers, and leaders. Join us to shape the future of Chung Chi College
+      living.
+    </p>
+  </div>
+</section>
+
+<!-- 2. SERVICE/BENEFITS SECTION -->
+<section class="ju-services-section">
+  <div class="container">
+    <h2 class="section-title animate-fade-up">Why Join Us?</h2>
+    <div class="ju-grid">
+      <!-- Service 1 -->
+      <div class="ju-card animate-fade-up">
+        <div class="ju-icon">
+          <!-- RemixIcon class -->
+          <i class="ri-home-heart-line"></i>
+        </div>
+        <h3>Living Experience</h3>
+        <p>
+          A home away from home where comfort meets creativity. Experience the
+          best student life.
+        </p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="ju-card animate-fade-up">
+        <div class="ju-icon">
+          <i class="ri-team-line"></i>
+        </div>
+        <h3>Community</h3>
+        <p>
+          Connect with talented individuals from diverse backgrounds. Build
+          friendships that last.
+        </p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="ju-card animate-fade-up">
+        <div class="ju-icon">
+          <i class="ri-lightbulb-flash-line"></i>
+        </div>
+        <h3>Growth</h3>
+        <p>
+          Develop leadership skills, organize events, and leave your mark on the
+          college history.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. FOUNDER STORY SECTION (Instagram Style) -->
+<section class="ju-story-section full-screen-section">
+  <div class="container story-wrapper">
+    <div class="ju-text-side animate-fade-up">
+      <h2 class="ju-story-title">Meet The Founders</h2>
+      <p class="ju-story-desc" id="dynamic-story-text">
+        Loading founder stories...
+      </p>
+    </div>
+
+    <!-- Instagram Story Container -->
+    <div class="story-phone-container animate-fade-up">
+      <div class="story-screen">
+        <!-- Video -->
+        <video
+          id="story-video"
+          class="story-video"
+          playsinline
+          muted
+          autoplay
+          loop
+        >
+          <!-- Source set by JS -->
+        </video>
+
+        <!-- Dark Gradient Overlay -->
+        <div class="story-overlay-gradient"></div>
+
+        <!-- Top Progress Bars -->
+        <div class="story-bars" id="story-bars"></div>
+
+        <!-- Header: Avatar + Name -->
+        <div class="story-header-row">
+          <img id="story-avatar" src="" alt="Avatar" class="story-avatar-img" />
+          <div class="story-meta-text">
+            <span id="story-name" class="s-name">Name</span>
+            <span id="story-role" class="s-role">Role</span>
+          </div>
+        </div>
+
+        <!-- Tap Areas for Navigation -->
+        <div class="tap-area left" onclick="prevFounder()"></div>
+        <div class="tap-area right" onclick="nextFounder()"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. APPLY SECTION (Bottom) -->
+<section class="ju-apply-section">
+  <div class="container" style="text-align: center">
+    <h2 class="section-title">Ready to Start?</h2>
+    <p class="section-subtitle">The next chapter waits for you.</p>
+    <br />
+    <a href="mailto:recruit@wenlintang.com" class="btn-apply">
+      APPLY NOW <i class="ri-arrow-right-line btn-icon"></i>
+    </a>
+  </div>
+</section>
+
+<!-- JOIN US SPECIFIC SCRIPTS -->
+<script>
+  // Founder Data
+  const founders = [
+    {
+      name: "Bernard",
+      role: "CEO & Visionary",
+      desc: "Bernard leads with a passion for student welfare. His vision is to create a space where everyone feels they truly belong.",
+      video: "images/bernard.MOV",
+      avatar: "images/bernard.png",
+    },
+    {
+      name: "Simon",
+      role: "CTO & Developer",
+      desc: "The brain behind our digital infrastructure. Simon ensures our booking systems and tech integrations are seamless.",
+      video: "images/simon.MOV",
+      avatar: "images/simon.png",
+    },
+  ];
+
+  let currentStoryIndex = 0;
+
+  // Elements
+  const vPlayer = document.getElementById("story-video");
+  const sName = document.getElementById("story-name");
+  const sRole = document.getElementById("story-role");
+  const sDesc = document.getElementById("dynamic-story-text");
+  const sAvatar = document.getElementById("story-avatar");
+  const sBars = document.getElementById("story-bars");
+
+  function initStory() {
+    // Generate Progress Bars
+    sBars.innerHTML = founders
+      .map(
+        (_, i) =>
+          `<div class="s-bar-bg"><div class="s-bar-fill" id="bar-fill-${i}"></div></div>`,
+      )
+      .join("");
+
+    loadStory(0);
+  }
+
+  function loadStory(index) {
+    const f = founders[index];
+
+    // Update Info
+    sName.textContent = f.name;
+    sRole.textContent = f.role;
+    sAvatar.src = f.avatar;
+
+    // Animate Text Change
+    if (sDesc) {
+      sDesc.style.opacity = 0;
+      setTimeout(() => {
+        sDesc.textContent = f.desc;
+        sDesc.style.opacity = 1;
+      }, 300);
+    }
+
+    // Update Video
+    // Note: If MOV fails on Windows, ensure the file is H.264 encoded
+    vPlayer.src = f.video;
+    vPlayer.load();
+    const playPromise = vPlayer.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.log("Auto-play was prevented. Interaction needed.");
+      });
+    }
+
+    updateBars(index);
+  }
+
+  function updateBars(activeIndex) {
+    founders.forEach((_, i) => {
+      const fill = document.getElementById(`bar-fill-${i}`);
+      if (i < activeIndex) fill.style.width = "100%";
+      else if (i > activeIndex) fill.style.width = "0%";
+      else fill.style.width = "0%"; // Reset current to animate via timeupdate
+    });
+  }
+
+  // Next/Prev Logic
+  window.nextFounder = function () {
+    if (currentStoryIndex < founders.length - 1) {
+      currentStoryIndex++;
+    } else {
+      currentStoryIndex = 0;
+    }
+    loadStory(currentStoryIndex);
+  };
+
+  window.prevFounder = function () {
+    if (currentStoryIndex > 0) {
+      currentStoryIndex--;
+    } else {
+      currentStoryIndex = founders.length - 1;
+    }
+    loadStory(currentStoryIndex);
+  };
+
+  // Video Progress Sync
+  if (vPlayer) {
+    vPlayer.addEventListener("timeupdate", () => {
+      if (vPlayer.duration) {
+        const pct = (vPlayer.currentTime / vPlayer.duration) * 100;
+        const currentFill = document.getElementById(
+          `bar-fill-${currentStoryIndex}`,
+        );
+        if (currentFill) currentFill.style.width = `${pct}%`;
+      }
+    });
+
+    vPlayer.addEventListener("ended", () => {
+      nextFounder();
+    });
+  }
+
+  // Initialize
+  initStory();
+</script>
+
+──── project_structure_and_contents.txt ────
+
+
+──── scripts.js ────
+// scripts.js: Updated to execute scripts in fetched HTML (fixing video player logic)
+// Mobile menu toggle
+const showMenu = (toggleId, navId) => {
+  const toggle = document.getElementById(toggleId);
+  const nav = document.getElementById(navId);
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("show-menu");
+      toggle.classList.toggle("show-icon");
+    });
+  }
+};
+
+showMenu("nav-toggle", "nav-menu");
+
+// Seamless page transitions
+const links = document.querySelectorAll(".nav__link");
+const content = document.getElementById("content");
+
+// Helper to execute scripts found in fetched HTML
+const executeScripts = (container) => {
+  const scripts = container.querySelectorAll("script");
+  scripts.forEach((oldScript) => {
+    const newScript = document.createElement("script");
+    Array.from(oldScript.attributes).forEach((attr) =>
+      newScript.setAttribute(attr.name, attr.value),
+    );
+    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+    oldScript.parentNode.replaceChild(newScript, oldScript);
+  });
+};
+
+function loadPage(pageUrl) {
+  gsap.to(content, {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+      fetch(pageUrl + ".html")
+        .then((response) => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          return response.text();
+        })
+        .then((data) => {
+          content.innerHTML = data;
+
+          // Execute scripts found in the new content
+          executeScripts(content);
+
+          // Force reflow
+          content.offsetHeight;
+
+          gsap.fromTo(
+            content,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 0.5,
+              onComplete: () => {
+                if (window.isInitialLoad) {
+                  document.getElementById("footer").style.display = "block";
+                  delete window.isInitialLoad;
+                }
+              },
+            },
+          );
+
+          // Re-init global effects
+          initGSAPEffects();
+          initInteractions();
+          initMobileVideo();
+          if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+        })
+        .catch((error) => {
+          console.error("Error loading page:", error);
+          content.innerHTML = "<p>Error loading content.</p>";
+          gsap.to(content, { opacity: 1 });
+        });
+    },
+  });
+}
+
+// Global click listener for navigation
+links.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const page = link.getAttribute("data-page");
+    if (page) {
+      loadPage(page);
+      document.getElementById("nav-menu").classList.remove("show-menu");
+      document.getElementById("nav-toggle").classList.remove("show-icon");
+    }
+  });
+});
+
+// Interactions (Accordion, Forms)
+function initInteractions() {
+  const ruleItems = document.querySelectorAll(".rule-item");
+  ruleItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const p = item.querySelector("p");
+      if (p) {
+        const isVisible = p.style.display === "block";
+        if (isVisible) {
+          gsap.to(p, {
+            height: 0,
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => (p.style.display = "none"),
+          });
+        } else {
+          p.style.display = "block";
+          gsap.fromTo(
+            p,
+            { height: 0, opacity: 0 },
+            { height: "auto", opacity: 1, duration: 0.3 },
+          );
+        }
+      }
+    });
+  });
+}
+
+// Mobile video autoplay
+function initMobileVideo() {
+  const videos = document.querySelectorAll("video");
+  videos.forEach((video) => {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)
+    ) {
+      video.addEventListener("touchstart", () => video.play(), { once: true });
+    } else {
+      video.play().catch(() => console.log("Autoplay prevented for", video));
+    }
+  });
+}
+
+// GSAP Effects
+function initGSAPEffects() {
+  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero Animations
+    const hero = document.getElementById("hero");
+    if (hero) {
+      const video = hero.querySelector("video");
+      const title = hero.querySelector("h1");
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: "#hero",
+            start: "top top",
+            end: "+=50vh",
+            scrub: 0.5,
+            pin: true,
+            anticipatePin: 1,
+          },
+        })
+        .to(video, { opacity: 1, duration: 0.8 })
+        .to(title, { opacity: 1, duration: 0.8 }, "-=0.4");
+    }
+
+    // Generic Fade In
+    gsap.utils
+      .toArray(
+        ".full-screen-section, .ju-intro-section, .ju-services-section, .ju-story-section",
+      )
+      .forEach((section) => {
+        const children = section.querySelectorAll(
+          ".animate-fade-up, .ju-card, .story-container",
+        );
+        if (children.length > 0) {
+          gsap.fromTo(
+            children,
+            { opacity: 0, y: 50 },
+            {
+              scrollTrigger: { trigger: section, start: "top 75%" },
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.2,
+              ease: "power2.out",
+            },
+          );
+        }
+      });
+  }
+}
+
+// Initial Load
+document.addEventListener("DOMContentLoaded", () => {
+  window.isInitialLoad = true;
+  loadPage("home");
+
+  // Header Scroll Effect
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", () => {
+    const header = document.querySelector(".header");
+    const currentScrollTop = window.scrollY;
+    header.classList.toggle("scrolled", currentScrollTop > 50);
+
+    if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
+      header.classList.add("header--hidden");
+    } else {
+      header.classList.remove("header--hidden");
+    }
+    lastScrollTop = Math.max(0, currentScrollTop);
+  });
+});
+
+──── styles.css ────
+/* Existing styles from WenLinTang project */
+body,
+html {
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  margin: 0 !important;
+  color: white !important;
+  background-color: black !important;
+  max-width: 100vw;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Root variables */
+:root {
+  --header-height: 5rem;
+  --white-color: #fff;
+  --lime-color: #32cd32;
+  --font-semi-bold: 600;
+}
+
+/* Full-screen sections */
+.full-screen-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--header-height) 1rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100% !important;
+  padding: 0 1rem;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out; /* Added transform transition */
+  z-index: 1000;
+}
+
+/* Class to hide header */
+.header--hidden {
+  transform: translateY(-100%);
+}
+.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Nav */
+.nav {
+  height: var(--header-height);
+  padding: 0 15px;
+  font-size: small;
+  display: flex;
+  align-items: center;
+}
+
+.nav__data {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  font-weight: var(--font-semi-bold);
+  font-size: 30px;
+  padding: 0px 20px;
+  color: var(--lime-color);
+}
+
+.nav__logo img {
+  width: 100px;
+  height: 45px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.nav__toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
+  display: none;
+}
+
+.nav__toggle.show-icon .nav__burger {
+  display: none;
+}
+.nav__toggle.show-icon .nav__close {
+  display: block;
+}
+.nav__toggle .nav__close {
+  display: none;
+}
+.nav__burger,
+.nav__close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--white-color);
+}
+
+.nav__menu {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__link {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--lime-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav__link:hover {
+  background-color: rgba(88, 88, 88, 0.465);
+  color: var(--lime-color);
+}
+
+.nav__link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Mobile menu */
+@media screen and (max-width: 978px) {
+  .nav__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav__menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav__link {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .show-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .full-screen-section {
+    padding: calc(var(--header-height) + 2rem) 1rem 1.5rem;
+  }
+}
+
+/* Hero/Video Section */
+#hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 100%;
+  height: 300px;
+  width: 100%;
+  left: 0;
+  z-index: 20;
+  background: linear-gradient(to top, #000000, transparent);
+}
+
+#background-video,
+#hogarden-background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  filter: brightness(50%);
+  object-fit: cover;
+  opacity: 0;
+}
+
+.hero-subtitle {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  max-width: 80%;
+  opacity: 0;
+  z-index: 2;
+}
+
+#hero h1 {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  z-index: 2;
+  opacity: 0;
+}
+
+/* Section Titles & Subtitles */
+.section-title {
+  color: var(--lime-color);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+  text-align: center;
+  opacity: 1;
+}
+
+.section-subtitle {
+  color: var(--white-color);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  opacity: 1;
+}
+
+/* Content Grids & Blocks */
+main #content .content-grid,
+main #content .facilities-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+main #content .content-block {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+}
+
+.text-side {
+  flex: 1;
+  padding: 1rem;
+}
+
+.image-side,
+.map-side {
+  flex: 1;
+}
+
+main #content .content-block img,
+.interactive-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+iframe {
+  width: 100%;
+  height: 50vh;
+  border: 0;
+  border-radius: 10px;
+}
+
+/* Cards */
+.team-card,
+.facility-card {
+  background: rgba(50, 205, 50, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 1;
+}
+
+.team-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.facility-card ul {
+  list-style: none;
+  text-align: left;
+}
+
+.facility-card li {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.facility-card li::before {
+  content: "•";
+  color: var(--lime-color);
+  position: absolute;
+  left: 0;
+}
+
+/* Big Text */
+.big-text {
+  font-size: 2rem;
+  color: var(--lime-color);
+  font-weight: bold;
+}
+
+/* Rules Accordion */
+.rules-accordion {
+  width: 100%;
+  max-width: 800px;
+}
+
+.rule-item {
+  background: rgba(50, 205, 50, 0.1);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.rule-item:hover {
+  background: rgba(50, 205, 50, 0.2);
+}
+
+.rule-item h3 {
+  color: var(--lime-color);
+  margin-bottom: 0.5rem;
+}
+
+.rule-item p {
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+/* Booking Specific */
+.booking-steps {
+  list-style-position: inside;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.booking-steps li {
+  margin-bottom: 0.5rem;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 1rem 0;
+}
+
+.booking-form label {
+  color: var(--lime-color);
+  font-weight: bold;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 0.5rem;
+  border: 1px solid var(--lime-color);
+  background: black;
+  color: white;
+  border-radius: 5px;
+}
+
+.booking-form button {
+  background: var(--lime-color);
+  color: black;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.booking-note {
+  font-style: italic;
+  color: #ccc;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+main #content table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+main #content table th,
+main #content table td {
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid var(--lime-color);
+}
+
+/* Footer */
+#footer {
+  background-color: black;
+  opacity: 0.8;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  width: 100%;
+  display: none;
+}
+
+.social-links {
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: var(--lime-color);
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--white-color);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  main #content .content-block {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  main #content .content-block img,
+  .image-side img {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  iframe {
+    height: 40vh;
+  }
+  .nav__logo {
+    font-size: 1.5rem;
+  }
+  .full-screen-section {
+    padding: calc(var(--header-height) + 1rem) 0.5rem 1rem;
+  }
+  .container {
+    padding: 0 0.5rem;
+  }
+  .booking-form {
+    max-width: 100%;
+  }
+}
+
+/* GSAP Animation Classes */
+.animate-fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* New styles for home.html content */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: -0.15rem;
+  line-height: 1.125;
+  text-align: center;
+}
+
+.hero,
+.outro,
+.about {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-img,
+.outro-img {
+  width: 300px;
+  aspect-ratio: 5/7;
+  overflow: hidden;
+}
+
+.services {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.services-header {
+  position: relative;
+  width: 100%;
+  padding: 0 2rem;
+  background-color: black;
+  will-change: transform;
+}
+
+.services-header img {
+  object-fit: contain;
+}
+
+.services-header:nth-child(1),
+.services-header:nth-child(3) {
+  transform: translateX(100%) translateY(0%);
+}
+
+.services-header:nth-child(2) {
+  transform: translateX(-100%) translateY(0%);
+  z-index: 2;
+}
+
+.services-copy {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 155svh;
+  padding: 2rem 2rem 25svh 2rem;
+  text-align: center;
+}
+
+.animate-text {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  color: #4f4f4f;
+  --clip-value: 100%;
+}
+
+.animate-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--white-color);
+  clip-path: inset(0 0 var(--clip-value) 0);
+  will-change: clip-path;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 2rem;
+    letter-spacing: -0.05rem;
+  }
+
+  .animate-text {
+    width: 100%;
+  }
+}
+
+/* Map specific styles */
+.map-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: 500px; /* Fixed height for desktop */
+  margin: 2rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(50, 205, 50, 0.15); /* Subtle lime glow */
+  border: 1px solid rgba(50, 205, 50, 0.3);
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: invert(90%) hue-rotate(180deg); /* Optional: Dark mode map effect */
+}
+
+/* Mobile responsive for map */
+@media (max-width: 768px) {
+  .map-wrapper {
+    height: 350px; /* Smaller height on mobile */
+    margin: 1rem auto;
+  }
+}
+
+/* Team Profile Card */
+.team-profile-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
+  height: 100%;
+}
+
+.team-profile-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: var(--lime-color);
+}
+
+.profile-img-wrapper {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--lime-color);
+  padding: 3px; /* Gap between border and image */
+  background: transparent;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: grayscale(100%);
+  transition: filter 0.4s ease;
+}
+
+.team-profile-card:hover .profile-img {
+  filter: grayscale(0%);
+}
+
+.profile-name {
+  color: var(--white-color);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.profile-role {
+  color: var(--lime-color);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.profile-divider {
+  width: 40px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 auto 1.5rem;
+  transition: width 0.4s ease;
+}
+
+.team-profile-card:hover .profile-divider {
+  width: 80px;
+  background: var(--lime-color);
+}
+
+.profile-desc {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Apply Button */
+.btn-apply {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem;
+  background-color: transparent;
+  border: 2px solid var(--lime-color);
+  color: var(--lime-color);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-apply::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--lime-color);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.btn-apply:hover {
+  color: black;
+  box-shadow: 0 0 20px rgba(50, 205, 50, 0.4);
+}
+
+.btn-apply:hover::before {
+  width: 100%;
+}
+
+.btn-icon {
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.btn-apply:hover .btn-icon {
+  transform: translateX(5px);
+}
+
+/* Existing styles from WenLinTang project */
+/* ... (Keep your base styles) ... */
+
+body,
+html {
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  margin: 0 !important;
+  color: white !important;
+  background-color: black !important;
+  max-width: 100vw;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  --header-height: 5rem;
+  --white-color: #fff;
+  --lime-color: #32cd32;
+  --font-semi-bold: 600;
+}
+
+.full-screen-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--header-height) 1rem 1.5rem;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100% !important;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Header & Nav (Preserved) */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  z-index: 1000;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.header--hidden {
+  transform: translateY(-100%);
+}
+.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav {
+  height: var(--header-height);
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+.nav__data {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__logo img {
+  width: 100px;
+  height: 45px;
+  object-fit: contain;
+}
+.nav__toggle {
+  display: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.nav__menu {
+  padding: 0 20px;
+}
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.nav__link {
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav__link:hover {
+  color: var(--lime-color);
+}
+
+/* Mobile Menu */
+@media screen and (max-width: 978px) {
+  .nav__toggle {
+    display: block;
+  }
+  .nav__menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background: black;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+  }
+  .nav__list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .show-menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* General UI Components */
+.section-title {
+  color: var(--lime-color);
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "Agdasima", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.btn-apply {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 3rem;
+  border: 1px solid var(--lime-color);
+  color: var(--lime-color);
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  background: transparent;
+  font-size: 1.1rem;
+}
+.btn-apply:hover {
+  background: var(--lime-color);
+  color: black;
+  box-shadow: 0 0 20px rgba(50, 205, 50, 0.4);
+}
+.btn-icon {
+  margin-left: 0.5rem;
+}
+
+/* =========================================
+   JOIN US PAGE SPECIFIC STYLES
+   ========================================= */
+
+/* Intro Section */
+.ju-intro-section {
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(50, 205, 50, 0.1) 0%,
+    black 70%
+  );
+}
+.ju-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.ju-subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Services Section */
+.ju-services-section {
+  padding: 4rem 0;
+  background: black;
+}
+.ju-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.ju-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+  border: 1px solid transparent;
+}
+.ju-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(50, 205, 50, 0.3);
+}
+.ju-icon {
+  font-size: 3rem;
+  color: var(--lime-color);
+  margin-bottom: 1rem;
+}
+.ju-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.ju-card p {
+  color: #aaa;
+  line-height: 1.5;
+}
+
+/* Founder Story Section (Instagram Style) */
+.ju-story-section {
+  background: black;
+  overflow: hidden;
+}
+.story-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  height: 80vh;
+}
+.ju-text-side {
+  flex: 1;
+  padding-left: 2rem;
+}
+.ju-story-title {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+.ju-story-desc {
+  font-size: 1.5rem;
+  color: #888;
+  transition: opacity 0.3s ease;
+}
+
+/* Phone Container */
+.story-phone-container {
+  flex: 0 0 380px; /* Fixed width like a phone */
+  height: 700px;
+  background: #111;
+  border-radius: 35px;
+  border: 8px solid #222;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.story-screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 25px; /* Inner radius */
+  overflow: hidden;
+  background: black;
+}
+
+.story-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlays */
+.story-overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  pointer-events: none;
+}
+
+.story-bars {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+.s-bar-bg {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.s-bar-fill {
+  height: 100%;
+  background: white;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.story-header-row {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+.story-avatar-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.story-meta-text {
+  display: flex;
+  flex-direction: column;
+}
+.s-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-shadow: 0 1px 2px black;
+}
+.s-role {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px black;
+}
+
+/* Tap Navigation Areas */
+.tap-area {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  z-index: 5;
+  cursor: pointer;
+}
+.tap-area.left {
+  left: 0;
+}
+.tap-area.right {
+  right: 0;
+}
+
+/* Apply Section */
+.ju-apply-section {
+  padding: 6rem 1rem;
+  background: black;
+  border-top: 1px solid #111;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .story-wrapper {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+  .ju-text-side {
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  .story-phone-container {
+    width: 100%;
+    max-width: 400px;
+    height: 70vh;
+  }
+}
+
