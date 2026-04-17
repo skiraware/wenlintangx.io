@@ -6,8 +6,8 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "https://esm.sh/gsap";
+import { ScrollTrigger } from "https://esm.sh/gsap/ScrollTrigger";
 import {
   Menu,
   X,
